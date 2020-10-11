@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
+import Routes from "./Routes";
 
 function App() {
   return (
-    <div>
-      {/* <Head />
-      <Routes /> */}
-      hello world
-    </div>
+    <>
+      {/* hello world */}
+      <Routes />
+    </>
   );
 }
 
