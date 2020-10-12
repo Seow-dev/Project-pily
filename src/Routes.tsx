@@ -1,8 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import MainContainer from "./Mainpage/container/MainContainer";
 
-// const Root: React.FC = () => (
-//   // 라우팅 작업이 진행되는 Routes 파일입니다.
-// <Route path="/" exact component={Main} />
-// )
-
-export default Root;
+export default function Routes() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact={true} path="/" component={MainContainer} />
+      </Switch>
+    </BrowserRouter>
+  );
+}
