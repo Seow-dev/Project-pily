@@ -1,11 +1,11 @@
 import React from 'react';
+import { Mainpage } from './Mainpage/container/index';
 
 function App() {
+
   return (
     <div>
-      {/* <Head />
-      <Routes /> */}
-      hello world
+      <Mainpage />
     </div>
   );
 }

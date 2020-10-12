@@ -5,4 +5,4 @@ import * as React from 'react';
 // <Route path="/" exact component={Main} />
 // )
 
-export default Root;
+// export default Root;
