@@ -4,13 +4,13 @@ import styled from "styled-components";
 import { media } from "../../Common/DeviceSize";
 import { Row, Col, Pagination, Menu } from "antd";
 import "antd/dist/antd.css";
-import MegazineTile from "./MegazineTile";
+import MagazineTile from "./MagazineTile";
 
 interface props {
-  megazineData: object[];
+  magazineData: object[];
 }
 
-export default function MegazineGrid({ megazineData }: props) {
+export default function MagazineGrid({ magazineData }: props) {
   const [cur, setCur] = useState(1);
   const [menu, setMenu] = useState<string>("latest");
 
@@ -42,10 +42,10 @@ export default function MegazineGrid({ megazineData }: props) {
         <Menu.Item key="liked">인기</Menu.Item>
       </Menu>
       <Row>
-        {megazineData
+        {magazineData
           .map((result, idx) => (
             <Col key={idx} span={12}>
-              <MegazineTile megazineData={result} />
+              <MagazineTile magazineData={result} />
             </Col>
           ))
           .slice(4 * (cur - 1), cur * 4)}
@@ -54,7 +54,7 @@ export default function MegazineGrid({ megazineData }: props) {
         defaultPageSize={8}
         current={cur}
         onChange={onChange}
-        total={megazineData.length}
+        total={magazineData.length}
       />
     </MainWrapper>
   );

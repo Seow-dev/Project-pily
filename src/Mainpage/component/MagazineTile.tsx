@@ -4,20 +4,20 @@ import styled from "styled-components";
 import { DataTypes } from "../../Common/Interface";
 
 interface props {
-  megazineData: DataTypes;
+  magazineData: DataTypes;
 }
 
-export default function MegazineTile({ megazineData }: props) {
+export default function MagazineTile({ magazineData }: props) {
   return (
-    <Link to={`/magazine/${megazineData.title}`}>
+    <Link to={`/magazine/${magazineData.title}`}>
       <MegazineWrapper>
-        <MegazineImg src={megazineData.thumbnail} />
+        <MegazineImg src={magazineData.thumbnail} />
         <MegazineInfo>
-          <MegazineTitle>{megazineData.title}</MegazineTitle>
-          <MegazineSubtitle>{megazineData.subTitle}</MegazineSubtitle>
+          <MegazineTitle>{magazineData.title}</MegazineTitle>
+          <MegazineSubtitle>{magazineData.subTitle}</MegazineSubtitle>
           <AuthorWrap>
-            <AuthorImg alt="author" src={megazineData.authorImg} />
-            <Authorname>{megazineData.author}</Authorname>
+            <AuthorImg alt="author" src={magazineData.authorImg} />
+            <Authorname>{magazineData.author}</Authorname>
           </AuthorWrap>
         </MegazineInfo>
       </MegazineWrapper>
