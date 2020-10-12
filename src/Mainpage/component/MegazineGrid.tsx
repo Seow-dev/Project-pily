@@ -1,21 +1,34 @@
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { media } from "../../Common/DeviceSize";
 import { Row, Col, Pagination, Menu } from "antd";
 import "antd/dist/antd.css";
-import { results } from "../../Common/Dummy";
 import MegazineTile from "./MegazineTile";
 
-export default function MegazineGrid() {
-  const [cur, setCur] = useState<number>(1);
+interface props {
+  megazineData: object[];
+}
+
+export default function MegazineGrid({ megazineData }: props) {
+  const [cur, setCur] = useState(1);
+  const [menu, setMenu] = useState<string>("latest");
 
   const onChange = (page: number) => {
-    console.log(cur);
     setCur(page);
   };
+
   return (
     <MainWrapper>
+      <MainPhrase style={{ color: "#D58936" }}>
+        일상을 발행하다. <span style={{ color: "#A3320B" }}>PILY</span>
+      </MainPhrase>
+      <MainLabel>매거진</MainLabel>
       <Menu
+        onChange={(info: any) => {
+          setMenu(info.key);
+          console.log(menu);
+        }}
         style={{
           background: "none",
           marginBottom: "1rem",
@@ -23,24 +36,25 @@ export default function MegazineGrid() {
           fontWeight: 600,
         }}
         mode="horizontal"
+        selectedKeys={[menu]}
       >
         <Menu.Item key="latest">최신</Menu.Item>
         <Menu.Item key="liked">인기</Menu.Item>
       </Menu>
       <Row>
-        {results
-          .map((result, idx: number) => (
-            <Col key={idx} span={6}>
+        {megazineData
+          .map((result, idx) => (
+            <Col key={idx} span={12}>
               <MegazineTile megazineData={result} />
             </Col>
           ))
-          .slice(12 * (cur - 1), cur * 12)}
+          .slice(4 * (cur - 1), cur * 4)}
       </Row>
       <StyledPagination
-        defaultPageSize={12}
+        defaultPageSize={8}
         current={cur}
         onChange={onChange}
-        total={results.length}
+        total={megazineData.length}
       />
     </MainWrapper>
   );
@@ -49,15 +63,28 @@ export default function MegazineGrid() {
 // style
 const MainWrapper = styled.div`
   margin: 100px auto;
-  width: 1440px;
+  width: 1280px;
 
   // 반응형
-  ${media.mobileL} {
+  ${media.desktop} {
+    width: 760px;
   }
-
-  ${media.mobile} {
+  ${media.tablet} {
     margin: 60px auto;
+    width: 100%;
   }
+`;
+const MainPhrase = styled.h2`
+  padding: 1rem;
+  font-size: 3rem;
+  font-weight: 700;
+  font-family: Roboto;
+`;
+const MainLabel = styled.h3`
+  padding: 1rem 1rem 0 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: Roboto;
 `;
 const StyledPagination = styled(Pagination)`
   text-align: center;

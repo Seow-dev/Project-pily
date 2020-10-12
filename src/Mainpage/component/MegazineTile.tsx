@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { DataTypes } from "../../Common/Interface";
 
-export default function MegazineTile({ megazineData }: any) {
+interface props {
+  megazineData: DataTypes;
+}
+
+export default function MegazineTile({ megazineData }: props) {
   return (
     <Link to={`/magazine/${megazineData.title}`}>
       <MegazineWrapper>
@@ -24,15 +29,16 @@ export default function MegazineTile({ megazineData }: any) {
 const MegazineWrapper = styled.section`
   width: 100%;
   height: 100%;
-  padding: 0.2rem;
+  padding: 1rem;
   position: relative;
 `;
 const MegazineImg = styled.img`
   width: 100%;
-  height: 220px;
+  height: 320px;
   object-fit: cover;
   vertical-align: middle;
   opacity: 0.9;
+  border-radius: 8px;
 
   &:hover {
     transform: scale(1.02, 1.02);

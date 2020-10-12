@@ -1,12 +1,12 @@
 import * as React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import MegazineGrid from "./Mainpage/component/MegazineGrid";
+import MainContainer from "./Mainpage/container/MainContainer";
 
 export default function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact={true} path="/" component={MegazineGrid} />
+        <Route exact={true} path="/" component={MainContainer} />
       </Switch>
     </BrowserRouter>
   );

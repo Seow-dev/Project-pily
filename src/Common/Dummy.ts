@@ -1,12 +1,4 @@
-interface DataTypes {
-  megazineId: number; 
-  title: string;
-  subTitle: string;
-  author: string;
-  authorImg: string;
-  createdAt: string;
-  thumbnail: string;
-}
+import {DataTypes} from './Interface'
 
 export const results:DataTypes[] = [
   { 
