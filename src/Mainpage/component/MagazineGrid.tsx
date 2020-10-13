@@ -5,6 +5,7 @@ import { media } from "../../Common/DeviceSize";
 import { Row, Col, Pagination, Menu } from "antd";
 import "antd/dist/antd.css";
 import MagazineTile from "./MagazineTile";
+import {Modalpage} from '../../Modal/container';
 
 interface props {
   magazineData: object[];
@@ -20,6 +21,7 @@ export default function MagazineGrid({ magazineData }: props) {
 
   return (
     <MainWrapper>
+      <Modalpage />
       <MainPhrase style={{ color: "#D58936" }}>
         일상을 발행하다. <span style={{ color: "#A3320B" }}>PILY</span>
       </MainPhrase>
