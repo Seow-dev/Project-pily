@@ -49,7 +49,7 @@ const MegazineImg = styled.img`
 const MegazineInfo = styled.div`
   display: flex;
   flex-direction: column;
-  z-index: 2;
+  z-index: 1;
   position: absolute;
   top: 40%;
   left: 20%;

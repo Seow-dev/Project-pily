@@ -1,9 +1,9 @@
-import {DataTypes} from './Interface'
+import {DataTypes, UserData} from './Interface'
 
 export const results:DataTypes[] = [
   { 
     megazineId: 1, 
-    title:"title1", 
+    title:"title1asdfasdfasdfasdfasdadsfasdfadf", 
     subTitle:"subtitle1", 
     author:"user1", 
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", createdAt: "2020-10-11", 
@@ -195,3 +195,17 @@ export const results:DataTypes[] = [
   },
 ]
 
+export const result:UserData[] = [
+  {
+    profileImage: "https://img2.sbs.co.kr/img/sbs_cms/CH/2017/04/28/CH33108141_w666_h968.jpg",
+    username: "스폰지밥"
+  },
+  {
+    profileImage: "https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a25dc6155c10fe839cd404df1a72171a8f5dbe52274e376005197ea5b1992305d",
+    username: "뚱이"
+  },
+  {
+    profileImage: "https://img2.sbs.co.kr/img/sbs_cms/CH/2017/04/28/CH52785630_w300_h300.jpg",
+    username: "징징이"
+  }
+]

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import closeIcon from '../../Common/close.png';
 import styled from 'styled-components';
@@ -105,14 +106,15 @@ const ModalPage = styled.div`
   height: 100%;
   z-index:3;
 `
+
 const ModalOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.8);
-`
+  background-color: rgba(0, 0, 0, 0.8);
+`;
 const ModalBox = styled.div`
   position: absolute;
   width: 100%;
@@ -120,13 +122,13 @@ const ModalBox = styled.div`
   padding: 50px;
   box-sizing: border-box;
   background-color: #fff;
-`
+`;
 const ModalTitle = styled.div`
   display: flex;
   justify-content: center;
   color: #9e25fc;
   font-size: 30px;
-`
+`;
 const ModalContent = styled.div`
   display: flex;
   align-items: center;
@@ -134,7 +136,7 @@ const ModalContent = styled.div`
   margin-top: 10rem;
   color: #6b6b6b;
   font-size: 16px;
-`
+`;
 const ModalCloseImg = styled.img`
   position: absolute;
   top: 20px;
@@ -146,17 +148,20 @@ const ModalCloseImg = styled.img`
     transform: rotate(180deg);
     cursor: pointer;
   }
-`
+`;
 const SearchInput = styled.input`
-  height : 30px;
-  width : 600px;
+  height: 30px;
+  width: 600px;
   border-top: none;
   border-left: none;
   border-right: none;
   border-color: #463333;
   border-radius: 0.3rem;
   text-indent: 0.8rem;
-  &:hover{
+  &:hover {
     border-bottom-width: 3px;
   }
-`
+`;
+
+
+

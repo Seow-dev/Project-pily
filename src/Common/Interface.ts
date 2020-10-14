@@ -7,3 +7,8 @@ export interface DataTypes {
   createdAt?: string;
   thumbnail?: string;
 }
+
+export interface UserData {
+  profileImage?: string // url,
+  username: string     // username              
+}
