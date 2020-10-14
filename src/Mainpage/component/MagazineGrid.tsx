@@ -1,48 +1,57 @@
-import * as React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { media } from "../../Common/DeviceSize";
-import { Row, Col, Pagination, Menu } from "antd";
+import { Row, Col, Pagination } from "antd";
 import "antd/dist/antd.css";
 import MagazineTile from "./MagazineTile";
+import { Modalpage } from "../../Modal/container";
+import { DataTypes } from "../../Common/Interface";
+import { results } from "../../Common/Dummy";
 
-interface props {
-  magazineData: object[];
-}
+export default function MagazineGrid() {
+  const [cur, setCur] = useState<number>(1);
+  const [menu, setMenu] = useState<string>("created_at");
+  const [magazine, setMegazine] = useState<DataTypes[]>([]);
 
-export default function MagazineGrid({ magazineData }: props) {
-  const [cur, setCur] = useState(1);
-  const [menu, setMenu] = useState<string>("latest");
+  useEffect(() => {
+    // 처음에 호출하고, cur, menu값에 따라서 다른 데이터 불러오는 api 반영
+    console.log(cur, menu);
+    setMegazine(results);
+  }, [cur, menu]);
 
-  const onChange = (page: number) => {
+  const changePage = (page: number) => {
     setCur(page);
   };
 
   return (
     <MainWrapper>
+      <Modalpage />
       <MainPhrase style={{ color: "#D58936" }}>
         일상을 발행하다. <span style={{ color: "#A3320B" }}>PILY</span>
       </MainPhrase>
       <MainLabel>매거진</MainLabel>
-      <Menu
-        onChange={(info: any) => {
-          setMenu(info.key);
-          console.log(menu);
-        }}
-        style={{
-          background: "none",
-          marginBottom: "1rem",
-          fontSize: "1.2rem",
-          fontWeight: 600,
-        }}
-        mode="horizontal"
-        selectedKeys={[menu]}
-      >
-        <Menu.Item key="latest">최신</Menu.Item>
-        <Menu.Item key="liked">인기</Menu.Item>
-      </Menu>
+      <MenuWrap>
+        {menu === "created_at" ? (
+          <Menus cur value="created_at">
+            최신
+          </Menus>
+        ) : (
+          <Menus value="created_at" onClick={() => setMenu("created_at")}>
+            최신
+          </Menus>
+        )}
+        {menu === "like" ? (
+          <Menus cur value="like">
+            인기
+          </Menus>
+        ) : (
+          <Menus value="like" onClick={() => setMenu("like")}>
+            인기
+          </Menus>
+        )}
+      </MenuWrap>
       <Row>
-        {magazineData
+        {magazine
           .map((result, idx) => (
             <Col key={idx} span={12}>
               <MagazineTile magazineData={result} />
@@ -53,15 +62,15 @@ export default function MagazineGrid({ magazineData }: props) {
       <StyledPagination
         defaultPageSize={8}
         current={cur}
-        onChange={onChange}
-        total={magazineData.length}
+        onChange={changePage}
+        total={magazine.length}
       />
     </MainWrapper>
   );
 }
 
 // style
-const MainWrapper = styled.div`
+export const MainWrapper = styled.div`
   margin: 100px auto;
   width: 1280px;
 
@@ -81,12 +90,12 @@ const MainPhrase = styled.h2`
   font-family: Roboto;
 `;
 const MainLabel = styled.h3`
-  padding: 1rem 1rem 0 1rem;
+  padding: 2rem 1rem 0 1rem;
   font-size: 1.8rem;
   font-weight: 700;
   font-family: Roboto;
 `;
-const StyledPagination = styled(Pagination)`
+export const StyledPagination = styled(Pagination)`
   text-align: center;
   font-size: 1.4rem;
   margin-top: 1rem;
@@ -110,5 +119,44 @@ const StyledPagination = styled(Pagination)`
     .ant-pagination-options {
       background: none;
     }
+  }
+`;
+const MenuWrap = styled.ul`
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  margin-top: 1rem;
+`;
+const Menus = styled.li<{ cur?: boolean }>`
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 60px;
+  border: none;
+  padding: 1rem 0;
+  margin-right: 10px;
+
+  &:after {
+    content: "";
+    display: block;
+    margin: 7px 0;
+    width: 32px;
+    border-bottom: 3px solid
+      ${props => {
+        if (props.cur) return "#339af0";
+        else return "#f8f9fa";
+      }};
+  }
+  transition: all 0.4s linear;
+
+  color: ${props => {
+    if (props.cur) return "#339af0";
+    else return "#868e96";
+  }};
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.4s linear;
   }
 `;

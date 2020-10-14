@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
   input, button {
     background-color: transparent;
-    border: none;
+    // border: none;
     outline: none;
   }
   ol, ul, li {
