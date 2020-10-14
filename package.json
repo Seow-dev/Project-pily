@@ -27,7 +27,8 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.0",
     "styled-reset": "^4.2.3",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "use-react-router": "^1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",

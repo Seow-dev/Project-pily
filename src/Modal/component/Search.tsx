@@ -1,23 +1,112 @@
-import React, { useEffect, useState } from "react";
-import closeIcon from "../../Common/close.png";
-import styled from "styled-components";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { Menu, Dropdown, Button, message } from "antd";
-import { DownOutlined } from "@ant-design/icons";
-import "antd/dist/antd.css";
+
+import React, { useEffect, useState } from 'react';
+import closeIcon from '../../Common/close.png';
+import styled from 'styled-components';
+import DatePicker from 'react-datepicker';
+import { Select } from 'antd';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import 'antd/dist/antd.css';
+import { start } from 'repl';
+
+interface displayModalProps {
+  title : string
+  isOpen : boolean;
+  onClose: () => void;
+}
+
+// console.log(category, date, value) 찍히게끔
+// useEffect로 조건에 맞게끔
+
+export default function Search ({title, isOpen, onClose}:displayModalProps){
+
+  interface items {
+    id:number,
+    name:string,
+    value:string,
+  }
+
+  let temp:items[] = [];
+  const [items, setItems] = useState(temp);
+  const { Option } = Select;
+  const [startDate, setStartDate] = useState(new Date());
+  const [magazinetitle, setMagazineTitle] = useState("");
+  const [category, setCategory] = useState("");
+
+  //html event 
+
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setMagazineTitle(e.target.value);
+  };
+  const selectHandleChange = (e:string) =>{
+    setCategory(e);
+  }
+  const datehandleChange = (e:Date) => {
+    // time format 수정해야함 
+    setStartDate(e)
+  };
+
+  console.log("Title :", magazinetitle, "Date :", startDate, "Category :", category);
+
+
+  // API가 완성되면 setItems를 axios를 이용해서 데이터 가공하기
+  useEffect(() => {
+    setItems([
+      {id:0, name: 'All', value: 'All'},
+      {id:1, name: '일상', value: '일상'},
+      {id:2, name: 'IT', value: 'IT'},
+      {id:3, name: '여행', value: '여행'}
+    ]);
+  }, [])
+
+  return isOpen ? (
+    <ModalPage>
+      <ModalBox>
+        <ModalCloseImg src={closeIcon} onClick={onClose}/>
+        <ModalTitle>
+          {title}
+        </ModalTitle>
+        <ModalContent>
+          <SearchInput 
+            placeholder="제목을 입력해주세요" 
+            value={magazinetitle}
+            onChange={handleChange}
+          />
+        </ModalContent>
+        <ModalContent>
+          <DatePicker 
+            selected={startDate}
+            onChange={datehandleChange}
+            dateFormat="MMM/yyyy"
+            showMonthYearPicker />
+          <Select placeholder="카테고리를 선택하세요" defaultValue="All" onChange={selectHandleChange} style={{width:256}} allowClear>
+            {items.map((val) => {
+                  return (<Option key={val.id} value={val.value}>{val.name}</Option>);
+            })}
+          </Select>
+          <button>
+            검색
+          </button>
+        </ModalContent>
+      </ModalBox>
+    </ModalPage>
+  ): null;
+};
+
+
 
 const ModalPage = styled.div`
-  position: fixed;
+  position : absolute;
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  z-index: 2;
-`;
+  width : 100%;
+  height: 100%;
+  z-index:3;
+`
+
 const ModalOverlay = styled.div`
   position: absolute;
   top: 0;
@@ -41,7 +130,6 @@ const ModalTitle = styled.div`
   font-size: 30px;
 `;
 const ModalContent = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,94 +163,5 @@ const SearchInput = styled.input`
   }
 `;
 
-interface displayModalProps {
-  title: string;
-  isOpen: boolean;
-  onClose: () => void;
-}
 
-export const Search: React.FC<displayModalProps> = ({
-  title,
-  isOpen,
-  onClose,
-}) => {
-  const overlayRef = React.useRef(null);
-  const handleOverlayClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (e.target === overlayRef.current) {
-      onClose();
-    }
-  };
-  const [startDate, setStartDate] = useState(new Date());
 
-  const handleMenuClick = (e: any) => {
-    message.info("Click on menu item.");
-    console.log("click", e);
-  };
-
-  interface items {
-    id: number;
-    name: string;
-  }
-
-  let temp: items[] = [];
-
-  const [items, setItems] = useState(temp);
-
-  // API가 완성되면 setItems를 axios를 이용해서 데이터 가공하기
-  useEffect(() => {
-    setItems([
-      { id: 1, name: "일상" },
-      { id: 2, name: "아이티" },
-      { id: 3, name: "여행" },
-    ]);
-  }, []);
-
-  // const menu = (
-  //   <Menu style={{width:256}} mode={'vertical'} onClick={handleMenuClick}>
-  //     <Menu.Item key="0">일상</Menu.Item>
-  //     <Menu.Item key="1">IT</Menu.Item>
-  //     <Menu.Item key="2">여행</Menu.Item>
-  //   </Menu>
-  // );
-
-  return isOpen ? (
-    <ModalPage>
-      <ModalOverlay ref={overlayRef} onClick={handleOverlayClick} />
-      <ModalBox>
-        <ModalCloseImg src={closeIcon} onClick={onClose} />
-        <ModalTitle>{title}</ModalTitle>
-        <ModalContent>
-          <SearchInput type="text" placeholder="제목을 입력해주세요" />
-        </ModalContent>
-        <ModalContent>
-          <DatePicker
-            selected={startDate}
-            onChange={(date: Date) => setStartDate(date)}
-            dateFormat="MM/yyyy"
-            showMonthYearPicker
-          />
-          <div>
-            <Dropdown
-              overlay={
-                <Menu
-                  style={{ width: 256 }}
-                  mode={"vertical"}
-                  onClick={handleMenuClick}
-                >
-                  {items.map(val => {
-                    return <Menu.Item key={val.id}>{val.name}</Menu.Item>;
-                  })}
-                </Menu>
-              }
-              trigger={["click"]}
-            >
-              <Button>
-                카테고리 <DownOutlined />
-              </Button>
-            </Dropdown>
-          </div>
-        </ModalContent>
-      </ModalBox>
-    </ModalPage>
-  ) : null;
-};

@@ -4,9 +4,11 @@ import { media } from "../../Common/DeviceSize";
 import { Row, Col, Pagination } from "antd";
 import "antd/dist/antd.css";
 import MagazineTile from "./MagazineTile";
+
 import { Modalpage } from "../../Modal/container";
 import { DataTypes } from "../../Common/Interface";
 import { results } from "../../Common/Dummy";
+
 
 export default function MagazineGrid() {
   const [cur, setCur] = useState<number>(1);

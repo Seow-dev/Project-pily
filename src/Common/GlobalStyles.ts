@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body{
     background-color: #f8f9fa;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    // font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
   a {
     text-decoration: none;
