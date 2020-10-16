@@ -42,7 +42,8 @@ function Login({ title, isOpen, onClose }: displayModalProps) {
 export default Login;
 
 const ModalPage = styled.div`
-  position: fixed;
+
+  position : fixed;
   top: 0;
   left: 0;
   display: flex;

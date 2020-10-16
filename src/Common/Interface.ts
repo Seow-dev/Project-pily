@@ -4,6 +4,7 @@ export interface DataTypes {
   title?: string;
   subTitle?: string;
   author?: string;
+  category?: string;
   authorImg?: string;
   createdAt?: string;
   thumbnail?: string;
