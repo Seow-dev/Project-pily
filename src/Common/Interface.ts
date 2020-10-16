@@ -1,3 +1,4 @@
+// 매거진 데이터 타입
 export interface DataTypes {
   megazineId?: number; 
   title?: string;
@@ -8,7 +9,10 @@ export interface DataTypes {
   thumbnail?: string;
 }
 
+// 유저 데이터 타입
 export interface UserData {
-  profileImage?: string // url,
+  profileImage?: string  // url,
   username: string     // username              
 }
+
+// 

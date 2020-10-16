@@ -7,10 +7,11 @@ import {
   MagazineListContainer,
   MagazineListWrap,
   SideTabMenu,
+  UserDetail,
 } from "./CommonStyle";
 import MypageList from "./MypageList";
 import React, { useEffect, useState } from "react";
-import { withRouter, RouteComponentProps, match } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import { results, result } from "../../Common/Dummy";
 import { DataTypes, UserData } from "../../Common/Interface";
 
@@ -38,12 +39,14 @@ const UserProfile: React.FC<RouteComponentProps> = ({ match }) => {
       <UserInfo>
         <UserImg
           src={
-            userData?.profileImage
+            userData.profileImage
               ? userData.profileImage
               : "/image/default_user.png"
           }
         />
-        <UserName>{userData?.username}</UserName>
+        <UserDetail>
+          <UserName>{userData.username}</UserName>
+        </UserDetail>
       </UserInfo>
       <MagazineListWrap>
         <MagazineListContainer>

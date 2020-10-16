@@ -5,7 +5,7 @@ export const UserInfo = styled.section`
   align-items: center;
   width: 100%;
   height: 240px;
-  padding: 2rem;
+  padding: 2rem 4rem;
   box-shadow: #ced4da 0 1px 4px;
 `;
 export const UserImg = styled.img`
@@ -15,10 +15,36 @@ export const UserImg = styled.img`
   box-shadow: #ced4da 0 2px 8px;
   object-fit: cover;
 `;
+export const UserDetail = styled.div`
+  margin-left: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+`;
 export const UserName = styled.h2`
-  padding-left: 2rem;
   font-size: 2rem;
   font-weight: 700;
+`;
+export const UserNameInput = styled.input`
+  width: fit-content;
+  font-size: 1.4rem;
+  font-weight: 500;
+  border: none;
+  background: none;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ced4da;
+`;
+export const UserNameChangeButton = styled.button<{ save?: boolean }>`
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  width: fit-content;
+  margin-top: 1rem;
+  cursor: pointer;
+
+  background-color: ${props => (props.save ? "#339af0" : "#ced4da")};
+  color: ${props => (props.save ? "#fff" : "#000")};
 `;
 export const MagazineListWrap = styled.section`
   display: grid;
