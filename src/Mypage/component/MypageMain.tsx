@@ -6,9 +6,12 @@ import {
   MagazineListContainer,
   MagazineListWrap,
   SideTabMenu,
+  UserNameInput,
+  UserNameChangeButton,
+  UserDetail,
 } from "./CommonStyle";
 import { MainWrapper } from "../../Mainpage/component/MagazineGrid";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MypageList from "./MypageList";
 import { results, result } from "../../Common/Dummy";
 import { DataTypes, UserData } from "../../Common/Interface";
@@ -17,23 +20,32 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 
 const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   const [loginState, setLoginState] = useState<boolean>(false);
-  const [curMenu, setCurMenu] = useState<string>("like");
-  const [curData, setCurData] = useState<DataTypes[]>([]);
-  const [subData, setSubData] = useState<UserData[]>([]);
-
+  const [userData, setUserData] = useState<UserData>({
+    username: "",
+    profileImage: "",
+  });
   useEffect(() => {
     // 컴포넌트가 로드되면 바로 유저 정보 가지고 오는 api 호출
     // dispatch(getUserApi)
     if (!loginState) {
       setLoginState(true);
+      setUserData({
+        username: "도비",
+        profileImage: userData.profileImage
+          ? userData.profileImage
+          : "/image/default_user.png",
+      });
     } else {
       alert("로그인이 필요한 서비스입니다.");
       history.push("/");
     }
   }, []);
 
-  // 메뉴에 따른 데이터 목록 가지고 오는 훅
+  const [curMenu, setCurMenu] = useState<string>("like");
+  const [curData, setCurData] = useState<DataTypes[]>([]);
+  const [subData, setSubData] = useState<UserData[]>([]);
   useEffect(() => {
+    // 메뉴에 따른 데이터 목록 가지고 오는 훅
     if (curMenu === "like") {
       setCurData(results);
     } else if (curMenu === "subscribe") {
@@ -45,14 +57,85 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
       // 내가 작성한 매거진 목록 조회 api 출동
       setCurData(results);
     }
-  }, [curMenu, subData]);
+  }, [curMenu]);
+
+  const [change, setChange] = useState<boolean>(false);
+  const changeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
+
+  const uploadedImage = useRef<HTMLImageElement>(null);
+  const imageUploader = useRef<HTMLInputElement | null>(null);
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formData = new FormData();
+    if (e.currentTarget.files) {
+      console.log(e.currentTarget.files[0]);
+      // setUserData({
+      //   ...userData,
+      //   profileImage: e.currentTarget.files[0],
+      // });
+    }
+  };
 
   return (
     // login 상태 여부 확인 후 -> 조건부 렌더링
     <MainWrapper>
       <UserInfo>
-        <UserImg src="/image/default_user.png" />
-        <UserName>도비</UserName>
+        <input
+          ref={imageUploader}
+          type="file"
+          accept="image/jpg,image/png,image/jpeg,image/gif"
+          onChange={handleImageUpload}
+          style={{ display: "none" }}
+        />
+        <UserImg
+          ref={uploadedImage}
+          src={userData.profileImage}
+          alt="이미지를 변경하시려면 클릭하세요"
+          onClick={() => {
+            if (imageUploader.current) {
+              console.log(imageUploader.current);
+              imageUploader.current.click();
+            }
+          }}
+        />
+        <UserDetail>
+          {change ? (
+            <>
+              <UserNameInput
+                name="username"
+                value={userData.username}
+                onChange={changeUsername}
+              />
+              <UserNameChangeButton
+                save
+                onClick={() => {
+                  // 유저 네임 변경 api 호출
+                  console.log(userData.username);
+                  setChange(false);
+                }}
+              >
+                닉네임 저장
+              </UserNameChangeButton>
+            </>
+          ) : (
+            <>
+              <UserName>{userData.username}</UserName>
+              <UserNameChangeButton
+                onClick={() => {
+                  setChange(true);
+                }}
+              >
+                닉네임 수정
+              </UserNameChangeButton>
+            </>
+          )}
+        </UserDetail>
       </UserInfo>
       <MagazineListWrap>
         <MagazineListContainer>

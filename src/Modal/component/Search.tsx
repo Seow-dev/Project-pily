@@ -10,26 +10,27 @@ import 'antd/dist/antd.css';
 import { results } from '../../Common/SearchDummy';
 
 
-
 interface displayModalProps {
-  title : string
-  isOpen : boolean;
+  title: string;
+  isOpen: boolean;
   onClose: () => void;
 }
 
 // console.log(category, date, value) 찍히게끔
 // useEffect로 조건에 맞게끔
 
-export default function Search ({title, isOpen, onClose}:displayModalProps){
+
+export default function Search({ title, isOpen, onClose }: displayModalProps) {
 
   // Category Items Interface
+
   interface items {
-    id:number,
-    name:string,
-    value:string,
+    id: number;
+    name: string;
+    value: string;
   }
 
-  let temp:items[] = [];
+  let temp: items[] = [];
   const [items, setItems] = useState(temp);
   const { Option } = Select;
   const [formState, setFormState] = useState({
@@ -37,8 +38,6 @@ export default function Search ({title, isOpen, onClose}:displayModalProps){
     searchDate : new Date(),
     searchCategory : "",
   })
-
-  
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     // setMagazineTitle(e.target.value);
@@ -104,26 +103,26 @@ export default function Search ({title, isOpen, onClose}:displayModalProps){
     // onClose();    
   }
 
+
   // API가 완성되면 setItems를 axios를 이용해서 데이터 가공하기 (카테고리 종류)
   useEffect(() => {
     setItems([
-      {id:0, name: 'All', value: 'All'},
-      {id:1, name: '일상', value: '일상'},
-      {id:2, name: 'IT', value: 'IT'},
-      {id:3, name: '여행', value: '여행'}
+      { id: 0, name: "All", value: "All" },
+      { id: 1, name: "일상", value: "일상" },
+      { id: 2, name: "IT", value: "IT" },
+      { id: 3, name: "여행", value: "여행" },
     ]);
-  }, [])
+  }, []);
 
 
 
   return isOpen ? (
     <ModalPage>
       <ModalBox>
-        <ModalCloseImg src={closeIcon} onClick={onClose}/>
-        <ModalTitle>
-          {title}
-        </ModalTitle>
+        <ModalCloseImg src={closeIcon} onClick={onClose} />
+        <ModalTitle>{title}</ModalTitle>
         <ModalContent>
+
           <SearchInput 
             id="searchTitle"
             placeholder="제목을 입력해주세요" 
@@ -132,6 +131,7 @@ export default function Search ({title, isOpen, onClose}:displayModalProps){
           />
         </ModalContent>
         <ModalContent>
+
           <DatePicker 
             selected={formState.searchDate}
             onChange={datehandleChange}
@@ -145,34 +145,33 @@ export default function Search ({title, isOpen, onClose}:displayModalProps){
           <button type="submit" onClick={submitHandler}>
             검색
           </button>
+
         </ModalContent>
       </ModalBox>
     </ModalPage>
-  ): null;
-};
-
-
+  ) : null;
+}
 
 const ModalPage = styled.div`
+
   position : fixed;
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width : 100%;
-  height: 100%;
-  z-index:3;
-`
-
-const ModalOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 3;
 `;
+// const ModalOverlay = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-color: rgba(0, 0, 0, 0.8);
+// `;
 const ModalBox = styled.div`
   position: absolute;
   width: 100%;
@@ -220,6 +219,3 @@ const SearchInput = styled.input`
     border-bottom-width: 3px;
   }
 `;
-
-
-
