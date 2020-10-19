@@ -16,4 +16,18 @@ export interface UserData {
   username: string     // username              
 }
 
-// 
+// 유저 피드 타입
+export interface FeedTypes {
+  feedId: number;    
+  title: string;      
+  subTitle: string;   
+  feedBody: string;   
+  createdAt: string;
+}
+
+export interface displayModalProps {
+  title: string;
+  isOpen: boolean;
+  onClose: () => void;
+  toSignUp?: () => void;
+}

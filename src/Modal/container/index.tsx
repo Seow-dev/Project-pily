@@ -4,15 +4,21 @@ import { SearchOutlined, MessageOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import Login from "../component/Login";
 import Action from "../component/Action";
+import SignUp from "../component/SignUp";
 
 export const Modalpage = () => {
   const [isSearchModalOpen, setSearchModalState] = useState(false);
   const [isLoginModalOpen, setLoginModalState] = useState(false);
   const [isActionModalOpen, setActionModalState] = useState(false);
+  const [isSignUpModalOpen, setSignUpModalState] = useState(false);
 
   const searchToggleModal = () => setSearchModalState(!isSearchModalOpen);
   const loginToggleModal = () => setLoginModalState(!isLoginModalOpen);
   const actionToggleModal = () => setActionModalState(!isActionModalOpen);
+  const signUpToggleModal = () => {
+    setLoginModalState(false);
+    setSignUpModalState(!isSignUpModalOpen);
+  };
 
   return (
     <div>
@@ -21,6 +27,7 @@ export const Modalpage = () => {
         title={"Login"}
         isOpen={isLoginModalOpen}
         onClose={loginToggleModal}
+        toSignUp={signUpToggleModal}
       />
 
       <SearchOutlined
@@ -53,6 +60,11 @@ export const Modalpage = () => {
         title={"Action"}
         isOpen={isActionModalOpen}
         onClose={actionToggleModal}
+      />
+      <SignUp
+        title={"회원가입"}
+        isOpen={isSignUpModalOpen}
+        onClose={signUpToggleModal}
       />
     </div>
   );

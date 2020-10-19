@@ -6,17 +6,33 @@ import {
   Title,
   Option,
   Subtitle,
-  Map,
   EditArea,
   EditorWrap,
   SaveButton,
   FeedLabel,
   OptionSlide,
+  OptionWrap,
+  Labels,
+  StyledRate,
+  MapArea,
 } from "./CommonStyles";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import Map from "./Map";
 
 export default function CreateFeedMain() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [stars, setStars] = useState<number>(0);
+  const [inputs, setInputs] = useState({
+    title: "",
+    subTitle: "",
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInputs(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <MainWrapper>
@@ -25,11 +41,16 @@ export default function CreateFeedMain() {
       </FeedLabel>
       <Head>
         <Title>
-          <input placeholder="피드 제목을 입력해주세요." />
+          <input
+            name="title"
+            value={inputs.title}
+            placeholder="피드 제목을 입력해주세요."
+            onChange={handleChange}
+          />
           <div />
         </Title>
         <OptionSlide>
-          <p>소제목과 위치 정보를 반영해보세요</p>
+          <p>소제목과 위치 정보를 기록하세요</p>
           {isOpen ? (
             <button onClick={() => setIsOpen(false)}>
               <MdKeyboardArrowUp />
@@ -42,8 +63,33 @@ export default function CreateFeedMain() {
         </OptionSlide>
         {isOpen ? (
           <Option>
-            <Subtitle placeholder="소제목을 입력해주세요." />
-            <Map />
+            <OptionWrap>
+              <div>
+                <Labels>피드 소제목</Labels>
+                <Subtitle
+                  name="subTitle"
+                  value={inputs.subTitle}
+                  onChange={handleChange}
+                  placeholder="소제목을 입력해주세요."
+                />
+              </div>
+              <div>
+                <Labels>피드에 별점 남기기</Labels>
+                <StyledRate
+                  onChange={value => {
+                    setStars(value);
+                    console.log(value);
+                  }}
+                  tooltips={DESC}
+                  value={stars}
+                  defaultValue={0}
+                />
+              </div>
+            </OptionWrap>
+            <MapArea>
+              <Labels>위치 정보 기록</Labels>
+              <Map />
+            </MapArea>
           </Option>
         ) : null}
       </Head>
@@ -54,3 +100,6 @@ export default function CreateFeedMain() {
     </MainWrapper>
   );
 }
+
+// constant
+const DESC = ["angry 😤", "not good 🙁", "soso 😀", "good 😁", "wonderful 😆"];
