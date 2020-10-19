@@ -6,14 +6,18 @@ import {
   Title,
   Option,
   Subtitle,
-  Map,
   EditArea,
   EditorWrap,
   SaveButton,
   FeedLabel,
   OptionSlide,
+  OptionWrap,
+  Labels,
+  StyledRate,
+  MapArea,
 } from "./CommonStyles";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import Map from "./Map";
 import ReactQuill from './CreateFeed_Config';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
@@ -21,6 +25,19 @@ import axios from 'axios';
 
 export default function CreateFeedMain() {
   const [isOpen, setIsOpen] = useState(false);
+  const [stars, setStars] = useState<number>(0);
+//   const [inputs, setInputs] = useState({
+//     title: "",
+//     subTitle: "",
+//   });
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const { name, value } = e.target;
+//     setInputs(prev => ({
+//       ...prev,
+//       [name]: value,
+//     }));
+//   };
+  
   const [feedContentsData, setFeedContentsData] = useState({
     feedTitle: "",
     feedSubTitle:"",
@@ -150,7 +167,7 @@ export default function CreateFeedMain() {
           <div />
         </Title>
         <OptionSlide>
-          <p>소제목과 위치 정보를 반영해보세요</p>
+          <p>소제목과 위치 정보를 기록하세요</p>
           {isOpen ? (
             <button onClick={() => setIsOpen(false)}>
               <MdKeyboardArrowUp />
@@ -163,13 +180,36 @@ export default function CreateFeedMain() {
         </OptionSlide>
         {isOpen ? (
           <Option>
-            <Subtitle 
+
+            <OptionWrap>
+              <div>
+                <Labels>피드 소제목</Labels>
+                <Subtitle 
             id="feedSubTitle"
             value={feedContentsData.feedSubTitle}
             placeholder="소제목을 입력해주세요." 
             onChange={handleChange}
             />
-            <Map />
+              </div>
+              <div>
+                <Labels>피드에 별점 남기기</Labels>
+                <StyledRate
+                  onChange={value => {
+                    setStars(value);
+                    console.log(value);
+                  }}
+                  tooltips={DESC}
+                  value={stars}
+                  defaultValue={0}
+                />
+              </div>
+            </OptionWrap>
+            <MapArea>
+              <Labels>위치 정보 기록</Labels>
+              <Map />
+            </MapArea>
+            
+
           </Option>
         ) : null}
       </Head>
@@ -195,6 +235,10 @@ export default function CreateFeedMain() {
 }
 
 
+// constant
+const DESC = ["angry 😤", "not good 🙁", "soso 😀", "good 😁", "wonderful 😆"];
+
+
 // 해봐야 할거 Array로 받았을 때 객체의 순서는 어떻게 될것이며, 위치는 어떻게 잡을것인가..
 // multer 업로드 리스폰스
 // 이미지 가져오는 방법은 두가지 
@@ -217,3 +261,4 @@ export default function CreateFeedMain() {
 //   "location": "https://testing-upload1234.s3.ap-northeast-2.amazonaws.com/unnamed.jpg",
 //   "etag": "\"53d27276184275dfb707e1a31b41e821\""
 // }
+

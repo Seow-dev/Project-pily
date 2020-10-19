@@ -4,6 +4,8 @@ import CreateFeedMain from "./CreateFeed/CreateFeedMain";
 import MagazineGrid from "./Mainpage/component/MagazineGrid";
 import MypageMain from "./Mypage/component/MypageMain";
 import UserProfile from "./Mypage/component/UserProfile";
+import CreateMagazineMain from "./CreateMagazine/CreateMagazineMain";
+import AuthCheck from "./Modal/component/AuthCheck";
 
 export default function Routes() {
   return (
@@ -13,6 +15,8 @@ export default function Routes() {
         <Route path="/mypage" component={MypageMain} />
         <Route path="/user/:username" component={UserProfile} />
         <Route path="/create/feed" component={CreateFeedMain} />
+        <Route path="/test" component={CreateMagazineMain} />
+        <Route path="/sign/:exist" component={AuthCheck} exact={true} />
       </Switch>
     </BrowserRouter>
   );
