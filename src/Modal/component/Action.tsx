@@ -19,17 +19,19 @@ function Action({ title, isOpen, onClose }: displayModalProps) {
     if (e.target === overlayRef.current) {
       onClose();
     }
-  };
 
-  const redirectToCreateFeed = () => {
-    history.push("/createfeed");
-  };
-  const redirectToCreateMagazine = () => {
-    history.push("/createmagazine");
-  };
-  const redirectToMypage = () => {
-    history.push("/mypage");
-  };
+  }
+
+  const redirectToCreateFeed = () =>{
+    history.push("/create/feed");
+  }
+  const redirectToCreateMagazine = () =>{
+    history.push('/createmagazine');
+  }
+  const redirectToMypage = () =>{
+    history.push('/mypage');
+  }
+
 
   return isOpen ? (
     <ModalPage>
