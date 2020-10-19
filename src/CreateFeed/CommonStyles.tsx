@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FeedLabel = styled.h2`
   font-size: 2rem;
   font-weight: 600;
-  padding-bottom: 2rem;
+  padding-bottom: 0.6rem;
   color: #495057;
 
   span {
@@ -34,7 +34,7 @@ export const Title = styled.section`
     border: none;
     border-radius: 5px;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #495057;
     &:focus {
       outline: none;
@@ -62,7 +62,7 @@ export const Title = styled.section`
 `;
 export const OptionSlide = styled.section`
   width: 100%;
-  font-size: 24px;
+  font-size: 20px;
   padding: 5px;
   display: flex;
   align-items: center;
@@ -129,9 +129,9 @@ export const EditArea = styled.section`
 `;
 export const EditorWrap = styled.div`
   width: 100%;
-  height: 40vh;
-  background-color: green;
+  height: 50vh;
   margin-bottom: 1.5rem;
+  overflow-y: auto;
 `;
 export const SaveButton = styled.button`
   padding: 12px;
