@@ -15,7 +15,7 @@ export default function Routes() {
         <Route path="/mypage" component={MypageMain} />
         <Route path="/user/:username" component={UserProfile} />
         <Route path="/create/feed" component={CreateFeedMain} />
-        <Route path="/test" component={CreateMagazineMain} />
+        <Route path="/create/magazine" component={CreateMagazineMain} />
         <Route path="/sign/:exist" component={AuthCheck} exact={true} />
       </Switch>
     </BrowserRouter>
