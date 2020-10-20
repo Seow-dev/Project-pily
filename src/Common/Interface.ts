@@ -31,3 +31,13 @@ export interface displayModalProps {
   onClose: () => void;
   toSignUp?: () => void;
 }
+
+
+// test용
+
+export interface FeedContents{
+  feedTitle: string,
+  feedSubTitle: string,
+  feedContent: string,
+  feedCategory?: string,
+}

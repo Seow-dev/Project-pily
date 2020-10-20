@@ -26,7 +26,7 @@ function Action({ title, isOpen, onClose }: displayModalProps) {
     history.push("/create/feed");
   }
   const redirectToCreateMagazine = () =>{
-    history.push('/createmagazine');
+    history.push('/create/magazine');
   }
   const redirectToMypage = () =>{
     history.push('/mypage');

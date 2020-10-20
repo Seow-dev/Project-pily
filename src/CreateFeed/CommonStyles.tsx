@@ -155,11 +155,10 @@ export const EditArea = styled.section`
 `;
 export const EditorWrap = styled.div`
   width: 100%;
-  height: 50vh;
   margin-bottom: 1.5rem;
-  overflow-y: auto;
 `;
 export const SaveButton = styled.button`
+  // margin-Top:3rem;
   padding: 12px;
   width: fit-content;
   font-size: 1rem;
