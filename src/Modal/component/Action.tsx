@@ -21,6 +21,7 @@ function Action({ title, isOpen, onClose }: displayModalProps) {
     }
   };
 
+
   const { success } = useSelector((state: RootState) => state.authReducer);
 
   return isOpen ? (
