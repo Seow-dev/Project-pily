@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ModalPage, ModalBox, ModalTitle, ModalContent } from "./ModalStyles";
 import { displayModalProps } from "../../Common/Interface";
+import { signUpApi } from "../../Api/auth";
 
 export default function SignUp({ title, isOpen, onClose }: displayModalProps) {
   const [nick, setNick] = useState("");
@@ -9,14 +10,19 @@ export default function SignUp({ title, isOpen, onClose }: displayModalProps) {
   };
 
   const [valid, setValid] = useState(true);
-  const handleSignUp = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
     // 서버에 회원가입 관련 닉네임 데이터를 날립니다.
     e.preventDefault();
     if (valid) {
-      console.log("유효한 인증 방식입니다."); // 비동기 로직 여기에
-      setNick("");
-      setValid(false);
-      onClose();
+      const result = await signUpApi(nick); // 비동기 로직 여기에
+      if (result.status === 200) {
+        console.log("가입완료", result);
+        setNick("");
+        setValid(false);
+        onClose();
+      } else {
+        console.log("error");
+      }
     }
   };
 

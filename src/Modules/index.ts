@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
+import authReducer from './auth'
 
 // 스토어를 생성하는 메인 리듀서
 const rootReducer = combineReducers({
+  authReducer
 });
 
 export default rootReducer

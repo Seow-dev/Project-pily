@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   ModalPage,
   ModalBox,
@@ -10,10 +10,6 @@ import closeIcon from "../../Common/close.png";
 import { displayModalProps } from "../../Common/Interface";
 
 function Login({ title, isOpen, onClose, toSignUp }: displayModalProps) {
-  // 소셜로그인에 따라 로그인시킨 뒤 닉네임 변경으로 저장
-
-  const [Data, setData] = useState("");
-
   const baseurl = "http://localhost:4000/signin";
   const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget;

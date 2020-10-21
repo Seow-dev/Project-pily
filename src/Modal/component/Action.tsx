@@ -9,12 +9,19 @@ import {
 } from "./ModalStyles";
 import closeIcon from "../../Common/close.png";
 import { displayModalProps } from "../../Common/Interface";
+
 import './ActionStyle.css';
 import { VscAdd, VscChromeClose,VscEdit,VscBook,VscAccount} from 'react-icons/vsc';
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Modules";
 
+        
 function Action() {
-
+    
+  const { success } = useSelector((state: RootState) => state.authReducer);
   return (
+    {success ? (
     <div>
       <input type="checkbox" id="switch"/>
       <label htmlFor="switch">
@@ -37,7 +44,7 @@ function Action() {
         </div>
       </label>
   </div>
-  )
+  ) : null}
 }
 
 export default Action;

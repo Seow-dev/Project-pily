@@ -5,6 +5,10 @@ import styled from "styled-components";
 import Login from "../component/Login";
 import Action from "../component/Action";
 import SignUp from "../component/SignUp";
+import { RootState } from "../../Modules";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../../Modules/auth";
+import { signOutApi } from "../../Api/auth";
 
 export const Modalpage = () => {
   const [isSearchModalOpen, setSearchModalState] = useState(false);
@@ -20,15 +24,31 @@ export const Modalpage = () => {
     setSignUpModalState(!isSignUpModalOpen);
   };
 
+  const dispatch = useDispatch();
+  const loginState = useSelector(
+    (state: RootState) => state.authReducer.success,
+  );
+  const handleSignout = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dispatch(signOut());
+    signOutApi();
+  };
+
   return (
     <div>
-      <LoginModal onClick={loginToggleModal}>Login</LoginModal>
-      <Login
-        title={"Login"}
-        isOpen={isLoginModalOpen}
-        onClose={loginToggleModal}
-        toSignUp={signUpToggleModal}
-      />
+      {loginState ? (
+        <LoginModal onClick={handleSignout}>Logout</LoginModal>
+      ) : (
+        <>
+          <LoginModal onClick={loginToggleModal}>Login</LoginModal>
+          <Login
+            title={"Login"}
+            isOpen={isLoginModalOpen}
+            onClose={loginToggleModal}
+            toSignUp={signUpToggleModal}
+          />
+        </>
+      )}
 
       <SearchOutlined
         onClick={searchToggleModal}
