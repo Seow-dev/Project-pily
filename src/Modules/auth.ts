@@ -1,26 +1,41 @@
-import { AnyAction } from "redux";
-import { ThunkAction } from "redux-thunk";
-import {RootState} from './index'
-
-
 // 인증 관련 액션
-const SIGNIN_PEND = "SIGNIN_PEND" as const;
-const SIGNIN_SUCCESS = "SIGNIN_SUCCESS" as const;
-const SIGNIN_FAIL = "SIGNIN_FAIL" as const;
-const SIGNOUT = "SIGNOUT" as const;
+const SIGNIN_SUCCESS = "SIGNIN_SUCCESS" as const
+const SIGNIN_FAIL = "SIGNIN_FAIL" as const
+const SIGNOUT = "SIGNOUT" as const
 
+// 액션 생성 함수
+export const signSuccess = () => ({type: SIGNIN_SUCCESS}) 
+export const signFail = () => ({type: SIGNIN_FAIL})
+export const signOut = () => ({type: SIGNOUT})
 
-// 소셜 로그인이 성공 했을 경우 -> signin_success 상태로 변경
-// 소셜 로그인 버튼 눌렀을 때 -> dispatch(signIn) 동작 
-export const signIn = ():ThunkAction<void,RootState,{}, AnyAction>  => async dispatch => {
-  dispatch({type: SIGNIN_PEND})
+// action object에 대한 타입
+type AuthActions =
+  | ReturnType<typeof signSuccess>
+  | ReturnType<typeof signFail>
+  | ReturnType<typeof signOut>;
 
-  try {
-    // signInApi 호출 -> const result = await signInApi();
-    // error 코드나 데이터 가져오는 것이 실패하면 fail
-  } catch(error) {
-    return dispatch({
-      type: SIGNIN_FAIL
-    })
+// state 타입 정의
+type stateTypes = {
+  success: boolean;
+}
+
+// initial state
+const initialState:stateTypes = {
+  success: false
+}
+
+// reducer
+function authReducer (state:stateTypes = initialState, action: AuthActions) {
+  switch (action.type) {
+    case SIGNIN_SUCCESS:
+      return {...state, success: true };
+    case SIGNIN_FAIL:
+      return {...state, success: false };
+    case SIGNOUT: 
+      return {...state, success: false };
+    default:
+      return state;
   }
 }
+
+export default authReducer;
