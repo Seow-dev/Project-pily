@@ -29,7 +29,7 @@ import Error from "../Modal/component/Error";
         
 
 function CreateFeedMain({ history }: RouteComponentProps) {
-  const { history } = useReactRouter();
+  // const { history } = useReactRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [stars, setStars] = useState<number>(0);
 
