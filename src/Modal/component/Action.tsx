@@ -8,30 +8,20 @@ import {
   ModalOverlay,
 } from "./ModalStyles";
 import closeIcon from "../../Common/close.png";
-import useReactRouter from "use-react-router";
 import { displayModalProps } from "../../Common/Interface";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Modules";
 
 function Action({ title, isOpen, onClose }: displayModalProps) {
-  const { history } = useReactRouter();
-
   const overlayRef = React.useRef(null);
   const handleOverlayClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (e.target === overlayRef.current) {
       onClose();
     }
+  };
 
-  }
-
-  const redirectToCreateFeed = () =>{
-    history.push("/create/feed");
-  }
-  const redirectToCreateMagazine = () =>{
-    history.push('/createmagazine');
-  }
-  const redirectToMypage = () =>{
-    history.push('/mypage');
-  }
-
+  const { success } = useSelector((state: RootState) => state.authReducer);
 
   return isOpen ? (
     <ModalPage>
@@ -39,17 +29,36 @@ function Action({ title, isOpen, onClose }: displayModalProps) {
       <ModalBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
         <ModalTitle>{title}</ModalTitle>
-        <ModalContent>
-          <button value="Feed" onClick={redirectToCreateFeed}>
-            피드 작성하기
-          </button>
-          <button value="Magazine" onClick={redirectToCreateMagazine}>
-            매거진 작성하기
-          </button>
-          <button value="Mypage" onClick={redirectToMypage}>
-            마이 페이지
-          </button>
-        </ModalContent>
+        {success ? (
+          <ModalContent>
+            <button>
+              <Link style={{ color: "black" }} to="/create/feed">
+                피드 작성하기
+              </Link>
+            </button>
+            <button>
+              <Link style={{ color: "black" }} to="/create/magazine">
+                매거진 작성하기
+              </Link>
+            </button>
+            <button>
+              <Link style={{ color: "black" }} to="/create/feed">
+                마이페이지
+              </Link>
+            </button>
+          </ModalContent>
+        ) : (
+          <>
+            <h2 style={{ textAlign: "center", marginTop: "2rem" }}>
+              로그인을 하면 일상을 발행할 수 있습니다.
+            </h2>
+            <ModalContent style={{ marginTop: "2rem" }}>
+              <button disabled>피드 작성하기</button>
+              <button disabled>매거진 작성하기</button>
+              <button disabled>마이페이지</button>
+            </ModalContent>
+          </>
+        )}
       </ModalBox>
     </ModalPage>
   ) : null;

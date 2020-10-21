@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
+import { createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import App from "./App";
 import GlobalStyle from "./Common/GlobalStyles";
 import rootReducer from "./Modules";
-import Thunk from "redux-thunk";
 
-const store = createStore(rootReducer, applyMiddleware(Thunk));
+const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
   <>
