@@ -1,8 +1,7 @@
 .ql-toolbar.ql-snow{
-  /* position: sticky; */
   overflow-y: visible; 
 }
 
 .ql-container.ql-snow{
-  height: 500px;
+  height: 400px;
 }

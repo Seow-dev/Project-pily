@@ -8,53 +8,36 @@ import {
   ModalOverlay,
 } from "./ModalStyles";
 import closeIcon from "../../Common/close.png";
-import useReactRouter from "use-react-router";
 import { displayModalProps } from "../../Common/Interface";
+import './ActionStyle.css';
+import { VscAdd, VscChromeClose,VscEdit,VscBook,VscAccount} from 'react-icons/vsc';
 
-function Action({ title, isOpen, onClose }: displayModalProps) {
-  const { history } = useReactRouter();
+function Action() {
 
-  const overlayRef = React.useRef(null);
-  const handleOverlayClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (e.target === overlayRef.current) {
-      onClose();
-    }
-
-  }
-
-  const redirectToCreateFeed = () =>{
-    history.push("/create/feed");
-  }
-  const redirectToCreateMagazine = () =>{
-    history.push('/create/magazine');
-  }
-  const redirectToMypage = () =>{
-    history.push('/mypage');
-  }
-
-
-  return isOpen ? (
-    <ModalPage>
-      <ModalOverlay ref={overlayRef} onClick={handleOverlayClick} />
-      <ModalBox>
-        <ModalCloseImg src={closeIcon} onClick={onClose} />
-        <ModalTitle>{title}</ModalTitle>
-        <ModalContent>
-          <button value="Feed" onClick={redirectToCreateFeed}>
-            피드 작성하기
-          </button>
-          <button value="Magazine" onClick={redirectToCreateMagazine}>
-            매거진 작성하기
-          </button>
-          <button value="Mypage" onClick={redirectToMypage}>
-            마이 페이지
-          </button>
-        </ModalContent>
-      </ModalBox>
-    </ModalPage>
-  ) : null;
+  return (
+    <div>
+      <input type="checkbox" id="switch"/>
+      <label htmlFor="switch">
+        <div id="spanWrapper">
+          <span className="icon"></span>
+          <span className="icon"></span>
+          <span className="icon"></span>
+        </div>
+        <div className="nav" id="settings">
+          <i className="material-icons">settings</i>
+        </div>
+        <div className="nav" id="thumb">
+          <i className="material-icons">thumb_up</i>
+        </div>
+        <div className="nav" id="create">
+          <i className="material-icons">create</i>
+        </div>
+        <div className="nav" id="share">
+          <i className="material-icons">share</i>
+        </div>
+      </label>
+  </div>
+  )
 }
 
 export default Action;
-
-// css 작업 해야함 오른쪽 하단에 픽스 된 채로 컨텐츠 보이게끔 / 픽스 아이콘을 누르면 X 아이콘으로 바뀌고 누르면 다시 꺼지게끔

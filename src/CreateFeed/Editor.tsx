@@ -71,7 +71,6 @@ class Editor extends Component <appProps, appState> {
 
 
   render() {
-    
     return (
       <ReactQuill
         theme="snow"
@@ -81,7 +80,7 @@ class Editor extends Component <appProps, appState> {
         onChange={content => {
           this.setState({ text: content });
         }}
-        placeholder="any"
+        placeholder="일상을 적어보아요."
       />
     );
   }

@@ -76,7 +76,7 @@ import useReactRouter from "use-react-router";
       const data = {feedContentsData};
       
         // submit Action
-        console.log(data);
+        console.log("Data is ",data);
         redirectToMain();
     }else{
 

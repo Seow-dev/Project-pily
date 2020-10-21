@@ -9,12 +9,12 @@ import SignUp from "../component/SignUp";
 export const Modalpage = () => {
   const [isSearchModalOpen, setSearchModalState] = useState(false);
   const [isLoginModalOpen, setLoginModalState] = useState(false);
-  const [isActionModalOpen, setActionModalState] = useState(false);
+  // const [isActionModalOpen, setActionModalState] = useState(false);
   const [isSignUpModalOpen, setSignUpModalState] = useState(false);
 
   const searchToggleModal = () => setSearchModalState(!isSearchModalOpen);
   const loginToggleModal = () => setLoginModalState(!isLoginModalOpen);
-  const actionToggleModal = () => setActionModalState(!isActionModalOpen);
+  // const actionToggleModal = () => setActionModalState(!isActionModalOpen);
   const signUpToggleModal = () => {
     setLoginModalState(false);
     setSignUpModalState(!isSignUpModalOpen);
@@ -47,7 +47,7 @@ export const Modalpage = () => {
         onClose={searchToggleModal}
       />
 
-      <MessageOutlined
+      {/* <MessageOutlined
         onClick={actionToggleModal}
         style={{
           position: "fixed",
@@ -55,12 +55,11 @@ export const Modalpage = () => {
           bottom: "5%",
           fontSize: "30px",
         }}
-      />
-      <Action
-        title={"Action"}
-        isOpen={isActionModalOpen}
-        onClose={actionToggleModal}
-      />
+      /> */}
+      <Action/>
+         {/* title={"Action"}
+         isOpen={isActionModalOpen}
+         onClose={actionToggleModal} */}
       <SignUp
         title={"회원가입"}
         isOpen={isSignUpModalOpen}
