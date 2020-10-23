@@ -15,7 +15,7 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import { results, result } from "../../Common/Dummy";
 import { DataTypes, UserData } from "../../Common/Interface";
 
-const UserProfile: React.FC<RouteComponentProps> = ({ match }) => {
+const UserProfile = ({ match }: RouteComponentProps) => {
   const [curData, setCurData] = useState<DataTypes[]>([]);
 
   const [userData, setUserData] = useState<UserData>({
@@ -25,11 +25,7 @@ const UserProfile: React.FC<RouteComponentProps> = ({ match }) => {
 
   const paramUsername: any = match.params;
   useEffect(() => {
-    // 라우트에 의한 유저 정보 획득
-    // getProfileApi();
-    console.log(paramUsername.username);
     const data = result.filter(el => el.username === paramUsername.username);
-    console.log(data);
     setUserData(data[0]);
     setCurData(results.filter(el => Number(el.megazineId) % 2));
   }, []);

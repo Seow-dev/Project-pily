@@ -26,10 +26,8 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
     username: "",
     profileImage: "",
   });
-  const loginState = useSelector(
-    (state: RootState) => state.authReducer.success,
-  );
-  console.log(loginState);
+  const { success } = useSelector((state: RootState) => state.authReducer);
+
   useEffect(() => {
     // userData 가지고 오는 로직 여기에
     setUserData({
@@ -83,7 +81,7 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
 
   return (
     <>
-      {loginState ? (
+      {success ? (
         <MainWrapper>
           <UserInfo>
             <input
@@ -99,7 +97,6 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
               alt="이미지를 변경하시려면 클릭하세요"
               onClick={() => {
                 if (imageUploader.current) {
-                  console.log(imageUploader.current);
                   imageUploader.current.click();
                 }
               }}
@@ -116,7 +113,6 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
                     save
                     onClick={() => {
                       // 유저 네임 변경 api 호출
-                      console.log(userData.username);
                       setChange(false);
                     }}
                   >

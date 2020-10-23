@@ -4,11 +4,12 @@ import { DatePicker } from "antd";
 // feed 조회 관련 스타일
 export const FeedViewWrap = styled.section`
   width: 100%;
+  min-width: 400px;
   height: 1000px;
   padding: 1rem;
   border-radius: 8px;
   display: grid;
-  grid-template-rows: 2fr 0.5fr 7.5fr;
+  grid-template-rows: 0.5fr 1.5fr 0.5fr 7.5fr;
   background-color: #fff;
   box-shadow: #868e96 0 1px 4px;
 `;
@@ -158,7 +159,6 @@ export const Feed = styled.div<{ active: number }>`
   ${props => {
     if (props.active === 1) {
       return css`
-        border: 3px solid #51cf66;
         background-color: #51cf66;
         h2 {
           color: #fff;
@@ -173,8 +173,14 @@ export const Feed = styled.div<{ active: number }>`
       `;
     }
   }}
-
-  &:active {
-    border: 1px solid #51cf66;
+`;
+export const CloseButton = styled.p`
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  // float: right;
+  cursor: pointer;
+  svg {
+    font-size: 1.5rem;
   }
 `;
