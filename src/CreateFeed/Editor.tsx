@@ -1,7 +1,8 @@
 import React, {Component, useState } from "react";
 import ReactQuill from './CreateFeed_Config';
 import axios from "axios";
-import "quill/dist/quill.snow.css";
+
+// import "quill/dist/quill.core.css"
 import "./EditorStyle.css";
 
 type appProps = {
@@ -42,16 +43,17 @@ class Editor extends Component <appProps, appState> {
             "Content-Type": "multipart/form-data"
           }
         });
-        return response.data[0].location;
+        console.log(response.data.location);
+        return response.data.location;
       }
     },
     imageResize: {
-      handleStyles: {
+      displayStyles: {
         backgroundColor: 'black',
         border: 'none',
         color: 'white',
       },
-      modules: ['Resize', 'DisplaySize', 'Toolbar'],
+      modules: ['Resize' ,'DisplaySize'],
     },
     imageDrop: true
   };

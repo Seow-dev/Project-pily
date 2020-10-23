@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../Modules";
 import Error from "../Modal/component/Error";
 
+
 const CreateMagazineMain = () => {
   const { success } = useSelector((state: RootState) => state.authReducer);
   return (
@@ -19,7 +20,7 @@ const CreateMagazineMain = () => {
             <FeedView feedData={feedResult} />
           </Container>
         </Wrapper>
-      ) : (
+       ) : (
         <Error />
       )}
     </>

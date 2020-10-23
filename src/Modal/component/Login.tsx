@@ -3,8 +3,12 @@ import {
   ModalPage,
   ModalBox,
   ModalTitle,
-  ModalContent,
+  ModalLoginContent,
   ModalCloseImg,
+  BtnWrap,
+  KakaoBtn,
+  NaverBtn,
+  GoogleBtn,
 } from "./ModalStyles";
 import closeIcon from "../../Common/close.png";
 import { displayModalProps } from "../../Common/Interface";
@@ -21,17 +25,19 @@ function Login({ title, isOpen, onClose, toSignUp }: displayModalProps) {
       <ModalBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
         <ModalTitle>{title}</ModalTitle>
-        <ModalContent>
-          <button value="kakao" onClick={onClickHandler}>
-            Login with Kakao
-          </button>
-          <button value="naver" onClick={onClickHandler}>
-            Login with Naver
-          </button>
-          <button value="google" onClick={onClickHandler}>
-            Login with Google
-          </button>
-        </ModalContent>
+        <ModalLoginContent>
+          <BtnWrap>
+            <KakaoBtn value="kakao" onClick={onClickHandler}>
+              KAKAO LOGIN
+            </KakaoBtn>
+            <NaverBtn value="naver" onClick={onClickHandler}>
+              NAVER LOGIN
+            </NaverBtn>
+            <GoogleBtn value="google" onClick={onClickHandler}>
+              GOOGLE LOGIN
+            </GoogleBtn>
+          </BtnWrap>
+        </ModalLoginContent>
         <div style={{ display: "none" }} id="hidden" onClick={toSignUp}>
           test
         </div>
