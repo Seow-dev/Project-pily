@@ -8,6 +8,7 @@ import Error from "../Modal/component/Error";
 import { useSpring } from "react-spring";
 import { FeedTypes, MagazineDataTypes } from "../Common/Interface";
 
+
 const CreateMagazineMain = () => {
   const { success } = useSelector((state: RootState) => state.authReducer);
 
@@ -59,7 +60,7 @@ const CreateMagazineMain = () => {
             />
           </Container>
         </Wrapper>
-      ) : (
+       ) : (
         <Error />
       )}
     </>

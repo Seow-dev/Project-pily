@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ModalPage, ModalBox, ModalTitle, ModalContent } from "./ModalStyles";
+import { ModalPage, ModalBox, ModalTitle, ModalSearchContent } from "./ModalStyles";
 import { displayModalProps } from "../../Common/Interface";
 import { signUpApi } from "../../Api/auth";
 
@@ -35,14 +35,14 @@ export default function SignUp({ title, isOpen, onClose }: displayModalProps) {
     <ModalPage>
       <ModalBox>
         <ModalTitle>{title}</ModalTitle>
-        <ModalContent>
+        <ModalSearchContent>
           <input
             value={nick}
             onChange={handleChange}
             placeholder="닉네임을 입력해주세요."
           />
           <button onClick={handleSignUp}>회원가입</button>
-        </ModalContent>
+        </ModalSearchContent>
       </ModalBox>
     </ModalPage>
   ) : null;

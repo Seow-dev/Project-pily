@@ -32,12 +32,11 @@ export interface displayModalProps {
   toSignUp?: () => void;
 }
 
-// test용
+// create feed
 export interface FeedContents{
-  feedTitle: string,
-  feedSubTitle: string,
-  feedContent: string,
-  feedCategory?: string,
+  title: string,
+  subTitle: string,
+  content: string,
 }
 
 // optionProps

@@ -1,7 +1,9 @@
 .ql-toolbar.ql-snow{
-  overflow-y: visible; 
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
 }
-
-.ql-container.ql-snow{
-  height: 400px;
+p img {
+  vertical-align: bottom;
 }

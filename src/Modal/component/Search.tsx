@@ -5,8 +5,9 @@ import {
   ModalPage,
   ModalBox,
   ModalTitle,
-  ModalContent,
+  ModalSearchContent,
   ModalCloseImg,
+  SearchInput,
 } from "./ModalStyles";
 import DatePicker from "react-datepicker";
 import { Select } from "antd";
@@ -77,9 +78,7 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
     "Date :",
     date_to_str(formState.searchDate),
     "Category :",
-    formState.searchCategory,
-    "IsOpen",
-    isOpen,
+    formState.searchCategory
   );
 
   const submitHandler = () => {
@@ -94,14 +93,14 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
     }
     if (formState.searchTitle) {
       const tmpTitle = results.filter(e =>
-        e.category?.includes(formState.searchTitle),
+        e.title?.includes(formState.searchTitle),
       );
 
-      console.log(tmpTitle);
+      console.log("Title result: ",tmpTitle);
     }
     if (formState.searchDate) {
       const tmpDate = results.filter(e =>
-        e.category?.includes(date_to_str(formState.searchDate)),
+        e.createdAt?.includes(date_to_str(formState.searchDate)),
       );
 
       console.log(tmpDate);
@@ -110,6 +109,7 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
   };
 
   // API가 완성되면 setItems를 axios를 이용해서 데이터 가공하기 (카테고리 종류)
+  // 기본 값을 All로 지정하고 쿼리문에서 빈 값을 검색하게 되면 모든 데이터를 타겟지정
   useEffect(() => {
     setItems([
       { id: 0, name: "All", value: "All" },
@@ -124,15 +124,15 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
       <ModalBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
         <ModalTitle>{title}</ModalTitle>
-        <ModalContent>
+        <ModalSearchContent>
           <SearchInput
             id="searchTitle"
             placeholder="제목을 입력해주세요"
             value={formState.searchTitle}
             onChange={handleChange}
           />
-        </ModalContent>
-        <ModalContent>
+        </ModalSearchContent>
+        <ModalSearchContent>
           <DatePicker
             selected={formState.searchDate}
             onChange={datehandleChange}
@@ -156,22 +156,10 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
           <button type="submit" onClick={submitHandler}>
             검색
           </button>
-        </ModalContent>
+        </ModalSearchContent>
       </ModalBox>
     </ModalPage>
   ) : null;
 }
 
-const SearchInput = styled.input`
-  height: 30px;
-  width: 600px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-color: #463333;
-  border-radius: 0.3rem;
-  text-indent: 0.8rem;
-  &:hover {
-    border-bottom-width: 3px;
-  }
-`;
+

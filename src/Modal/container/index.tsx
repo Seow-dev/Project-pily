@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Search from "../component/Search";
-import { SearchOutlined, MessageOutlined } from "@ant-design/icons";
-import styled from "styled-components";
+import { SearchOutlined } from "@ant-design/icons";
+import { LoginModal } from '../component/ModalStyles';
 import Login from "../component/Login";
 import Action from "../component/Action";
 import SignUp from "../component/SignUp";
@@ -66,20 +66,7 @@ export const Modalpage = () => {
         isOpen={isSearchModalOpen}
         onClose={searchToggleModal}
       />
-
-      {/* <MessageOutlined
-        onClick={actionToggleModal}
-        style={{
-          position: "fixed",
-          left: "95%",
-          bottom: "5%",
-          fontSize: "30px",
-        }}
-      /> */}
       <Action/>
-         {/* title={"Action"}
-         isOpen={isActionModalOpen}
-         onClose={actionToggleModal} */}
       <SignUp
         title={"회원가입"}
         isOpen={isSignUpModalOpen}
@@ -89,12 +76,4 @@ export const Modalpage = () => {
   );
 };
 
-const LoginModal = styled.a`
-  position: absolute;
-  top: 21px;
-  right: 65px;
-  fontsize: 15px;
-  &:hover {
-    color: #ff0000;
-  }
-`;
+

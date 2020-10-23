@@ -18,27 +18,33 @@ import {
 } from "./CommonStyles";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import Map from "./Map";
-import Editor from "./Editor";
+import Editor from './Editor';
+import { FeedContents } from '../Common/Interface';
 
 import { useSelector } from "react-redux";
 import { RootState } from "../Modules";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { ModalCloseImg } from "../Modal/component/ModalStyles";
+import closeIcon from '../Common/close.png'
 import Error from "../Modal/component/Error";
+import "quill/dist/quill.snow.css";
+
 
 function CreateFeedMain({ history }: RouteComponentProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [stars, setStars] = useState<number>(0);
 
-  const [feedContentsData, setFeedContentsData] = useState({
-    feedTitle: "",
-    feedSubTitle: "",
-    feedContent: "",
+
+  const [feedContentsData, setFeedContentsData] = useState<FeedContents>({
+    title: "",
+    subTitle: "",
+    content: "",
   });
 
   const contentHandleChange = (e: string) => {
     setFeedContentsData({
       ...feedContentsData,
-      feedContent: e,
+      content: e,
     });
     console.log(feedContentsData);
   };
@@ -53,19 +59,20 @@ function CreateFeedMain({ history }: RouteComponentProps) {
   };
   const redirectToMain = () => {
     history.push("/");
-  };
-  const submitHandler = () => {
-    if (
-      !(
-        feedContentsData.feedContent === "" ||
-        feedContentsData.feedContent === null ||
-        feedContentsData.feedContent === undefined
-      )
-    ) {
-      const tmp = `<div>${feedContentsData.feedContent}</div>`;
-      contentHandleChange(tmp); // 겉에 <div> 태그를 씌워줌
-      const data = { feedContentsData };
 
+  }
+  
+  const submitHandler = () =>{
+    if(!(feedContentsData.content === "" 
+    || feedContentsData.content === null 
+    || feedContentsData.content === undefined)){
+
+      const data = {feedContentsData};
+      
+        // submit Action
+        console.log("Data is ",data);
+        redirectToMain();
+    } else {
       // submit Action
       console.log("Data is ", data);
       redirectToMain();
@@ -81,14 +88,15 @@ function CreateFeedMain({ history }: RouteComponentProps) {
     <>
       {success ? (
         <MainWrapper>
+          <ModalCloseImg src={closeIcon} onClick={redirectToMain} />
           <FeedLabel>
             당신의 <span style={{ color: "#A3320B" }}>일상</span>을 기록하세요.
           </FeedLabel>
           <Head>
             <Title>
               <input
-                id="feedTitle"
-                value={feedContentsData.feedTitle}
+                id="title"
+                value={feedContentsData.title}
                 placeholder="피드 제목을 입력해주세요."
                 onChange={handleChange}
               />
@@ -112,8 +120,8 @@ function CreateFeedMain({ history }: RouteComponentProps) {
                   <div>
                     <Labels>피드 소제목</Labels>
                     <Subtitle
-                      id="feedSubTitle"
-                      value={feedContentsData.feedSubTitle}
+                      id="subTitle"
+                      value={feedContentsData.subTitle}
                       placeholder="소제목을 입력해주세요."
                       onChange={handleChange}
                     />
@@ -140,14 +148,20 @@ function CreateFeedMain({ history }: RouteComponentProps) {
           </Head>
           <EditArea>
             <EditorWrap>
-              <Editor changeFeedContent={contentHandleChange} />
+
+              <Editor 
+                changeFeedContent={contentHandleChange}/>
+
             </EditorWrap>
             <SaveButton onClick={submitHandler}>피드 저장하기</SaveButton>
           </EditArea>
+          <div className="ql-snow">
+            <div className="ql-editor" dangerouslySetInnerHTML={{__html: feedContentsData.content}}></div>
+          </div>
         </MainWrapper>
-      ) : (
+       ) : (
         <Error />
-      )}
+      )} 
     </>
   );
 }
