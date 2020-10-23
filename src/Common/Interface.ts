@@ -32,11 +32,26 @@ export interface displayModalProps {
   toSignUp?: () => void;
 }
 
-
-// test용
-
+// create feed
 export interface FeedContents{
   title: string,
   subTitle: string,
   content: string,
+}
+
+// optionProps
+export interface OptionProps {
+  query: string;
+  date: { Moment: moment.Moment | null; dateString: string };
+}
+
+// magazineSubmit
+export interface MagazineDataTypes {
+  isVertical: boolean;
+  grid: number;
+  titleAlign: number;
+  magazineTitle: string;
+  magazineSubTitle?:string;
+  thumbnail?:string;
+  feedList: number[];
 }

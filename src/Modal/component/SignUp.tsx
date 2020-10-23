@@ -16,12 +16,12 @@ export default function SignUp({ title, isOpen, onClose }: displayModalProps) {
     if (valid) {
       const result = await signUpApi(nick); // 비동기 로직 여기에
       if (result.status === 200) {
-        console.log("가입완료", result);
         setNick("");
         setValid(false);
         onClose();
       } else {
-        console.log("error");
+        alert("닉네임을 다시 정해주세요.");
+        setNick("");
       }
     }
   };

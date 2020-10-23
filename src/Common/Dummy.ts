@@ -1,4 +1,5 @@
 import {DataTypes, UserData, FeedTypes} from './Interface'
+import {HTMLEXAMPLE2, HTMLEXAPME1} from './htmlExample'
 
 export const results:DataTypes[] = [
   { 
@@ -220,89 +221,30 @@ export const result:UserData[] = [
   }
 ]
 
-export const feedResult:FeedTypes[] = [
-  {
-    feedId: 1,
-    title: "Test Title 1",
-    subTitle: "Test SubTitle 1",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId: 2,
-    title: "Test Title 2",
-    subTitle: "Test SubTitle 2",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId: 3,
-    title: "Test Title 3",
-    subTitle: "Test SubTitle 3",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId: 4,
-    title: "Test Title 4",
-    subTitle: "Test SubTitle 4",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId: 5,
-    title: "Test Title 5",
-    subTitle: "Test SubTitle 5",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId:6,
-    title: "Test Title6",
-    subTitle: "Test SubTitle6",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId: 7,
-    title: "Test Title 7",
-    subTitle: "Test SubTitle 7",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId: 8,
-    title: "Test Title 8",
-    subTitle: "Test SubTitle 8",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId:9,
-    title: "Test Title9",
-    subTitle: "Test SubTitle9",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId: 10,
-    title: "Test Title 10",
-    subTitle: "Test SubTitle 10",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId:11,
-    title: "Test Title11",
-    subTitle: "Test SubTitle11",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-  {
-    feedId: 12,
-    title: "Test Title 12",
-    subTitle: "Test SubTitle 12",
-    feedBody: "<div>Test Feed Body</div>",
-    createdAt: "2020-08"
-  },
-]
+function createFeedData():FeedTypes[] {
+  const arr = []
+  for (let i = 1; i <= 15; i += 1) {
+    if (i % 2) {
+      arr.push({
+        feedId: i,
+        title: `Test Title ${i}`,
+        subTitle: `Test Subtitle ${i}`,
+        feedBody: HTMLEXAPME1,
+        createdAt: `2020-08`
+      })
+    } else {
+      arr.push({
+        feedId: i,
+        title: `Test Title ${i}`,
+        subTitle: `Test Subtitle ${i}`,
+        feedBody: HTMLEXAMPLE2,
+        createdAt: `2020-08`
+      })
+    }
+  }
+  return arr
+}
+
+export const feedResult:FeedTypes[] = createFeedData();
+
+

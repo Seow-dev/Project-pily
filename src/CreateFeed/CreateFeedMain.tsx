@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MainWrapper } from "../Mainpage/component/MagazineGrid";
 import {
   Head,
@@ -20,6 +20,7 @@ import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import Map from "./Map";
 import Editor from './Editor';
 import { FeedContents } from '../Common/Interface';
+
 import { useSelector } from "react-redux";
 import { RootState } from "../Modules";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -28,9 +29,11 @@ import closeIcon from '../Common/close.png'
 import Error from "../Modal/component/Error";
 import "quill/dist/quill.snow.css";
 
+
 function CreateFeedMain({ history }: RouteComponentProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [stars, setStars] = useState<number>(0);
+
 
   const [feedContentsData, setFeedContentsData] = useState<FeedContents>({
     title: "",
@@ -38,7 +41,7 @@ function CreateFeedMain({ history }: RouteComponentProps) {
     content: "",
   });
 
-  const contentHandleChange = (e:string) => {
+  const contentHandleChange = (e: string) => {
     setFeedContentsData({
       ...feedContentsData,
       content: e,
@@ -53,9 +56,10 @@ function CreateFeedMain({ history }: RouteComponentProps) {
       [id]: value,
     });
     console.log(feedContentsData);
-  }
-  const redirectToMain = () =>{
+  };
+  const redirectToMain = () => {
     history.push("/");
+
   }
   
   const submitHandler = () =>{
@@ -68,21 +72,21 @@ function CreateFeedMain({ history }: RouteComponentProps) {
         // submit Action
         console.log("Data is ",data);
         redirectToMain();
-    }else{
-
+    } else {
+      // submit Action
+      console.log("Data is ", data);
+      redirectToMain();
+    } else {
       // rejected Action
-      console.log("It is empty.")
+      console.log("It is empty.");
     }
   };
 
-
-  const loginState = useSelector(
-    (state: RootState) => state.authReducer.success,
-  );
+  const { success } = useSelector((state: RootState) => state.authReducer);
 
   return (
     <>
-      {loginState ? (
+      {success ? (
         <MainWrapper>
           <ModalCloseImg src={closeIcon} onClick={redirectToMain} />
           <FeedLabel>
@@ -144,8 +148,10 @@ function CreateFeedMain({ history }: RouteComponentProps) {
           </Head>
           <EditArea>
             <EditorWrap>
+
               <Editor 
                 changeFeedContent={contentHandleChange}/>
+
             </EditorWrap>
             <SaveButton onClick={submitHandler}>피드 저장하기</SaveButton>
           </EditArea>
@@ -161,7 +167,6 @@ function CreateFeedMain({ history }: RouteComponentProps) {
 }
 
 export default withRouter(CreateFeedMain);
-
 
 // constant
 const DESC = ["angry 😤", "not good 🙁", "soso 😀", "good 😁", "wonderful 😆"];
