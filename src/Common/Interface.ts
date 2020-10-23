@@ -36,8 +36,7 @@ export interface displayModalProps {
 // test용
 
 export interface FeedContents{
-  feedTitle: string,
-  feedSubTitle: string,
-  feedContent: string,
-  feedCategory?: string,
+  title: string,
+  subTitle: string,
+  content: string,
 }

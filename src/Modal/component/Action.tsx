@@ -1,51 +1,52 @@
 import React from "react";
-import {
-  ModalPage,
-  ModalBox,
-  ModalTitle,
-  ModalContent,
-  ModalCloseImg,
-  ModalOverlay,
-} from "./ModalStyles";
-import closeIcon from "../../Common/close.png";
-import { displayModalProps } from "../../Common/Interface";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Modules";
-
+import { VscEdit, VscBook, VscAccount } from 'react-icons/vsc';
 import './ActionStyle.css';
-import { VscAdd, VscChromeClose,VscEdit,VscBook,VscAccount} from 'react-icons/vsc';
-
+import { RouteComponentProps, withRouter } from "react-router-dom";
         
-function Action() {
+function Action({ history }: RouteComponentProps) {
     
   const { success } = useSelector((state: RootState) => state.authReducer);
+  const redirectToMypage = () =>{
+    history.push("/mypage")
+  }
+  const redirectToCreateFeed = () =>{
+    history.push("/create/feed")
+  }
+    const redirectToCreateMagazine = () =>{
+    history.push("/create/magazine")
+  }
+
   return (
     <div>
       {success ? (
-        <div>
+      <div>
         <input type="checkbox" id="switch"/>
-        <label htmlFor="switch">
-          <div id="spanWrapper">
-            <span className="icon"></span>
-            <span className="icon"></span>
-            <span className="icon"></span>
+          <label htmlFor="switch">
+            <div id="hamburger">
+              <div id="spanWrapper">
+                <span className="icon"></span>
+                <span className="icon"></span>
+                <span className="icon"></span>
+              </div>
+            </div>
+          <div className="nav" id="mypage">
+            <VscAccount onClick={redirectToMypage}/>
+              <p>마이 페이지</p>
           </div>
-          <div className="nav" id="settings">
-            <i className="material-icons">settings</i>
+          <div className="nav" id="createMagazine">
+            <VscBook onClick={redirectToCreateMagazine}/>
+            <p>매거진 작성</p>
           </div>
-          <div className="nav" id="thumb">
-            <i className="material-icons">thumb_up</i>
-          </div>
-          <div className="nav" id="create">
-            <i className="material-icons">create</i>
-          </div>
-          <div className="nav" id="share">
-            <i className="material-icons">share</i>
+          <div className="nav" id="createFeed">
+            <VscEdit onClick={redirectToCreateFeed}/>
+            <p>피드 작성</p>
           </div>
         </label>
       </div>
-  ) : null}
+   ) : null}
   </div>
 )}
 
-export default Action;
+export default withRouter(Action);

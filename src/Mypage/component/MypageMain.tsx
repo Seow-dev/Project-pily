@@ -13,6 +13,7 @@ import {
 import { MainWrapper } from "../../Mainpage/component/MagazineGrid";
 import React, { useEffect, useRef, useState } from "react";
 import MypageList from "./MypageList";
+import { Modalpage } from "../../Modal/container";
 import { results, result } from "../../Common/Dummy";
 import { DataTypes, UserData } from "../../Common/Interface";
 import SubscribeList from "./SubscribeList";
@@ -85,6 +86,7 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
     <>
       {loginState ? (
         <MainWrapper>
+          <Modalpage />
           <UserInfo>
             <input
               ref={imageUploader}
@@ -181,6 +183,7 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
               )}
             </SideTabMenu>
           </MagazineListWrap>
+          
         </MainWrapper>
       ) : (
         <Error />
