@@ -199,6 +199,9 @@ export const HorizontalArticle = styled.article`
   display: flex;
   gap: 2rem;
   min-height: 700px;
+  img {
+    vertical-align: bottom;
+  }
 `;
 export const VirticalArticle = styled.article`
   grid-column: 2;
@@ -209,6 +212,9 @@ export const VirticalArticle = styled.article`
 
   display: flex;
   gap: 2rem;
+  img {
+    vertical-align: bottom;
+  }
 `;
 export const Columns = styled.div`
   flex: 100px;

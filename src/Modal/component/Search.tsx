@@ -3,7 +3,7 @@ import closeIcon from "../../Common/close.png";
 import styled from "styled-components";
 import {
   ModalPage,
-  ModalBox,
+  ModalSearchBox,
   ModalTitle,
   ModalSearchContent,
   ModalCloseImg,
@@ -121,7 +121,7 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
 
   return isOpen ? (
     <ModalPage>
-      <ModalBox>
+      <ModalSearchBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
         <ModalTitle>{title}</ModalTitle>
         <ModalSearchContent>
@@ -157,7 +157,7 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
             검색
           </button>
         </ModalSearchContent>
-      </ModalBox>
+      </ModalSearchBox>
     </ModalPage>
   ) : null;
 }

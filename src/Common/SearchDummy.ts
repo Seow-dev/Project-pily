@@ -10,7 +10,8 @@ export const results:DataTypes[] = [
     category:"여행",
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 2, 
@@ -20,7 +21,8 @@ export const results:DataTypes[] = [
     category:"일상",
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 3, 
@@ -30,7 +32,8 @@ export const results:DataTypes[] = [
     category: "일상",
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 4, 
@@ -40,7 +43,8 @@ export const results:DataTypes[] = [
     category:"여행",
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 5, 
@@ -50,7 +54,8 @@ export const results:DataTypes[] = [
     category: "IT", 
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 6, 
@@ -60,7 +65,8 @@ export const results:DataTypes[] = [
     category: "일상",
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 7, 
@@ -70,7 +76,8 @@ export const results:DataTypes[] = [
     category:"여행",
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 8, 
@@ -80,7 +87,8 @@ export const results:DataTypes[] = [
     category:"여행",
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 9, 
@@ -90,7 +98,8 @@ export const results:DataTypes[] = [
     category: "일상",
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 10, 
@@ -100,7 +109,8 @@ export const results:DataTypes[] = [
     category: "IT",
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://pyxis.nymag.com/v1/imgs/171/429/c95b07becc2bef532d9669b4824ea4386f-08-harry-potter.rsquare.w1200.jpg"
+    thumbnail:"https://pyxis.nymag.com/v1/imgs/171/429/c95b07becc2bef532d9669b4824ea4386f-08-harry-potter.rsquare.w1200.jpg",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 11, 
@@ -109,7 +119,8 @@ export const results:DataTypes[] = [
     author:"user11", 
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 12, 
@@ -118,7 +129,8 @@ export const results:DataTypes[] = [
     author:"user12", 
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://pyxis.nymag.com/v1/imgs/171/429/c95b07becc2bef532d9669b4824ea4386f-08-harry-potter.rsquare.w1200.jpg"
+    thumbnail:"https://pyxis.nymag.com/v1/imgs/171/429/c95b07becc2bef532d9669b4824ea4386f-08-harry-potter.rsquare.w1200.jpg",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 13, 
@@ -127,7 +139,8 @@ export const results:DataTypes[] = [
     author:"user13", 
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 14, 
@@ -136,7 +149,8 @@ export const results:DataTypes[] = [
     author:"user14", 
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
   },
   { 
     megazineId: 15, 
@@ -145,87 +159,7 @@ export const results:DataTypes[] = [
     author:"user15", 
     authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
     createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
-  { 
-    megazineId: 16, 
-    title:"title16", 
-    subTitle:"subtitle16", 
-    author:"user16", 
-    authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
-    createdAt: "2020-10-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
-  { 
-    megazineId: 17, 
-    title:"title17", 
-    subTitle:"subtitle17", 
-    author:"user17", 
-    authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
-    createdAt: "2020-09-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
-  { 
-    megazineId: 18, 
-    title:"title18", 
-    subTitle:"subtitle18", 
-    author:"user18", 
-    authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
-    createdAt: "2020-07-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
-  { 
-    megazineId: 19, 
-    title:"title19", 
-    subTitle:"subtitle19", 
-    author:"user19", 
-    authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
-    createdAt: "2020-04-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
-  { 
-    megazineId: 20, 
-    title:"title20", 
-    subTitle:"subtitle20", 
-    author:"user20", 
-    authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
-    createdAt: "2020-03-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
-  { 
-    megazineId: 21, 
-    title:"title21", 
-    subTitle:"subtitle21", 
-    author:"user21", 
-    authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
-    createdAt: "2020-02-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
-  { 
-    megazineId: 22, 
-    title:"title22", 
-    subTitle:"subtitle22", 
-    author:"user22", 
-    authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
-    createdAt: "2020-05-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
-  { 
-    megazineId: 23, 
-    title:"title23", 
-    subTitle:"subtitle23", 
-    author:"user23", 
-    authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
-    createdAt: "2020-09-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
-  { 
-    megazineId: 24, 
-    title:"title24", 
-    subTitle:"subtitle24", 
-    author:"user24", 
-    authorImg: "https://bbts1.azureedge.net/images/p/full/2018/11/549c2ef3-79f3-462d-b0e1-3228ea149a5c.jpg", 
-    createdAt: "2020-08-11", 
-    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
-  },
+    thumbnail:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800",
+    content:"https://mblogthumb-phinf.pstatic.net/MjAxODA2MjJfMTYx/MDAxNTI5NjQzOTA3MjA2.StNSDwGpX7kqlohgaMHX2IZKq3lZUOi4J2grIy14Zxcg.udqFYJdBOIDRf_6UJFSkXOl-kcdbatZtez9CK-PCnfEg.JPEG.sabuek/dobbytheelf.jpg?type=w800"
+  }
 ]

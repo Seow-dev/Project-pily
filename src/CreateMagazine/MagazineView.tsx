@@ -25,14 +25,20 @@ import { RadioChangeEvent } from "antd/lib/radio";
 import { generateItems } from "./GenerateItems";
 import { FeedTypes, MagazineDataTypes } from "../Common/Interface";
 import "react-quill/dist/quill.snow.css";
+import { PreviewMagazineModal } from "../Modal/component/Preview";
+
 
 interface props {
   waitList: FeedTypes[];
+  gotFeedTitle: string;
+  gotFeedBody: string;
   open: () => void;
   publish: (data: MagazineDataTypes) => void;
+  isPreviewOpen: boolean;
+  onClosePreview: () => void;
 }
 
-export default function MagazineView({ open, waitList, publish }: props) {
+export default function MagazineView({ open, waitList, gotFeedTitle, gotFeedBody, publish, isPreviewOpen, onClosePreview }: props) {
   const [vertical, setVertical] = useState(false);
   const [grid, setGrid] = useState(1);
   const [titleAlign, setTitleAlign] = useState(2);
@@ -90,6 +96,12 @@ export default function MagazineView({ open, waitList, publish }: props) {
 
   return (
     <MagazineViewWrap>
+      <PreviewMagazineModal 
+        title={gotFeedTitle}
+        content={gotFeedBody}
+        isOpen={isPreviewOpen}
+        onClose={onClosePreview}
+      />
       <ButtonBar>
         {vertical ? (
           <PublishButton onClick={handleView}>

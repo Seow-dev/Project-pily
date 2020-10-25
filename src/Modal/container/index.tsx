@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Search from "../component/Search";
-import { SearchOutlined } from "@ant-design/icons";
-import { LoginModal } from '../component/ModalStyles';
+
+import { 
+  LoginModal,
+  StyledSearchOutlined,
+  MyFeedPreview } from '../component/ModalStyles';
 import Login from "../component/Login";
 import Action from "../component/Action";
 import SignUp from "../component/SignUp";
@@ -9,6 +12,15 @@ import { RootState } from "../../Modules";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../Modules/auth";
 import { signOutApi } from "../../Api/auth";
+import { PreviewModal } from "../component/Preview";
+
+
+interface PreaviewState{
+  title : string;
+  content: string;
+}
+
+
 
 export const Modalpage = () => {
   const [isSearchModalOpen, setSearchModalState] = useState(false);
@@ -50,16 +62,8 @@ export const Modalpage = () => {
         </>
       )}
 
-      <SearchOutlined
+      <StyledSearchOutlined
         onClick={searchToggleModal}
-        style={{
-          position: "absolute",
-          right: "0px",
-          top: "0px",
-          marginTop: "20px",
-          marginRight: "30px",
-          fontSize: "23px",
-        }}
       />
       <Search
         title={"Search"}
@@ -77,3 +81,23 @@ export const Modalpage = () => {
 };
 
 
+export const PreivewMyPage = ({title, content}:PreaviewState) => {
+
+  const [isPreviewModalOpen, setPreviewModalState] = useState(false);
+  const previewToggleModal = () => setPreviewModalState(!isPreviewModalOpen);
+
+
+  return(
+    <>
+      <MyFeedPreview
+        onClick={previewToggleModal}
+      />
+      <PreviewModal 
+        title={title}
+        content={content}
+        isOpen={isPreviewModalOpen}
+        onClose={previewToggleModal}
+      />
+    </>
+  )
+}
