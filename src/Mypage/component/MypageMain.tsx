@@ -181,8 +181,8 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
           </MagazineListWrap>
           
         </MainWrapper>
-      ) : (
-        <Error />
+      ) : ( 
+      <Error />
       )}
     </>
   );

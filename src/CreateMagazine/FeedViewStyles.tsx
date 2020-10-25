@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { DatePicker } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
 // feed 조회 관련 스타일
 export const FeedViewWrap = styled.section`
@@ -134,8 +135,8 @@ export const Feed = styled.div<{ active: number }>`
 
   &:hover {
     box-shadow: #dee2e6 0 2px 8px;
-    transform: translateY(-4px);
-    transition: box-shadow 0.3s, transform 0.3s;
+    // transform: translateY(-4px);
+    // transition: box-shadow 0.3s, transform 0.3s;
   }
 
   h2 {
@@ -150,7 +151,7 @@ export const Feed = styled.div<{ active: number }>`
     -webkit-box-orient: vertical;
   }
 
-  p {
+  .createAtOff {
     margin: 0;
     font-size: 0.8rem;
     font-weight: 400;
@@ -163,7 +164,10 @@ export const Feed = styled.div<{ active: number }>`
         h2 {
           color: #fff;
         }
-        p {
+        .createAtOn {
+          margin: 0;
+          font-size: 0.8rem;
+          font-weight: 400;
           color: #fff;
         }
       `;
@@ -184,3 +188,13 @@ export const CloseButton = styled.p`
     font-size: 1.5rem;
   }
 `;
+
+export const StyledSearchOutlined = styled(SearchOutlined)`
+  position: "relative";
+  top:"30px";
+  left:"150px";
+  fontSize: "20px";
+  border:"1px solid black";
+  borderRadius:"5px";
+  backgroundColor: "white";
+`

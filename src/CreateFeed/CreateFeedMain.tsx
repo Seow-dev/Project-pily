@@ -73,10 +73,6 @@ function CreateFeedMain({ history }: RouteComponentProps) {
         console.log("Data is ",data);
         redirectToMain();
     } else {
-      // submit Action
-      console.log("Data is ", data);
-      redirectToMain();
-    } else {
       // rejected Action
       console.log("It is empty.");
     }
