@@ -21,7 +21,7 @@ export interface FeedTypes {
   feedId: number;    
   title: string;      
   subTitle: string;   
-  feedBody: string;   
+  content: string;   
   createdAt: string;
 }
 
@@ -54,4 +54,32 @@ export interface MagazineDataTypes {
   magazineSubTitle?:string;
   thumbnail?:string;
   feedList: number[];
+}
+
+// magazine detail types
+export interface detailTypes {
+  magazineId: number, 
+  magazineTitle: string,
+  magazineSubTitle?: string,
+  author: string,   
+  authorImg?: string, 
+  createdAt: string,
+  thumbnail?: string,             
+  isLiked: boolean,    
+  isSubscribed: boolean,  
+  feedList: FeedTypes[],
+  grid: number,
+  isVertical: boolean,
+  titleAlign: number, 
+}
+
+// preview types
+export interface previewTypes {
+  magazineTitle: string;
+  magazineSubTitle?: string;
+  thumbnail?: string;
+  feedList: FeedTypes[];
+  grid: number;
+  isVertical: boolean;
+  titleAlign: number;
 }

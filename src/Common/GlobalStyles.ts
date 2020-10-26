@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 // import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body{
     background-color: #fff;
-    // font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
   }
   a {
     text-decoration: none;

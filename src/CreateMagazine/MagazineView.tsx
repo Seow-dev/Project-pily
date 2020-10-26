@@ -1,38 +1,32 @@
 import * as React from "react";
 import { useState, useRef } from "react";
-import {
-  MagazineViewWrap,
-  PublishButton,
-  ButtonBar,
-  HorizontalViewWrap,
-  VirticalViewWrap,
-  HorizontalArticle,
-  VirticalArticle,
-  PublishOption,
-  OptionItem,
-  StyledRadio,
-  MagazineOptionInput,
-  MagazineTitleArea,
-  Uploadbox,
-  UploadButton,
-  UploadName,
-} from "./MagazineViewStyles";
+import * as M from "./styles/MagazineViewStyles";
 import { IoIosRefresh } from "react-icons/io";
 import { VscOpenPreview } from "react-icons/vsc";
 import { MdPublish, MdSearch } from "react-icons/md";
 import { BiAlignLeft, BiAlignMiddle, BiAlignRight } from "react-icons/bi";
 import { RadioChangeEvent } from "antd/lib/radio";
 import { generateItems } from "./GenerateItems";
-import { FeedTypes, MagazineDataTypes } from "../Common/Interface";
+import {
+  FeedTypes,
+  MagazineDataTypes,
+  previewTypes,
+} from "../Common/Interface";
 import "react-quill/dist/quill.snow.css";
 
 interface props {
   waitList: FeedTypes[];
+  preview: (data: previewTypes) => void;
   open: () => void;
   publish: (data: MagazineDataTypes) => void;
 }
 
-export default function MagazineView({ open, waitList, publish }: props) {
+export default function MagazineView({
+  preview,
+  open,
+  waitList,
+  publish,
+}: props) {
   const [vertical, setVertical] = useState(false);
   const [grid, setGrid] = useState(1);
   const [titleAlign, setTitleAlign] = useState(2);
@@ -63,13 +57,10 @@ export default function MagazineView({ open, waitList, publish }: props) {
       form.append("thumbnail", files[0]);
       // api call
       // const res = await postThumbnailApi()
-      for (let prop of form) {
-        console.log(prop);
-      }
       setThumbnail(prev => ({
         ...prev,
         url:
-          "https://img2.sbs.co.kr/img/sbs_cms/CH/2017/04/28/CH33108141_w666_h968.jpg",
+          "https://www.apple.com/v/iphone-12-pro/a/images/meta/iphone-12-pro_overview__d5t6ow03nkmu_og.png",
         name: files[0].name,
       }));
     }
@@ -88,92 +79,105 @@ export default function MagazineView({ open, waitList, publish }: props) {
     publish(datas);
   };
 
+  const handlePreivew = () => {
+    const data: previewTypes = {
+      thumbnail: thumbnail.url,
+      magazineTitle: option.magazineTitle,
+      magazineSubTitle: option.magazineSubTitle,
+      feedList: waitList,
+      grid,
+      titleAlign,
+      isVertical: vertical,
+    };
+    preview(data);
+  };
+
   return (
-    <MagazineViewWrap>
-      <ButtonBar>
+    <M.MagazineViewWrap>
+      <M.ButtonBar>
         {vertical ? (
-          <PublishButton onClick={handleView}>
+          <M.PublishButton onClick={handleView}>
             <IoIosRefresh style={{ fontSize: "0.8rem" }} /> 가로형 매거진
-          </PublishButton>
+          </M.PublishButton>
         ) : (
-          <PublishButton onClick={handleView}>
+          <M.PublishButton onClick={handleView}>
             <IoIosRefresh style={{ fontSize: "0.8rem" }} /> 세로형 매거진
-          </PublishButton>
+          </M.PublishButton>
         )}
         <div>
-          <PublishButton>
+          <M.PublishButton onClick={handlePreivew}>
             <VscOpenPreview /> 미리보기
-          </PublishButton>
-          <PublishButton onClick={handlePublish}>
+          </M.PublishButton>
+          <M.PublishButton onClick={handlePublish}>
             <MdPublish /> 발행하기
-          </PublishButton>
-          <PublishButton onClick={open} style={{ marginRight: 0 }}>
+          </M.PublishButton>
+          <M.PublishButton onClick={open} style={{ marginRight: 0 }}>
             <MdSearch /> 피드 찾기
-          </PublishButton>
+          </M.PublishButton>
         </div>
-      </ButtonBar>
-      <PublishOption>
-        <OptionItem>
+      </M.ButtonBar>
+      <M.PublishOption>
+        <M.OptionItem>
           <h3>매거진 그리드 선택</h3>
           {!vertical && (
-            <StyledRadio.Group
+            <M.StyledRadio.Group
               value={grid}
               onChange={(e: RadioChangeEvent) => setGrid(e.target.value)}
             >
-              <StyledRadio.Button value={1}>1단</StyledRadio.Button>
-              <StyledRadio.Button value={2}>2단</StyledRadio.Button>
-              <StyledRadio.Button value={3}>3단</StyledRadio.Button>
-            </StyledRadio.Group>
+              <M.StyledRadio.Button value={1}>1단</M.StyledRadio.Button>
+              <M.StyledRadio.Button value={2}>2단</M.StyledRadio.Button>
+              <M.StyledRadio.Button value={3}>3단</M.StyledRadio.Button>
+            </M.StyledRadio.Group>
           )}
           {vertical && (
-            <StyledRadio.Group
+            <M.StyledRadio.Group
               value={grid}
               onChange={(e: RadioChangeEvent) => setGrid(e.target.value)}
             >
-              <StyledRadio.Button value={1}>1단</StyledRadio.Button>
-              <StyledRadio.Button value={2}>2단</StyledRadio.Button>
-            </StyledRadio.Group>
+              <M.StyledRadio.Button value={1}>1단</M.StyledRadio.Button>
+              <M.StyledRadio.Button value={2}>2단</M.StyledRadio.Button>
+            </M.StyledRadio.Group>
           )}
-        </OptionItem>
-        <OptionItem>
+        </M.OptionItem>
+        <M.OptionItem>
           <h3>매거진 타이틀 정렬</h3>
-          <StyledRadio.Group
+          <M.StyledRadio.Group
             value={titleAlign}
             onChange={(e: RadioChangeEvent) => setTitleAlign(e.target.value)}
           >
-            <StyledRadio.Button value={1}>
+            <M.StyledRadio.Button value={1}>
               <BiAlignLeft />
-            </StyledRadio.Button>
-            <StyledRadio.Button value={2}>
+            </M.StyledRadio.Button>
+            <M.StyledRadio.Button value={2}>
               <BiAlignMiddle />
-            </StyledRadio.Button>
-            <StyledRadio.Button value={3}>
+            </M.StyledRadio.Button>
+            <M.StyledRadio.Button value={3}>
               <BiAlignRight />
-            </StyledRadio.Button>
-          </StyledRadio.Group>
-        </OptionItem>
-        <OptionItem>
+            </M.StyledRadio.Button>
+          </M.StyledRadio.Group>
+        </M.OptionItem>
+        <M.OptionItem>
           <h3>매거진 제목</h3>
-          <MagazineOptionInput
+          <M.MagazineOptionInput
             name="magazineTitle"
             value={option.magazineTitle}
             onChange={handleOption}
           />
-        </OptionItem>
-        <OptionItem>
+        </M.OptionItem>
+        <M.OptionItem>
           <h3>매거진 소제목</h3>
-          <MagazineOptionInput
+          <M.MagazineOptionInput
             name="magazineSubTitle"
             value={option.magazineSubTitle}
             onChange={handleOption}
           />
-        </OptionItem>
-        <OptionItem>
+        </M.OptionItem>
+        <M.OptionItem>
           <h3>매거진 썸네일 업로드</h3>
-          <Uploadbox>
-            <UploadButton onClick={() => thumbnailRef.current?.click()}>
+          <M.Uploadbox>
+            <M.UploadButton onClick={() => thumbnailRef.current?.click()}>
               업로드
-            </UploadButton>
+            </M.UploadButton>
             <input
               ref={thumbnailRef}
               name="thumbnail"
@@ -181,28 +185,30 @@ export default function MagazineView({ open, waitList, publish }: props) {
               type="file"
               accept="image/jpg,image/png,image/jpeg,image/gif"
             />
-            <UploadName>{thumbnail.name}</UploadName>
-          </Uploadbox>
-        </OptionItem>
-      </PublishOption>
+            <M.UploadName>{thumbnail.name}</M.UploadName>
+          </M.Uploadbox>
+        </M.OptionItem>
+      </M.PublishOption>
       {!vertical && (
-        <HorizontalViewWrap align={titleAlign}>
-          <MagazineTitleArea align={titleAlign}>
+        <M.HorizontalViewWrap align={titleAlign}>
+          <M.MagazineTitleArea align={titleAlign}>
             <h1>{option.magazineTitle}</h1>
             <h5>{option.magazineSubTitle}</h5>
-          </MagazineTitleArea>
-          <HorizontalArticle>{generateItems(grid, waitList)}</HorizontalArticle>
-        </HorizontalViewWrap>
+          </M.MagazineTitleArea>
+          <M.HorizontalArticle>
+            {generateItems(grid, waitList)}
+          </M.HorizontalArticle>
+        </M.HorizontalViewWrap>
       )}
       {vertical && (
-        <VirticalViewWrap align={titleAlign}>
-          <MagazineTitleArea align={titleAlign}>
+        <M.VirticalViewWrap align={titleAlign}>
+          <M.MagazineTitleArea align={titleAlign}>
             <h1>{option.magazineTitle}</h1>
             <h5>{option.magazineSubTitle}</h5>
-          </MagazineTitleArea>
-          <VirticalArticle>{generateItems(grid, waitList)}</VirticalArticle>
-        </VirticalViewWrap>
+          </M.MagazineTitleArea>
+          <M.VirticalArticle>{generateItems(grid, waitList)}</M.VirticalArticle>
+        </M.VirticalViewWrap>
       )}
-    </MagazineViewWrap>
+    </M.MagazineViewWrap>
   );
 }

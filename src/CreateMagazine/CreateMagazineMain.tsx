@@ -6,12 +6,18 @@ import { useSelector } from "react-redux";
 import { RootState } from "../Modules";
 import Error from "../Modal/component/Error";
 import { useSpring } from "react-spring";
-import { FeedTypes, MagazineDataTypes } from "../Common/Interface";
-
+import {
+  detailTypes,
+  FeedTypes,
+  MagazineDataTypes,
+  previewTypes,
+} from "../Common/Interface";
+import Preview from "./Preview";
 
 const CreateMagazineMain = () => {
   const { success } = useSelector((state: RootState) => state.authReducer);
 
+  // feed slide
   const [visible, setVisible] = useState(false);
   const slideMenuAnimation = useSpring({
     display: visible ? "block" : "none",
@@ -24,6 +30,7 @@ const CreateMagazineMain = () => {
     setVisible(prev => !prev);
   }, [visible]);
 
+  // magazine publish
   const [publishList, setPublishList] = useState<FeedTypes[]>([]);
   const handleWaitList = useCallback(
     (data: FeedTypes) => {
@@ -37,30 +44,49 @@ const CreateMagazineMain = () => {
     },
     [publishList],
   );
-
   const handlePublish = (data: MagazineDataTypes) => {
     console.log(data);
+  };
+
+  // magazine preview modal
+  const [showPreview, setShowPreview] = useState(true);
+  const [previewData, setPreviewData] = useState<previewTypes | null>(null);
+  const handlePreview = (data: previewTypes) => {
+    if (data) {
+      setPreviewData(data);
+      setShowPreview(!showPreview);
+    }
   };
 
   return (
     <>
       {success ? (
-        <Wrapper>
-          <Container>
-            <MagazineView
-              publish={handlePublish}
-              waitList={publishList}
-              open={handleSlide}
+        <>
+          <Wrapper>
+            <Container>
+              <MagazineView
+                preview={handlePreview}
+                publish={handlePublish}
+                waitList={publishList}
+                open={handleSlide}
+              />
+              <FeedView
+                setWaitList={handleWaitList}
+                waitList={publishList}
+                styles={slideMenuAnimation}
+                close={handleSlide}
+              />
+            </Container>
+          </Wrapper>
+          {previewData && (
+            <Preview
+              previewData={previewData}
+              isPreview={showPreview}
+              close={() => setShowPreview(false)}
             />
-            <FeedView
-              setWaitList={handleWaitList}
-              waitList={publishList}
-              styles={slideMenuAnimation}
-              close={handleSlide}
-            />
-          </Container>
-        </Wrapper>
-       ) : (
+          )}
+        </>
+      ) : (
         <Error />
       )}
     </>

@@ -1,4 +1,4 @@
-import { Columns, Items } from "./MagazineViewStyles";
+import { Columns, Items } from "./styles/MagazineViewStyles";
 import React from "react";
 import { FeedTypes } from "../Common/Interface";
 
@@ -21,7 +21,7 @@ export function generateItems(col: number, items: FeedTypes[]) {
                     <div className="ql-snow">
                       <div
                         className="ql-editor"
-                        dangerouslySetInnerHTML={{ __html: item.feedBody }}
+                        dangerouslySetInnerHTML={{ __html: item.content }}
                       />
                     </div>
                   </Items>
