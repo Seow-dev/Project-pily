@@ -72,38 +72,38 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
     });
   };
 
-  console.log(
-    "Title :",
-    formState.searchTitle,
-    "Date :",
-    date_to_str(formState.searchDate),
-    "Category :",
-    formState.searchCategory
-  );
+  // console.log(
+  //   "Title :",
+  //   formState.searchTitle,
+  //   "Date :",
+  //   date_to_str(formState.searchDate),
+  //   "Category :",
+  //   formState.searchCategory
+  // );
 
   const submitHandler = () => {
-    console.log(results);
+    // console.log(results);
     // console.log(date_to_str(formState.searchDate)); // fotmatting 된 Date 벨류
     if (formState.searchCategory) {
       const tmp = results.filter(e =>
         e.category?.includes(formState.searchCategory),
       );
 
-      console.log(tmp);
+      // console.log(tmp);
     }
     if (formState.searchTitle) {
       const tmpTitle = results.filter(e =>
         e.title?.includes(formState.searchTitle),
       );
 
-      console.log("Title result: ",tmpTitle);
+      // console.log("Title result: ",tmpTitle);
     }
     if (formState.searchDate) {
       const tmpDate = results.filter(e =>
         e.createdAt?.includes(date_to_str(formState.searchDate)),
       );
 
-      console.log(tmpDate);
+      // console.log(tmpDate);
     }
     // onClose();
   };
@@ -161,5 +161,3 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
     </ModalPage>
   ) : null;
 }
-
-

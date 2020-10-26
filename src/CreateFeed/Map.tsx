@@ -73,30 +73,9 @@ const Map: React.FC = () => {
         infowindow.setContent(content);
         infowindow.open(map, marker);
       });
-      // window.kakao.maps.event.addListener(marker, "click", () => {
-      //   customOverlay.setMap(map);
-      //   setLocation({
-      //     ...location,
-      //     place_name: places.place_name,
-      //     x: places.x,
-      //     y: places.y,
-      //   });
-      // });
-      // const content = `<div class="customoverlay" onclick=${setOff()}><span class="title">${
-      //   places.place_name
-      // }</span></div>`;
-      // const customOverlay = new window.kakao.maps.CustomOverlay({
-      //   map: map,
-      //   position: marker.getPosition(),
-      //   content: content,
-      // });
-      // function setOff() {
-      //   customOverlay.setMap(null);
-      // }
     }
   }, [query]);
 
-  console.log(location);
   return (
     <Wrap>
       <MapDiv id="map" />

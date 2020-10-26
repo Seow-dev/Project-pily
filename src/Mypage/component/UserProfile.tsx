@@ -1,4 +1,4 @@
-import { MainWrapper } from "../../Mainpage/component/MagazineGrid";
+import { MainWrapper } from "../../Mainpage/component/MainPage";
 import {
   UserInfo,
   UserImg,
@@ -12,10 +12,15 @@ import {
 import MypageList from "./MypageList";
 import React, { useEffect, useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { results, result } from "../../Common/Dummy";
 import { DataTypes, UserData } from "../../Common/Interface";
+import { getProfileApi } from "../../Api/user";
+import { AxiosResponse } from "axios";
 
-const UserProfile = ({ match }: RouteComponentProps) => {
+interface matchprops {
+  username: string;
+}
+
+const UserProfile = ({ match }: RouteComponentProps<matchprops>) => {
   const [curData, setCurData] = useState<DataTypes[]>([]);
 
   const [userData, setUserData] = useState<UserData>({
@@ -23,11 +28,23 @@ const UserProfile = ({ match }: RouteComponentProps) => {
     username: "",
   });
 
-  const paramUsername: any = match.params;
+  const paramUsername: string = match.params.username;
   useEffect(() => {
-    const data = result.filter(el => el.username === paramUsername.username);
-    setUserData(data[0]);
-    setCurData(results.filter(el => Number(el.megazineId) % 2));
+    console.log(paramUsername);
+    (async () => {
+      const data = await getProfileApi(paramUsername).then(
+        (res: AxiosResponse) => res.data,
+      );
+
+      if (data) {
+        console.log(data);
+        setUserData({
+          username: data.username,
+          profileImage: data.IMG ? data.IMG : "/image/default_user.png",
+        });
+        setCurData(data.results);
+      }
+    })();
   }, []);
 
   return (

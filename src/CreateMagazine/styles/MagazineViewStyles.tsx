@@ -150,7 +150,7 @@ export const VirticalViewWrap = styled.section<{ align: number }>`
       return "flex-end";
     }
   }};
-  width: 90%;
+  width: 100%;
   overflow: auto;
   min-height: 800px;
   margin-top: 1rem;
@@ -233,8 +233,8 @@ export const Items = styled.div`
 
   .item-title {
     margin: 0;
-    margin-bottom: 12px;
-    font-size: 1.5rem;
+    margin-bottom: 4px;
+    font-size: 2rem;
     font-weight: 600;
     padding-left: 1rem;
   }
@@ -244,5 +244,6 @@ export const Items = styled.div`
     font-size: 1rem;
     font-weight: 500;
     padding-left: 1rem;
+    padding-bottom: 8px;
   }
 `;

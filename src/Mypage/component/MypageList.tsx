@@ -2,8 +2,9 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import { DataTypes } from "../../Common/Interface";
 import { Link } from "react-router-dom";
-import { StyledPagination } from "../../Mainpage/component/MagazineGrid";
-import { PreivewMyPage } from '../../Modal/container'
+
+import { StyledPagination } from "../../Mainpage/component/MainPage";
+import { PreivewMyPage } from "../../Modal/container";
 
 interface props {
   listData: DataTypes[];
@@ -19,8 +20,8 @@ export default function MypageList({ listData, own }: props) {
         {listData
           .map((listEl, idx: number) => (
             <StyledMagazine>
-              <PreivewMyPage title={listEl.title} content={listEl.content}/>
-             <Link key={idx} to={`/magazine/${listEl.title}`}>
+              <PreivewMyPage title={listEl.title} content={listEl.content} />
+              <Link key={idx} to={`/magazine/${listEl.title}`}>
                 <StyledInfo>
                   <StyledTitle>{listEl.title}</StyledTitle>
                   {!own && (
@@ -75,13 +76,13 @@ const StyledInfo = styled.div`
 `;
 const StyledTitle = styled.h2`
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0;
   margin-bottom: 1rem;
   color: #000;
   width: 170px;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -93,7 +94,8 @@ const StyledAuthorWrap = styled.div`
 `;
 const StyledAuthorName = styled.p`
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  margin: 0;
   color: #000;
 `;
 const StyledAuthorImg = styled.img`

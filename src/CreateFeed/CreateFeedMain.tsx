@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { MainWrapper } from "../Mainpage/component/MagazineGrid";
+import { MainWrapper } from "../Mainpage/component/MainPage";
 import {
   Head,
   Title,
@@ -18,22 +18,20 @@ import {
 } from "./CommonStyles";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import Map from "./Map";
-import Editor from './Editor';
-import { FeedContents } from '../Common/Interface';
+import Editor from "./Editor";
+import { FeedContents } from "../Common/Interface";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../Modules";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { ModalCloseImg } from "../Modal/component/ModalStyles";
-import closeIcon from '../Common/close.png'
+import closeIcon from "../Common/close.png";
 import Error from "../Modal/component/Error";
 import "quill/dist/quill.snow.css";
-
 
 function CreateFeedMain({ history }: RouteComponentProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [stars, setStars] = useState<number>(0);
-
 
   const [feedContentsData, setFeedContentsData] = useState<FeedContents>({
     title: "",
@@ -46,7 +44,7 @@ function CreateFeedMain({ history }: RouteComponentProps) {
       ...feedContentsData,
       content: e,
     });
-    console.log(feedContentsData);
+    // console.log(feedContentsData);
   };
 
   const handleChange = (e: any) => {
@@ -55,26 +53,27 @@ function CreateFeedMain({ history }: RouteComponentProps) {
       ...feedContentsData,
       [id]: value,
     });
-    console.log(feedContentsData);
+    // console.log(feedContentsData);
   };
   const redirectToMain = () => {
     history.push("/");
+  };
 
-  }
-  
-  const submitHandler = () =>{
-    if(!(feedContentsData.content === "" 
-    || feedContentsData.content === null 
-    || feedContentsData.content === undefined)){
-
-      const data = {feedContentsData};
-      
-        // submit Action
-        console.log("Data is ",data);
-        redirectToMain();
+  const submitHandler = () => {
+    if (
+      !(
+        feedContentsData.content === "" ||
+        feedContentsData.content === null ||
+        feedContentsData.content === undefined
+      )
+    ) {
+      const data = { feedContentsData };
+      // submit Action
+      console.log("Data is ", data);
+      redirectToMain();
     } else {
       // rejected Action
-      console.log("It is empty.");
+      // console.log("It is empty.");
     }
   };
 
@@ -127,7 +126,6 @@ function CreateFeedMain({ history }: RouteComponentProps) {
                     <StyledRate
                       onChange={value => {
                         setStars(value);
-                        console.log(value);
                       }}
                       tooltips={DESC}
                       value={stars}
@@ -144,20 +142,20 @@ function CreateFeedMain({ history }: RouteComponentProps) {
           </Head>
           <EditArea>
             <EditorWrap>
-
-              <Editor 
-                changeFeedContent={contentHandleChange}/>
-
+              <Editor changeFeedContent={contentHandleChange} />
             </EditorWrap>
             <SaveButton onClick={submitHandler}>피드 저장하기</SaveButton>
           </EditArea>
           <div className="ql-snow">
-            <div className="ql-editor" dangerouslySetInnerHTML={{__html: feedContentsData.content}}></div>
+            <div
+              className="ql-editor"
+              dangerouslySetInnerHTML={{ __html: feedContentsData.content }}
+            ></div>
           </div>
         </MainWrapper>
-       ) : (
+      ) : (
         <Error />
-      )} 
+      )}
     </>
   );
 }

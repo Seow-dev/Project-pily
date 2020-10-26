@@ -1,23 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
-import {
-  FeedViewWrap,
-  ControllerBox,
-  Label,
-  SearchBox,
-  SelectBox,
-  StyledDatePicker,
-  FeedContainer,
-  Feed,
-  CloseButton,
-  StyledSearchOutlined
-} from "./FeedViewStyles";
+import * as FeedStyles from "./styles/FeedViewStyles";
 import { FeedTypes, OptionProps } from "../Common/Interface";
 import { animated } from "react-spring";
 import { GrFormClose } from "react-icons/gr";
 import { feedResult, result } from "../Common/Dummy";
 import "react-quill/dist/quill.snow.css";
-
 
 interface props {
   styles: any;
@@ -25,10 +13,17 @@ interface props {
   setWaitList: (data: FeedTypes) => void;
   close: () => void;
   onActivePreview: () => void;
-  getFeedData: (data:FeedTypes) => void;
+  getFeedData: (data: FeedTypes) => void;
 }
 
-function FeedView({ styles, close, waitList, setWaitList, onActivePreview, getFeedData }: props) {
+function FeedView({
+  styles,
+  close,
+  waitList,
+  setWaitList,
+  onActivePreview,
+  getFeedData,
+}: props) {
   const [option, setOption] = useState<OptionProps>({
     query: "",
     date: { Moment: null, dateString: "" },
@@ -58,37 +53,36 @@ function FeedView({ styles, close, waitList, setWaitList, onActivePreview, getFe
     }
   };
 
-
   return (
     <animated.div style={styles}>
-      <FeedViewWrap>
-        <CloseButton onClick={close}>
+      <FeedStyles.FeedViewWrap>
+        <FeedStyles.CloseButton onClick={close}>
           <GrFormClose />
-        </CloseButton>
-        <ControllerBox>
-          <Label>피드를 조회하세요</Label>
+        </FeedStyles.CloseButton>
+        <FeedStyles.ControllerBox>
+          <FeedStyles.Label>피드를 조회하세요</FeedStyles.Label>
           {option.query.length > 0 ? (
-            <SearchBox on={1}>
+            <FeedStyles.SearchBox on={1}>
               <input
                 value={option.query}
                 onChange={handleSearch}
                 placeholder="피드를 검색해주세요"
               />
               <button onClick={handleSubmit}>검색</button>
-            </SearchBox>
+            </FeedStyles.SearchBox>
           ) : (
-            <SearchBox on={0}>
+            <FeedStyles.SearchBox on={0}>
               <input
                 value={option.query}
                 onChange={handleSearch}
                 placeholder="피드를 검색해주세요"
               />
               <button onClick={handleSubmit}>검색</button>
-            </SearchBox>
+            </FeedStyles.SearchBox>
           )}
 
-          <SelectBox>
-            <StyledDatePicker
+          <FeedStyles.SelectBox>
+            <FeedStyles.StyledDatePicker
               value={option.date.Moment}
               onChange={(date, dateString) => {
                 setOption({
@@ -99,66 +93,67 @@ function FeedView({ styles, close, waitList, setWaitList, onActivePreview, getFe
               placeholder="조회할 월을 선택하세요."
               picker="month"
             />
-          </SelectBox>
-        </ControllerBox>
-        <Label style={{ marginTop: "2rem" }}>피드 목록</Label>
-        <FeedContainer>
+          </FeedStyles.SelectBox>
+        </FeedStyles.ControllerBox>
+        <FeedStyles.Label style={{ marginTop: "2rem" }}>
+          피드 목록
+        </FeedStyles.Label>
+        <FeedStyles.FeedContainer>
           {feedData.map(result => {
             const check = waitList.filter(el => el.feedId === result.feedId);
             if (check.length !== 0) {
               return (
-                <div>
-                  <StyledSearchOutlined
-                    onClick={()=>{
+                <div key={result.feedId}>
+                  <FeedStyles.StyledSearchOutlined
+                    onClick={() => {
                       onActivePreview();
                       getFeedData(result);
                     }}
-                    
-                    />
-                  <Feed
-                    key={result.feedId}
+                  />
+                  <FeedStyles.Feed
+                    // key={result.feedId}
                     id={result.feedId.toString()}
                     onClick={() => setWaitList(result)}
                     active={1}
                   >
-                  <h2 >{result.title}</h2>
-                  <p className="createAtOn">{result.createdAt}</p>
-                </Feed>
+                    <h2>{result.title}</h2>
+                    <p className="createAtOn">{result.createdAt}</p>
+                  </FeedStyles.Feed>
                 </div>
               );
             } else {
               return (
-                <div>
-                  <StyledSearchOutlined
-                    onClick={()=>{
+                <div key={result.feedId}>
+                  <FeedStyles.StyledSearchOutlined
+                    onClick={() => {
                       onActivePreview();
                       getFeedData(result);
                     }}
                     style={{
                       position: "relative",
-                      top:"30px",
-                      left:"150px",
+                      top: "30px",
+                      left: "150px",
                       fontSize: "20px",
-                      border:"1px solid black",
-                      borderRadius:"5px",
+                      border: "1px solid black",
+                      borderRadius: "5px",
                       backgroundColor: "white",
                     }}
-                    />
-                  <Feed
-                    key={result.feedId}
+                  />
+                  <FeedStyles.Feed
+                    // key={result.feedId}
                     id={result.feedId.toString()}
                     onClick={() => setWaitList(result)}
                     active={0}
                   >
-                  <h2>{result.title}</h2>
-                  <p className="createAtOff">{result.createdAt}</p>
-                 </Feed>
+                    <h2>{result.title}</h2>
+                    <p className="createAtOff">{result.createdAt}</p>
+                  </FeedStyles.Feed>
                 </div>
               );
             }
           })}
-        </FeedContainer>
-      </FeedViewWrap>
+        </FeedStyles.FeedContainer>
+      </FeedStyles.FeedViewWrap>
     </animated.div>
   );
 }
