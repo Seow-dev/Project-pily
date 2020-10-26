@@ -4,16 +4,26 @@ import * as FeedStyles from "./styles/FeedViewStyles";
 import { FeedTypes, OptionProps } from "../Common/Interface";
 import { animated } from "react-spring";
 import { GrFormClose } from "react-icons/gr";
-import { feedResult } from "../Common/Dummy";
+import { feedResult, result } from "../Common/Dummy";
+import "react-quill/dist/quill.snow.css";
 
 interface props {
   styles: any;
   waitList: FeedTypes[];
   setWaitList: (data: FeedTypes) => void;
   close: () => void;
+  onActivePreview: () => void;
+  getFeedData: (data: FeedTypes) => void;
 }
 
-function FeedView({ styles, close, waitList, setWaitList }: props) {
+function FeedView({
+  styles,
+  close,
+  waitList,
+  setWaitList,
+  onActivePreview,
+  getFeedData,
+}: props) {
   const [option, setOption] = useState<OptionProps>({
     query: "",
     date: { Moment: null, dateString: "" },
@@ -93,27 +103,52 @@ function FeedView({ styles, close, waitList, setWaitList }: props) {
             const check = waitList.filter(el => el.feedId === result.feedId);
             if (check.length !== 0) {
               return (
-                <FeedStyles.Feed
-                  key={result.feedId}
-                  id={result.feedId.toString()}
-                  onClick={() => setWaitList(result)}
-                  active={1}
-                >
-                  <h2>{result.title}</h2>
-                  <p>{result.createdAt}</p>
-                </FeedStyles.Feed>
+                <div key={result.feedId}>
+                  <FeedStyles.StyledSearchOutlined
+                    onClick={() => {
+                      onActivePreview();
+                      getFeedData(result);
+                    }}
+                  />
+                  <FeedStyles.Feed
+                    // key={result.feedId}
+                    id={result.feedId.toString()}
+                    onClick={() => setWaitList(result)}
+                    active={1}
+                  >
+                    <h2>{result.title}</h2>
+                    <p className="createAtOn">{result.createdAt}</p>
+                  </FeedStyles.Feed>
+                </div>
               );
             } else {
               return (
-                <FeedStyles.Feed
-                  key={result.feedId}
-                  id={result.feedId.toString()}
-                  onClick={() => setWaitList(result)}
-                  active={0}
-                >
-                  <h2>{result.title}</h2>
-                  <p>{result.createdAt}</p>
-                </FeedStyles.Feed>
+                <div key={result.feedId}>
+                  <FeedStyles.StyledSearchOutlined
+                    onClick={() => {
+                      onActivePreview();
+                      getFeedData(result);
+                    }}
+                    style={{
+                      position: "relative",
+                      top: "30px",
+                      left: "150px",
+                      fontSize: "20px",
+                      border: "1px solid black",
+                      borderRadius: "5px",
+                      backgroundColor: "white",
+                    }}
+                  />
+                  <FeedStyles.Feed
+                    // key={result.feedId}
+                    id={result.feedId.toString()}
+                    onClick={() => setWaitList(result)}
+                    active={0}
+                  >
+                    <h2>{result.title}</h2>
+                    <p className="createAtOff">{result.createdAt}</p>
+                  </FeedStyles.Feed>
+                </div>
               );
             }
           })}

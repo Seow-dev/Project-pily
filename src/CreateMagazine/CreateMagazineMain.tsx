@@ -48,7 +48,21 @@ const CreateMagazineMain = () => {
     console.log(data);
   };
 
-  // magazine preview modal
+  const [isPreviewModalOpen, setPreviewModalState] = useState(false);
+  const previewToggleModal = () => setPreviewModalState(!isPreviewModalOpen);
+  const [feedData, setFeedData] = useState({
+    title: "",
+    feedBody: "",
+  });
+  const getFeedData = (data: any) => {
+    const feedTitle = data.title;
+    const feedContent = data.content;
+    setFeedData({
+      title: feedTitle,
+      feedBody: feedContent,
+    });
+  };
+
   const [showPreview, setShowPreview] = useState(true);
   const [previewData, setPreviewData] = useState<previewTypes | null>(null);
   const handlePreview = (data: previewTypes) => {
@@ -69,12 +83,18 @@ const CreateMagazineMain = () => {
                 publish={handlePublish}
                 waitList={publishList}
                 open={handleSlide}
+                gotFeedTitle={feedData.title}
+                gotFeedBody={feedData.feedBody}
+                isPreviewOpen={isPreviewModalOpen}
+                onClosePreview={previewToggleModal}
               />
               <FeedView
                 setWaitList={handleWaitList}
                 waitList={publishList}
                 styles={slideMenuAnimation}
                 close={handleSlide}
+                getFeedData={getFeedData}
+                onActivePreview={previewToggleModal}
               />
             </Container>
           </Wrapper>
@@ -89,6 +109,7 @@ const CreateMagazineMain = () => {
       ) : (
         <Error />
       )}
+      )
     </>
   );
 };

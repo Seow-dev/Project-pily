@@ -2,9 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Modules";
 import { VscEdit, VscBook, VscAccount } from 'react-icons/vsc';
-import './ActionStyle.css';
 import { RouteComponentProps, withRouter } from "react-router-dom";
-        
+import { Switch, Hamburger, Navigation, Span, SpanWrapper, Paragraph } from './ModalStyles';
+
+
 function Action({ history }: RouteComponentProps) {
     
   const { success } = useSelector((state: RootState) => state.authReducer);
@@ -21,31 +22,31 @@ function Action({ history }: RouteComponentProps) {
   return (
     <div>
       {success ? (
-      <div>
-        <input type="checkbox" id="switch"/>
-          <label htmlFor="switch">
-            <div id="hamburger">
-              <div id="spanWrapper">
-                <span className="icon"></span>
-                <span className="icon"></span>
-                <span className="icon"></span>
-              </div>
-            </div>
-          <div className="nav" id="mypage">
-            <VscAccount onClick={redirectToMypage}/>
-              <p>마이 페이지</p>
-          </div>
-          <div className="nav" id="createMagazine">
-            <VscBook onClick={redirectToCreateMagazine}/>
-            <p>매거진 작성</p>
-          </div>
-          <div className="nav" id="createFeed">
-            <VscEdit onClick={redirectToCreateFeed}/>
-            <p>피드 작성</p>
-          </div>
-        </label>
-      </div>
-   ) : null}
+      <>
+        <Switch>
+          <input type="checkbox" id="switch"/>
+            <label htmlFor="switch">
+              <Hamburger>
+                <SpanWrapper>
+                  <Span/><Span/><Span/>
+                </SpanWrapper>
+              </Hamburger>
+            <Navigation id="mypage">
+              <VscAccount onClick={redirectToMypage}/>
+                <Paragraph>마이 페이지</Paragraph>
+            </Navigation>
+            <Navigation id="createMagazine">
+              <VscBook onClick={redirectToCreateMagazine}/>
+              <Paragraph>매거진 작성</Paragraph>
+            </Navigation>
+            <Navigation id="createFeed">
+              <VscEdit onClick={redirectToCreateFeed}/>
+              <Paragraph>피드 작성</Paragraph>
+            </Navigation>
+          </label>
+        </Switch>
+      </>
+   ) : null }
   </div>
 )}
 

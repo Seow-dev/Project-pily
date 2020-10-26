@@ -198,8 +198,8 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
             </SideTabMenu>
           </MagazineListWrap>
         </MainWrapper>
-      ) : (
-        <Error />
+      ) : ( 
+      <Error />
       )}
     </>
   );

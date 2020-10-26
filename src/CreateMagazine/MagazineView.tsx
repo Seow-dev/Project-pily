@@ -13,19 +13,28 @@ import {
   previewTypes,
 } from "../Common/Interface";
 import "react-quill/dist/quill.snow.css";
+import { PreviewMagazineModal } from "../Modal/component/Preview";
 
 interface props {
   waitList: FeedTypes[];
   preview: (data: previewTypes) => void;
+  gotFeedTitle: string;
+  gotFeedBody: string;
   open: () => void;
   publish: (data: MagazineDataTypes) => void;
+  isPreviewOpen: boolean;
+  onClosePreview: () => void;
 }
 
 export default function MagazineView({
-  preview,
   open,
   waitList,
+  gotFeedTitle,
+  gotFeedBody,
   publish,
+  isPreviewOpen,
+  onClosePreview,
+  preview,
 }: props) {
   const [vertical, setVertical] = useState(false);
   const [grid, setGrid] = useState(1);
@@ -94,6 +103,12 @@ export default function MagazineView({
 
   return (
     <M.MagazineViewWrap>
+      <PreviewMagazineModal
+        title={gotFeedTitle}
+        content={gotFeedBody}
+        isOpen={isPreviewOpen}
+        onClose={onClosePreview}
+      />
       <M.ButtonBar>
         {vertical ? (
           <M.PublishButton onClick={handleView}>

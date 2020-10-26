@@ -2,7 +2,9 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import { DataTypes } from "../../Common/Interface";
 import { Link } from "react-router-dom";
+
 import { StyledPagination } from "../../Mainpage/component/MainPage";
+import { PreivewMyPage } from "../../Modal/container";
 
 interface props {
   listData: DataTypes[];
@@ -17,8 +19,9 @@ export default function MypageList({ listData, own }: props) {
       <StyledListWrap>
         {listData
           .map((listEl, idx: number) => (
-            <Link key={idx} to={`/magazine/${listEl.title}`}>
-              <StyledMagazine>
+            <StyledMagazine>
+              <PreivewMyPage title={listEl.title} content={listEl.content} />
+              <Link key={idx} to={`/magazine/${listEl.title}`}>
                 <StyledInfo>
                   <StyledTitle>{listEl.title}</StyledTitle>
                   {!own && (
@@ -28,8 +31,8 @@ export default function MypageList({ listData, own }: props) {
                     </StyledAuthorWrap>
                   )}
                 </StyledInfo>
-              </StyledMagazine>
-            </Link>
+              </Link>
+            </StyledMagazine>
           ))
           .slice(8 * (cur - 1), 8 * cur)}
       </StyledListWrap>
@@ -77,13 +80,12 @@ const StyledTitle = styled.h2`
   margin: 0;
   margin-bottom: 1rem;
   color: #000;
-
-  text-overflow: ellipsis;
+  width: 170px;
   overflow: hidden;
+  text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  word-break: break-word;
 `;
 const StyledAuthorWrap = styled.div`
   display: flex;
