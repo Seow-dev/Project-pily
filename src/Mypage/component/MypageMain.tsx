@@ -10,7 +10,7 @@ import {
   UserNameChangeButton,
   UserDetail,
 } from "./CommonStyle";
-import { MainWrapper } from "../../Mainpage/component/MagazineGrid";
+import { MainWrapper } from "../../Mainpage/component/MainPage";
 import React, { useEffect, useRef, useState } from "react";
 import MypageList from "./MypageList";
 import { Modalpage } from "../../Modal/container";
@@ -21,6 +21,12 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Modules";
 import Error from "../../Modal/component/Error";
+import {
+  getUserDataApi,
+  updateImgApi,
+  updateUserNameApi,
+} from "../../Api/user";
+import { AxiosResponse } from "axios";
 
 const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   const [userData, setUserData] = useState<UserData>({
@@ -30,13 +36,19 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   const { success } = useSelector((state: RootState) => state.authReducer);
 
   useEffect(() => {
-    // userData 가지고 오는 로직 여기에
-    setUserData({
-      username: "도비",
-      profileImage: userData.profileImage
-        ? userData.profileImage
-        : "/image/default_user.png",
-    });
+    (async () => {
+      const data = await getUserDataApi().then(
+        (res: AxiosResponse) => res.data,
+      );
+
+      if (data) {
+        console.log(data);
+        setUserData({
+          username: data.username,
+          profileImage: data.IMG ? data.IMG : "/image/default_user.png",
+        });
+      }
+    })();
   }, []);
 
   const [curMenu, setCurMenu] = useState<string>("like");
@@ -65,14 +77,26 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
       [name]: value,
     });
   };
+  const updateUsername = async () => {
+    // 유저 네임 변경 api 호출
+    const data = await updateUserNameApi(userData.username);
+    if (data) {
+      console.log(data);
+    }
+    setChange(false);
+  };
 
   const uploadedImage = useRef<HTMLImageElement>(null);
   const imageUploader = useRef<HTMLInputElement | null>(null);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formData = new FormData();
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.files) {
-      console.log(e.currentTarget.files[0]);
+      const formData = new FormData();
+      formData.append("location", e.currentTarget.files[0]);
+      const result = await updateImgApi(formData).then(
+        (res: AxiosResponse) => res.data,
+      );
+      console.log(result);
       // setUserData({
       //   ...userData,
       //   profileImage: e.currentTarget.files[0],
@@ -111,13 +135,7 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
                     value={userData.username}
                     onChange={changeUsername}
                   />
-                  <UserNameChangeButton
-                    save
-                    onClick={() => {
-                      // 유저 네임 변경 api 호출
-                      setChange(false);
-                    }}
-                  >
+                  <UserNameChangeButton save onClick={updateUsername}>
                     닉네임 저장
                   </UserNameChangeButton>
                 </>
@@ -179,7 +197,6 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
               )}
             </SideTabMenu>
           </MagazineListWrap>
-          
         </MainWrapper>
       ) : (
         <Error />

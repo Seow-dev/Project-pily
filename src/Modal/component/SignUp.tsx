@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ModalPage, ModalBox, ModalTitle, ModalSearchContent } from "./ModalStyles";
+import {
+  ModalPage,
+  ModalBox,
+  ModalTitle,
+  ModalSearchContent,
+} from "./ModalStyles";
 import { displayModalProps } from "../../Common/Interface";
 import { signUpApi } from "../../Api/auth";
 
@@ -28,6 +33,7 @@ export default function SignUp({ title, isOpen, onClose }: displayModalProps) {
 
   useEffect(() => {
     // nick 값이 변경될 때마다 서버에 중복 검사 요청을 날립니다.
+    // api(nick) => response ->
     console.log("중복 검사 요청");
   }, [nick]);
 

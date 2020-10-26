@@ -9,7 +9,7 @@ interface props {
 
 export default function MagazineTile({ magazineData }: props) {
   return (
-    <Link to={`/magazine/${magazineData.title}`}>
+    <Link to={`/magazine/${magazineData.megazineId}`}>
       <MegazineWrapper>
         <MegazineImg src={magazineData.thumbnail} />
         <MegazineInfo>

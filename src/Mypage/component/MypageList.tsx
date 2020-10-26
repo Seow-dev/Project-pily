@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import { DataTypes } from "../../Common/Interface";
 import { Link } from "react-router-dom";
-import { StyledPagination } from "../../Mainpage/component/MagazineGrid";
+import { StyledPagination } from "../../Mainpage/component/MainPage";
 
 interface props {
   listData: DataTypes[];
@@ -73,12 +73,13 @@ const StyledInfo = styled.div`
 `;
 const StyledTitle = styled.h2`
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0;
   margin-bottom: 1rem;
   color: #000;
 
   text-overflow: ellipsis;
+  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -91,7 +92,8 @@ const StyledAuthorWrap = styled.div`
 `;
 const StyledAuthorName = styled.p`
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  margin: 0;
   color: #000;
 `;
 const StyledAuthorImg = styled.img`

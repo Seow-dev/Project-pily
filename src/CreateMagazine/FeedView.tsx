@@ -1,16 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import {
-  FeedViewWrap,
-  ControllerBox,
-  Label,
-  SearchBox,
-  SelectBox,
-  StyledDatePicker,
-  FeedContainer,
-  Feed,
-  CloseButton,
-} from "./FeedViewStyles";
+import * as FeedStyles from "./styles/FeedViewStyles";
 import { FeedTypes, OptionProps } from "../Common/Interface";
 import { animated } from "react-spring";
 import { GrFormClose } from "react-icons/gr";
@@ -55,34 +45,34 @@ function FeedView({ styles, close, waitList, setWaitList }: props) {
 
   return (
     <animated.div style={styles}>
-      <FeedViewWrap>
-        <CloseButton onClick={close}>
+      <FeedStyles.FeedViewWrap>
+        <FeedStyles.CloseButton onClick={close}>
           <GrFormClose />
-        </CloseButton>
-        <ControllerBox>
-          <Label>피드를 조회하세요</Label>
+        </FeedStyles.CloseButton>
+        <FeedStyles.ControllerBox>
+          <FeedStyles.Label>피드를 조회하세요</FeedStyles.Label>
           {option.query.length > 0 ? (
-            <SearchBox on={1}>
+            <FeedStyles.SearchBox on={1}>
               <input
                 value={option.query}
                 onChange={handleSearch}
                 placeholder="피드를 검색해주세요"
               />
               <button onClick={handleSubmit}>검색</button>
-            </SearchBox>
+            </FeedStyles.SearchBox>
           ) : (
-            <SearchBox on={0}>
+            <FeedStyles.SearchBox on={0}>
               <input
                 value={option.query}
                 onChange={handleSearch}
                 placeholder="피드를 검색해주세요"
               />
               <button onClick={handleSubmit}>검색</button>
-            </SearchBox>
+            </FeedStyles.SearchBox>
           )}
 
-          <SelectBox>
-            <StyledDatePicker
+          <FeedStyles.SelectBox>
+            <FeedStyles.StyledDatePicker
               value={option.date.Moment}
               onChange={(date, dateString) => {
                 setOption({
@@ -93,15 +83,17 @@ function FeedView({ styles, close, waitList, setWaitList }: props) {
               placeholder="조회할 월을 선택하세요."
               picker="month"
             />
-          </SelectBox>
-        </ControllerBox>
-        <Label style={{ marginTop: "2rem" }}>피드 목록</Label>
-        <FeedContainer>
+          </FeedStyles.SelectBox>
+        </FeedStyles.ControllerBox>
+        <FeedStyles.Label style={{ marginTop: "2rem" }}>
+          피드 목록
+        </FeedStyles.Label>
+        <FeedStyles.FeedContainer>
           {feedData.map(result => {
             const check = waitList.filter(el => el.feedId === result.feedId);
             if (check.length !== 0) {
               return (
-                <Feed
+                <FeedStyles.Feed
                   key={result.feedId}
                   id={result.feedId.toString()}
                   onClick={() => setWaitList(result)}
@@ -109,11 +101,11 @@ function FeedView({ styles, close, waitList, setWaitList }: props) {
                 >
                   <h2>{result.title}</h2>
                   <p>{result.createdAt}</p>
-                </Feed>
+                </FeedStyles.Feed>
               );
             } else {
               return (
-                <Feed
+                <FeedStyles.Feed
                   key={result.feedId}
                   id={result.feedId.toString()}
                   onClick={() => setWaitList(result)}
@@ -121,12 +113,12 @@ function FeedView({ styles, close, waitList, setWaitList }: props) {
                 >
                   <h2>{result.title}</h2>
                   <p>{result.createdAt}</p>
-                </Feed>
+                </FeedStyles.Feed>
               );
             }
           })}
-        </FeedContainer>
-      </FeedViewWrap>
+        </FeedStyles.FeedContainer>
+      </FeedStyles.FeedViewWrap>
     </animated.div>
   );
 }
