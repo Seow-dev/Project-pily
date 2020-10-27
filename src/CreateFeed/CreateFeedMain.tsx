@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { useState } from "react";
 import { MainWrapper } from "../Mainpage/component/MainPage";
 import {
@@ -19,8 +19,7 @@ import {
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import Map from "./Map";
 import Editor from "./Editor";
-import { FeedContents } from "../Common/Interface";
-
+import { FeedContents, locationProps } from "../Common/Interface";
 import { useSelector } from "react-redux";
 import { RootState } from "../Modules";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -39,7 +38,13 @@ interface locationProps {
 
 function CreateFeedMain({ history }: RouteComponentProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [stars, setStars] = useState<number>(0);
+  const [stars, setStars] = useState(0);
+  const [location, setLocation] = useState<locationProps>({
+    place_name: "",
+    x: "",
+    y: "",
+  });
+
   const [feedContentsData, setFeedContentsData] = useState<FeedContents>({
     title: "",
     subTitle: "",
@@ -149,7 +154,7 @@ function CreateFeedMain({ history }: RouteComponentProps) {
                 </OptionWrap>
                 <MapArea>
                   <Labels>위치 정보 기록</Labels>
-                  <Map />
+                  <Map setLocation={setLocation} />
                 </MapArea>
               </Option>
             ) : null}

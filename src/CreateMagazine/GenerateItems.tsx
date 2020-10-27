@@ -1,5 +1,5 @@
 import { Columns, Items } from "./styles/MagazineViewStyles";
-import React from "react";
+import * as React from "react";
 import { FeedTypes } from "../Common/Interface";
 
 export function generateItems(col: number, items: FeedTypes[]) {

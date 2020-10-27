@@ -1,5 +1,6 @@
 import * as D from "./styles/DetailHeadStyles";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import { detailTypes } from "../Common/Interface";
 import { Link } from "react-router-dom";
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";

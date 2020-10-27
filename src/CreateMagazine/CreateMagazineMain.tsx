@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+import * as React from "react";
+import { useCallback, useState } from "react";
 import MagazineView from "./MagazineView";
 import FeedView from "./FeedView";
 import styled from "styled-components";
@@ -7,7 +8,6 @@ import { RootState } from "../Modules";
 import Error from "../Modal/component/Error";
 import { useSpring } from "react-spring";
 import {
-  detailTypes,
   FeedTypes,
   MagazineDataTypes,
   previewTypes,

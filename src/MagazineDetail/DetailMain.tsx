@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../Modules";

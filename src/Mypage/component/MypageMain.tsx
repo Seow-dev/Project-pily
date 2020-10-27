@@ -7,8 +7,9 @@ import {
   MagazineListWrap,
   SideTabMenu,
   UserNameInput,
-  UserNameChangeButton,
+  ChangeButton,
   UserDetail,
+  ButtonWrap,
 } from "./CommonStyle";
 import { MainWrapper } from "../../Mainpage/component/MainPage";
 import React, { useEffect, useRef, useState } from "react";
@@ -43,7 +44,6 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
       );
 
       if (data) {
-        console.log(data);
         setUserData({
           username: data.username,
           profileImage: data.IMG ? data.IMG : "/image/default_user.png",
@@ -80,11 +80,7 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
     });
   };
   const updateUsername = async () => {
-    // 유저 네임 변경 api 호출
-    const data = await updateUserNameApi(userData.username);
-    if (data) {
-      console.log(data);
-    }
+    await updateUserNameApi(userData.username);
     setChange(false);
   };
 
@@ -94,21 +90,14 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.files) {
       const formData = new FormData();
-      formData.append("location", e.currentTarget.files[0]);
-      const result = await updateImgApi(formData).then(
-        (res: AxiosResponse) => res.data,
-      );
-      console.log(result);
-      // setUserData({
-      //   ...userData,
-      //   profileImage: e.currentTarget.files[0],
-      // });
+      formData.append("img", e.currentTarget.files[0]);
+      await updateImgApi(formData).then((res: AxiosResponse) => res.data);
     }
   };
 
   return (
     <>
-      {/* {success ? ( */}
+      {success ? (
         <MainWrapper>
           <Modalpage />
           <UserInfo>
@@ -123,11 +112,6 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
               ref={uploadedImage}
               src={userData.profileImage}
               alt="이미지를 변경하시려면 클릭하세요"
-              onClick={() => {
-                if (imageUploader.current) {
-                  imageUploader.current.click();
-                }
-              }}
             />
             <UserDetail>
               {change ? (
@@ -137,20 +121,46 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
                     value={userData.username}
                     onChange={changeUsername}
                   />
-                  <UserNameChangeButton save onClick={updateUsername}>
-                    닉네임 저장
-                  </UserNameChangeButton>
+                  <ButtonWrap>
+                    <ChangeButton
+                      save
+                      onClick={() => {
+                        if (imageUploader.current) {
+                          imageUploader.current.click();
+                        }
+                      }}
+                      style={{ marginRight: "12px" }}
+                    >
+                      이미지 변경
+                    </ChangeButton>
+                    <ChangeButton save onClick={updateUsername}>
+                      닉네임 저장
+                    </ChangeButton>
+                  </ButtonWrap>
                 </>
               ) : (
                 <>
                   <UserName>{userData.username}</UserName>
-                  <UserNameChangeButton
-                    onClick={() => {
-                      setChange(true);
-                    }}
-                  >
-                    닉네임 수정
-                  </UserNameChangeButton>
+                  <ButtonWrap>
+                    <ChangeButton
+                      save
+                      onClick={() => {
+                        if (imageUploader.current) {
+                          imageUploader.current.click();
+                        }
+                      }}
+                      style={{ marginRight: "12px" }}
+                    >
+                      이미지 변경
+                    </ChangeButton>
+                    <ChangeButton
+                      onClick={() => {
+                        setChange(true);
+                      }}
+                    >
+                      닉네임 수정
+                    </ChangeButton>
+                  </ButtonWrap>
                 </>
               )}
             </UserDetail>
@@ -200,9 +210,11 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
             </SideTabMenu>
           </MagazineListWrap>
         </MainWrapper>
-      {/* ) : (  */}
-      {/* <Error /> */}
-      {/* )} */}
+
+      ) : (
+        <Error />
+      )}
+
     </>
   );
 };

@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 interface props {
   listData: UserData[];
 }
-
+const confirm = window.confirm;
 export default function SubscribeList({ listData }: props) {
   const unSubscribe = (username: string) => {
-    if (window.confirm(`정말 ${username}님의 구독을 취소하시겠습니까?`)) {
+    if (confirm(`정말 ${username}님의 구독을 취소하시겠습니까?`)) {
       console.log("취소");
       // unSubscirbeApi(username)
     } else {

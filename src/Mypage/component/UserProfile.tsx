@@ -1,74 +1,99 @@
+import * as React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { MainWrapper } from "../../Mainpage/component/MainPage";
-import {
-  UserInfo,
-  UserImg,
-  UserName,
-  TabMenu,
-  MagazineListContainer,
-  MagazineListWrap,
-  SideTabMenu,
-  UserDetail,
-} from "./CommonStyle";
 import MypageList from "./MypageList";
-import React, { useEffect, useState } from "react";
+import * as S from "./CommonStyle";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { DataTypes, UserData } from "../../Common/Interface";
 import { getProfileApi } from "../../Api/user";
-import { AxiosResponse } from "axios";
 
 interface matchprops {
   username: string;
 }
 
-const UserProfile = ({ match }: RouteComponentProps<matchprops>) => {
+const UserProfile = ({ match, history }: RouteComponentProps<matchprops>) => {
   const [curData, setCurData] = useState<DataTypes[]>([]);
-
   const [userData, setUserData] = useState<UserData>({
     profileImage: "",
     username: "",
   });
 
+  const [isSub, setSub] = useState<boolean>(false);
+  const confirm = window.confirm;
+  const handleSub = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      if (isSub) {
+        if (confirm(`정말 ${userData.username}님의 구독을 취소하시겠습니까?`)) {
+          // 구독 취소 api
+          setSub(false);
+        }
+      } else {
+        // 구독하기 api
+        setSub(true);
+      }
+    },
+    [isSub],
+  );
+
   const paramUsername: string = match.params.username;
   useEffect(() => {
-    console.log(paramUsername);
     (async () => {
-      const data = await getProfileApi(paramUsername).then(
-        (res: AxiosResponse) => res.data,
-      );
+      const result = await getProfileApi(paramUsername);
 
-      if (data) {
-        console.log(data);
+      if (result.status === 200) {
+        console.log(result.data);
         setUserData({
-          username: data.username,
-          profileImage: data.IMG ? data.IMG : "/image/default_user.png",
+          username: result.data.username,
+          profileImage: result.data.IMG
+            ? result.data.IMG
+            : "/image/default_user.png",
         });
-        setCurData(data.results);
+        setSub(true); // 일단!
+        setCurData(result.data.results);
+      } else if (result.status === 404) {
+        alert("유저 정보를 찾을 수 없습니다.");
+        history.push("/");
       }
     })();
   }, []);
 
   return (
     <MainWrapper>
-      <UserInfo>
-        <UserImg
+      <S.UserInfo>
+        <S.UserImg
           src={
             userData.profileImage
               ? userData.profileImage
               : "/image/default_user.png"
           }
         />
-        <UserDetail>
-          <UserName>{userData.username}</UserName>
-        </UserDetail>
-      </UserInfo>
-      <MagazineListWrap>
-        <MagazineListContainer>
+        <S.UserDetail>
+          <S.UserName>{userData.username}</S.UserName>
+          <S.ButtonWrap>
+            {isSub ? (
+              <S.ChangeButton
+                onClick={handleSub}
+                style={{ backgroundColor: "#fa5252" }}
+              >
+                구독 취소하기
+              </S.ChangeButton>
+            ) : (
+              <S.ChangeButton onClick={handleSub} save>
+                구독하기
+              </S.ChangeButton>
+            )}
+          </S.ButtonWrap>
+        </S.UserDetail>
+      </S.UserInfo>
+      <S.MagazineListWrap>
+        <S.MagazineListContainer>
           <MypageList listData={curData} own={true} />
-        </MagazineListContainer>
-        <SideTabMenu>
-          <TabMenu cur>발행한 매거진</TabMenu>
-        </SideTabMenu>
-      </MagazineListWrap>
+        </S.MagazineListContainer>
+        <S.SideTabMenu>
+          <S.TabMenu cur>발행한 매거진</S.TabMenu>
+        </S.SideTabMenu>
+      </S.MagazineListWrap>
     </MainWrapper>
   );
 };

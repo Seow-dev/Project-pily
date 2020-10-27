@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Radio } from "antd";
+import { Radio, Select } from "antd";
 
 export const MagazineViewWrap = styled.section`
   width: 100%;
@@ -66,6 +66,10 @@ export const StyledRadio = styled(Radio)`
     font-weight: 600;
   }
 `;
+export const StyledSelect = styled(Select)`
+  font-size: 1rem;
+  color: #343a40;
+`;
 export const MagazineOptionInput = styled.input`
   width: 100%;
   padding-bottom: 8px;
@@ -114,7 +118,6 @@ export const UploadName = styled.div`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   word-break: break-all;
-  line-height: 1rem;
 `;
 
 // magazine view

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { locationProps } from "../Common/Interface";
 import "./MapStyle.css";
 
 declare global {
@@ -7,20 +9,13 @@ declare global {
     kakao: any;
   }
 }
-interface locationProps {
-  place_name: string;
-  x: string;
-  y: string;
+interface props {
+  setLocation: ({ place_name, x, y }: locationProps) => void;
 }
 
-const Map: React.FC = () => {
+const Map = ({ setLocation }: props) => {
   const [inputs, setInputs] = useState("");
   const [query, setQuery] = useState("서울역");
-  const [location, setLocation] = useState<locationProps>({
-    place_name: "",
-    x: "",
-    y: "",
-  });
 
   const handleInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -72,6 +67,12 @@ const Map: React.FC = () => {
 
         infowindow.setContent(content);
         infowindow.open(map, marker);
+
+        setLocation({
+          place_name: places.place_name,
+          x: places.x,
+          y: places.y,
+        });
       });
     }
   }, [query]);
@@ -110,7 +111,6 @@ const SearchArea = styled.form`
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
   z-index: 5;
   display: flex;
   justify-content: center;

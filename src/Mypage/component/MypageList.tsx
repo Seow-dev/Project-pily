@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import { DataTypes } from "../../Common/Interface";
 import { Link } from "react-router-dom";
-
+import { media } from "../../Common/DeviceSize";
 import { StyledPagination } from "../../Mainpage/component/MainPage";
 import { PreviewMyPage } from "../../Modal/container";
 
@@ -48,19 +48,25 @@ export default function MypageList({ listData, own }: props) {
 
 // style
 export const StyledListWrap = styled.section`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-gap: 1rem;
   width: 100%;
   height: 90%;
-  align-items: center;
-  justify-content: center;
+  grid-template-columns:
+    repeat(4, minmax(100px, 1fr))
+  };
+  ${media.tablet} {
+    grid-template-columns: repeat(2, minmax(80px, 1fr));
+  }
+  // align-items: center;
+  // justify-content: center;
 `;
 const StyledMagazine = styled.div`
   display: flex;
   align-items: center;
-  // flex: 0 220px;
-  width: 220px;
-  height: 220px;
+  position: relative;
+  width: 100%;
+  height: 200px;
   margin-right: 1rem;
   margin-bottom: 12px;
   border: none;
@@ -69,6 +75,9 @@ const StyledMagazine = styled.div`
 `;
 
 const StyledInfo = styled.div`
+  position: absolute;
+  left: 10px;
+  bottom: 30px;
   display: block;
   flex-direction: column;
   z-index: 1;
@@ -84,7 +93,7 @@ const StyledTitle = styled.h2`
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 `;
 const StyledAuthorWrap = styled.div`

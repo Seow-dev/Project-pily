@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import * as P from "./styles/PreviewStyles";
 import { useTransition, animated } from "react-spring";
 import { previewTypes } from "../Common/Interface";

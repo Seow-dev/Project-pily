@@ -4,47 +4,98 @@ import styled from "styled-components";
 import { DataTypes } from "../../Common/Interface";
 
 interface props {
+  menus: string;
+  headers: string;
   datas: DataTypes[];
 }
 
-export default function MagazineCardList({ datas }: props) {
+export default function MagazineCardList({ datas, headers, menus }: props) {
   return (
-    <CardList>
-      {datas.map(data => (
-        <CardWrap className="card" key={data.megazineId}>
-          <CardImg
-            src={
-              data.thumbnail ? data.thumbnail : "/image/no_image_indicator.png"
-            }
-          />
-          <Link
-            to={`/magazine/${data.megazineId}`}
-            style={{ textDecoration: "none" }}
-          >
-            <CardOverlay />
-            <CardContent>
-              <h2>{data.title}</h2>
-              <p>{data.subTitle}</p>
-              <UserInfo>
-                <img
-                  src={
-                    data.authorImg ? data.authorImg : "/image/default_user.png"
-                  }
-                />
-                <p>{data.author}</p>
-              </UserInfo>
-            </CardContent>
-          </Link>
-        </CardWrap>
-      ))}
-    </CardList>
+    <Wrapper>
+      <HeadCard menu={menus}>
+        <h2>
+          지금
+          <br />
+          {headers}
+          <br />
+          매거진
+        </h2>
+      </HeadCard>
+      <CardList>
+        {datas.map(data => (
+          <CardWrap className="card" key={data.megazineId}>
+            <CardImg
+              src={
+                data.thumbnail
+                  ? data.thumbnail
+                  : "/image/no_image_indicator.png"
+              }
+            />
+            <Link
+              to={`/magazine/${data.megazineId}`}
+              style={{ textDecoration: "none" }}
+            >
+              <CardOverlay />
+              <CardContent>
+                <h2>{data.title}</h2>
+                <p>{data.subTitle}</p>
+                <UserInfo>
+                  <img
+                    src={
+                      data.authorImg
+                        ? data.authorImg
+                        : "/image/default_user.png"
+                    }
+                  />
+                  <p>{data.author}</p>
+                </UserInfo>
+              </CardContent>
+            </Link>
+          </CardWrap>
+        ))}
+      </CardList>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  padding: 1rem 0;
+  align-items: center;
+`;
+const HeadCard = styled.header<{ menu: string }>`
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  flex: 0 0 280px;
+  margin: 0 1rem 10px;
+  background: ${props =>
+    props.menu === "created_at"
+      ? `linear-gradient(
+    0deg,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );`
+      : `linear-gradient(0deg, rgba(238,174,202,1) 0%, rgba(255,245,164,1) 100%);`};
+
+  border-radius: 10px;
+  padding: 2rem;
+  height: 400px;
+  box-shadow: #adb5bd 1px 1px 8px;
+
+  h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 0 1rem;
+    font-weight: 700;
+  }
+`;
 
 const CardList = styled.section`
   display: flex;
   justify-content: space-around;
-  padding: 1rem 0;
+
   overflow-x: scroll;
 
   &::-webkit-scrollbar {
@@ -61,15 +112,16 @@ const CardWrap = styled.article`
   height: 400px;
   width: 320px;
   min-width: 250px;
-  border-radius: 10px;
-  box-shadow: -1px 1px 8px #343a40;
+  background-color: none;
+  box-shadow: #343a40 -1px 1px 8px;
   display: flex;
   flex-direction: column;
   transition: all 0.5s;
-  margin: 0;
+  margin: 0 20px 0 0;
   scroll-snap-align: start;
   clear: both;
   position: relative;
+  border-radius: 10px;
 
   &:focus-within ~ .card,
   &:hover ~ .card {
@@ -88,18 +140,22 @@ const CardImg = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
+
+  &:hover {
+    border-radius: 10px;
+  }
 `;
 const CardOverlay = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: #343a40;
-  opacity: 0.5;
+  opacity: 0.3;
   left: 0;
   top: 0;
   z-index: 0;
-  border-radius: 10px;
   border: none;
+  border-radius: 10px;
 
   &:hover {
     opacity: 0;
@@ -119,7 +175,7 @@ const CardContent = styled.section`
     color: inherit;
     opacity: 0.9;
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0;
     margin-bottom: 12px;
     text-overflow: ellipsis;

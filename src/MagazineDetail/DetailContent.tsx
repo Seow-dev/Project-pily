@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { detailTypes, previewTypes } from "../Common/Interface";
 import { generateItems } from "../CreateMagazine/GenerateItems";
 import * as H from "../CreateMagazine/styles/MagazineViewStyles";
