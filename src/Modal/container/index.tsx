@@ -25,12 +25,10 @@ interface PreaviewState{
 export const Modalpage = () => {
   const [isSearchModalOpen, setSearchModalState] = useState(false);
   const [isLoginModalOpen, setLoginModalState] = useState(false);
-  // const [isActionModalOpen, setActionModalState] = useState(false);
   const [isSignUpModalOpen, setSignUpModalState] = useState(false);
 
   const searchToggleModal = () => setSearchModalState(!isSearchModalOpen);
   const loginToggleModal = () => setLoginModalState(!isLoginModalOpen);
-  // const actionToggleModal = () => setActionModalState(!isActionModalOpen);
   const signUpToggleModal = () => {
     setLoginModalState(false);
     setSignUpModalState(!isSignUpModalOpen);
@@ -53,35 +51,38 @@ export const Modalpage = () => {
       ) : (
         <>
           <LoginModal onClick={loginToggleModal}>Login</LoginModal>
-          <Login
-            title={"Login"}
-            isOpen={isLoginModalOpen}
-            onClose={loginToggleModal}
-            toSignUp={signUpToggleModal}
-          />
+          { isLoginModalOpen ? (
+            <Login
+              title={"Login"}
+              onClose={loginToggleModal}
+              toSignUp={signUpToggleModal}
+            />
+          ) : (null) }
         </>
       )}
 
       <StyledSearchOutlined
         onClick={searchToggleModal}
       />
-      <Search
-        title={"Search"}
-        isOpen={isSearchModalOpen}
-        onClose={searchToggleModal}
-      />
-      <Action/>
-      <SignUp
-        title={"회원가입"}
-        isOpen={isSignUpModalOpen}
-        onClose={signUpToggleModal}
-      />
+      { isSearchModalOpen ? (
+        <Search
+          title={"Search"}
+          onClose={searchToggleModal}
+        />
+      ) : (null)}
+      <Action />
+      { isSignUpModalOpen  ? (
+        <SignUp
+          title={"회원가입"}
+          onClose={signUpToggleModal}
+        />
+      ) : (null)}
     </div>
   );
 };
 
 
-export const PreivewMyPage = ({title, content}:PreaviewState) => {
+export const PreviewMyPage = ({title, content}:PreaviewState) => {
 
   const [isPreviewModalOpen, setPreviewModalState] = useState(false);
   const previewToggleModal = () => setPreviewModalState(!isPreviewModalOpen);
