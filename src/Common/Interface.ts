@@ -86,6 +86,11 @@ export interface previewTypes {
 
 // location types
 export interface locationProps {
+  location_name: string;
+  location_x: string;
+  location_y: string;
+}
+export interface location {
   place_name: string;
   x: string;
   y: string;

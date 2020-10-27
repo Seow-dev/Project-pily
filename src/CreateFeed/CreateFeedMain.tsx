@@ -27,22 +27,15 @@ import { ModalCloseImg } from "../Modal/component/ModalStyles";
 import closeIcon from "../Common/close.png";
 import Error from "../Modal/component/Error";
 import "quill/dist/quill.snow.css";
-import ReactHtmlParser from 'react-html-parser';
 import { submitFeedApi } from "../Api/feed";
-
-interface locationProps {
-  place_name: string;
-  x: string;
-  y: string;
-}
 
 function CreateFeedMain({ history }: RouteComponentProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [stars, setStars] = useState(0);
   const [location, setLocation] = useState<locationProps>({
-    place_name: "",
-    x: "",
-    y: "",
+    location_name: "",
+    location_x: "",
+    location_y: "",
   });
 
   const [feedContentsData, setFeedContentsData] = useState<FeedContents>({
@@ -97,10 +90,9 @@ function CreateFeedMain({ history }: RouteComponentProps) {
   // let html = convertDeltaToHtml(feedContentsData.content);
   // console.log(html);
 
-
   return (
     <>
-      {/* {success ? ( */}
+      {success ? (
         <MainWrapper>
           <ModalCloseImg src={closeIcon} onClick={redirectToMain} />
           <FeedLabel>
@@ -175,9 +167,9 @@ function CreateFeedMain({ history }: RouteComponentProps) {
             ></div>
           </div> */}
         </MainWrapper>
-       {/* ) : (
-         <Error />
-       )} */}
+      ) : (
+        <Error />
+      )}
     </>
   );
 }

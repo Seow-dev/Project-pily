@@ -74,7 +74,7 @@ const CreateMagazineMain = () => {
 
   return (
     <>
-      {/* {success ? ( */}
+      {success ? (
         <>
           <Wrapper>
             <Container>
@@ -106,9 +106,9 @@ const CreateMagazineMain = () => {
             />
           )}
         </>
-      {/* ) : ( */}
-        {/* <Error /> */}
-      {/* )} */}
+      ) : (
+        <Error />
+      )}
     </>
   );
 };
