@@ -16,13 +16,10 @@ export const updateUserNameApi = (username: string) => {
 export const updateImgApi = (form: FormData) => {
   return axios.post(`${baseUrl}/user/update/profile-img`, form, {
     withCredentials: true,
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
   });
 };
 export const getProfileApi = (username: string) => {
-  return axios.get(`${baseUrl}/profile/${username}`, {
+  return axios.get(`${baseUrl}/user/profile/${username}`, {
     withCredentials: true,
   });
 };

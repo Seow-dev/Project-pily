@@ -1,6 +1,6 @@
 // 매거진 데이터 타입
 export interface DataTypes {
-  megazineId?: number; 
+  megazineId: number;
   title: string;
   content: string;
   subTitle?: string;
@@ -13,16 +13,16 @@ export interface DataTypes {
 
 // 유저 데이터 타입
 export interface UserData {
-  profileImage?: string  // url,
-  username: string     // username              
+  profileImage?: string; // url,
+  username: string; // username
 }
 
 // 유저 피드 타입
 export interface FeedTypes {
-  feedId: number;    
-  title: string;      
-  subTitle: string;   
-  content: string;   
+  feedId: number;
+  title: string;
+  subTitle: string;
+  content: string;
   createdAt: string;
 }
 
@@ -34,10 +34,10 @@ export interface displayModalProps {
 }
 
 // create feed
-export interface FeedContents{
-  title: string,
-  subTitle: string,
-  content: string,
+export interface FeedContents {
+  title: string;
+  subTitle: string;
+  content: string;
 }
 
 // optionProps
@@ -52,26 +52,26 @@ export interface MagazineDataTypes {
   grid: number;
   titleAlign: number;
   magazineTitle: string;
-  magazineSubTitle?:string;
-  thumbnail?:string;
+  magazineSubTitle?: string;
+  thumbnail?: string;
   feedList: number[];
 }
 
 // magazine detail types
 export interface detailTypes {
-  magazineId: number, 
-  magazineTitle: string,
-  magazineSubTitle?: string,
-  author: string,   
-  authorImg?: string, 
-  createdAt: string,
-  thumbnail?: string,             
-  isLiked: boolean,    
-  isSubscribed: boolean,  
-  feedList: FeedTypes[],
-  grid: number,
-  isVertical: boolean,
-  titleAlign: number, 
+  magazineId: number;
+  magazineTitle: string;
+  magazineSubTitle?: string;
+  author: string;
+  authorImg?: string;
+  createdAt: string;
+  thumbnail?: string;
+  isLiked: boolean;
+  isSubscribed: boolean;
+  feedList: FeedTypes[];
+  grid: number;
+  isVertical: boolean;
+  titleAlign: number;
 }
 
 // preview types
@@ -83,4 +83,17 @@ export interface previewTypes {
   grid: number;
   isVertical: boolean;
   titleAlign: number;
+}
+
+// location types
+export interface locationProps {
+  place_name: string;
+  x: string;
+  y: string;
+}
+
+// category types
+export interface categoryTypes {
+  id: number;
+  name: string;
 }

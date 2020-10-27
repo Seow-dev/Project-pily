@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import * as M from "./styles/MagazineViewStyles";
 import { IoIosRefresh } from "react-icons/io";
 import { VscOpenPreview } from "react-icons/vsc";
@@ -8,23 +8,27 @@ import { BiAlignLeft, BiAlignMiddle, BiAlignRight } from "react-icons/bi";
 import { RadioChangeEvent } from "antd/lib/radio";
 import { generateItems } from "./GenerateItems";
 import {
+  categoryTypes,
   FeedTypes,
   MagazineDataTypes,
   previewTypes,
 } from "../Common/Interface";
 import "react-quill/dist/quill.snow.css";
 import { PreviewMagazineModal } from "../Modal/component/Preview";
+import { CATEGORY } from "../Common/Dummy";
+import { SelectValue } from "antd/lib/select";
 
 interface props {
   waitList: FeedTypes[];
-  preview: (data: previewTypes) => void;
   gotFeedTitle: string;
   gotFeedBody: string;
-  open: () => void;
-  publish: (data: MagazineDataTypes) => void;
   isPreviewOpen: boolean;
+  open: () => void;
   onClosePreview: () => void;
+  preview: (data: previewTypes) => void;
+  publish: (data: MagazineDataTypes) => void;
 }
+const { Option } = M.StyledSelect;
 
 export default function MagazineView({
   open,
@@ -74,6 +78,13 @@ export default function MagazineView({
       }));
     }
   };
+
+  const [category, setCategory] = useState<categoryTypes[]>([]);
+  const [cur, setCur] = useState<number>(0);
+  useEffect(() => {
+    // category 목록 받아오는 api
+    setCategory(CATEGORY);
+  }, []);
 
   const handlePublish = () => {
     const datas: MagazineDataTypes = {
@@ -132,6 +143,21 @@ export default function MagazineView({
         </div>
       </M.ButtonBar>
       <M.PublishOption>
+        <M.OptionItem>
+          <h3>카테고리 설정</h3>
+          <M.StyledSelect
+            onChange={(value: SelectValue) => setCur(Number(value))}
+            defaultValue=""
+          >
+            {category.map((list: categoryTypes) => {
+              return (
+                <Option key={list.id} value={list.id}>
+                  {list.name}
+                </Option>
+              );
+            })}
+          </M.StyledSelect>
+        </M.OptionItem>
         <M.OptionItem>
           <h3>매거진 그리드 선택</h3>
           {!vertical && (

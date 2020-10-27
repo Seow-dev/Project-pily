@@ -1,4 +1,10 @@
-import { DataTypes, UserData, FeedTypes, detailTypes } from "./Interface";
+import {
+  DataTypes,
+  UserData,
+  FeedTypes,
+  detailTypes,
+  categoryTypes,
+} from "./Interface";
 import { HTMLEXAMPLE2, HTMLEXAPME1 } from "./htmlExample";
 
 export const results: DataTypes[] = [
@@ -387,3 +393,26 @@ export const detailDummy: detailTypes = {
   isVertical: false,
   titleAlign: 2,
 };
+
+export const CATEGORIES = [
+  "그림",
+  "IT",
+  "사진",
+  "리뷰",
+  "음악",
+  "요리",
+  "디자인",
+  "음식",
+  "일상",
+  "문학",
+];
+const generateCategory = () => {
+  const result = [];
+  let index = 1;
+  for (let prop of CATEGORIES) {
+    result.push({ id: index, name: prop });
+    index += 1;
+  }
+  return result;
+};
+export const CATEGORY: categoryTypes[] = generateCategory();

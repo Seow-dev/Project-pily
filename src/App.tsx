@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
+import * as React from "react";
+import { useEffect } from "react";
 import Routes from "./Routes";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { signFail, signSuccess } from "./Modules/auth";
+import { oauthApi } from "./Api/auth";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
-      const result = await axios.get("http://localhost:4000/oauth", {
-        withCredentials: true,
-      });
+      const result = await oauthApi();
 
       if (!result) {
         dispatch(signFail());

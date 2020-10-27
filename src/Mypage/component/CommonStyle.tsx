@@ -34,8 +34,14 @@ export const UserNameInput = styled.input`
   padding-bottom: 8px;
   border-bottom: 1px solid #ced4da;
 `;
-export const UserNameChangeButton = styled.button<{ save?: boolean }>`
-  padding: 12px;
+export const ButtonWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+export const ChangeButton = styled.button<{ save?: boolean }>`
+  padding: 6px 12px;
   font-size: 1rem;
   border: none;
   border-radius: 5px;

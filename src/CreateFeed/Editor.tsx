@@ -1,4 +1,5 @@
-import React, { Component, useState } from "react";
+import * as React from "react";
+import { Component } from "react";
 import ReactQuill from "./CreateFeed_Config";
 import axios from "axios";
 
