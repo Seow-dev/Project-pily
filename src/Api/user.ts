@@ -31,3 +31,4 @@ export const subscribeApi = (username: string) =>
 
 export const unSubscribeApi = (username: string) =>
   axios.post(`${baseUrl}/`, { username }, { withCredentials: true });
+

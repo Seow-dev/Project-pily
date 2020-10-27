@@ -1,7 +1,7 @@
 import React from "react";
 import {
   ModalPage,
-  ModalBox,
+  ModalLoginBox,
   ModalTitle,
   ModalLoginContent,
   ModalCloseImg,
@@ -13,16 +13,16 @@ import {
 import closeIcon from "../../Common/close.png";
 import { displayModalProps } from "../../Common/Interface";
 
-function Login({ title, isOpen, onClose, toSignUp }: displayModalProps) {
+function Login({ title, onClose, toSignUp }: displayModalProps) : JSX.Element {
   const baseurl = "http://localhost:4000/signin";
   const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget;
     window.open(`${baseurl}/${value}`);
   };
 
-  return isOpen ? (
+  return (
     <ModalPage>
-      <ModalBox>
+      <ModalLoginBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
         <ModalTitle>{title}</ModalTitle>
         <ModalLoginContent>
@@ -41,9 +41,9 @@ function Login({ title, isOpen, onClose, toSignUp }: displayModalProps) {
         <div style={{ display: "none" }} id="hidden" onClick={toSignUp}>
           test
         </div>
-      </ModalBox>
+      </ModalLoginBox>
     </ModalPage>
-  ) : null;
+  )
 }
 
 export default Login;

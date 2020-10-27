@@ -134,6 +134,20 @@ export const SearchInput = styled.input`
 // 2a. Social Login Button
 // KAKAO refer : 컨테이너 #FEE500 / 심볼 #000000 / 레이블 #000000 85% / border radius 12px /
 
+export const ModalLoginBox = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0 10%;
+  padding: 50px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: auto;
+`;
+
+
+
 export const ModalLoginContent = styled.div`
   position: relative;
   display: flex;
@@ -221,6 +235,7 @@ export const ModalFededBox = styled.div`
   cursor: auto;
 `;
 
+
 // 4a. Preivew on MyPage
 
 export const MyFeedPreview = styled(SearchOutlined)`
@@ -229,6 +244,7 @@ export const MyFeedPreview = styled(SearchOutlined)`
   left: 190px;
   font-size: 20px;
 `;
+
 
 //5a. ActionBtn
 

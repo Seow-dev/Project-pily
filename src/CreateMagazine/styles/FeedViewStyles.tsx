@@ -190,11 +190,11 @@ export const CloseButton = styled.p`
 `;
 
 export const StyledSearchOutlined = styled(SearchOutlined)`
-  position: "relative";
-  top:"30px";
-  left:"150px";
-  fontSize: "20px";
-  border:"1px solid black";
-  borderRadius:"5px";
-  backgroundColor: "white";
+  position: relative;
+  top:30px;
+  left:185px;
+  font-size: 20px;
+  border:1px solid black;
+  border-radius:5px;
+  background-color: white;
 `
