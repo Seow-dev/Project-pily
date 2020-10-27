@@ -4,7 +4,7 @@ import { DataTypes } from "../../Common/Interface";
 import { Link } from "react-router-dom";
 import { media } from "../../Common/DeviceSize";
 import { StyledPagination } from "../../Mainpage/component/MainPage";
-import { PreivewMyPage } from "../../Modal/container";
+import { PreviewMyPage } from "../../Modal/container";
 
 interface props {
   listData: DataTypes[];
@@ -20,7 +20,7 @@ export default function MypageList({ listData, own }: props) {
         {listData
           .map((listEl, idx: number) => (
             <StyledMagazine>
-              <PreivewMyPage title={listEl.title} content={listEl.content} />
+              <PreviewMyPage title={listEl.title} content={listEl.content} />
               <Link key={idx} to={`/magazine/${listEl.title}`}>
                 <StyledInfo>
                   <StyledTitle>{listEl.title}</StyledTitle>

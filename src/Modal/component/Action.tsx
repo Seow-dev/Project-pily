@@ -21,7 +21,7 @@ function Action({ history }: RouteComponentProps) {
 
   return (
     <div>
-      {success ? (
+      {/* {success ? ( */}
       <>
         <Switch>
           <input type="checkbox" id="switch"/>
@@ -31,22 +31,22 @@ function Action({ history }: RouteComponentProps) {
                   <Span/><Span/><Span/>
                 </SpanWrapper>
               </Hamburger>
-            <Navigation id="mypage">
-              <VscAccount onClick={redirectToMypage}/>
+            <Navigation id="mypage" onClick={redirectToMypage}>
+              <VscAccount />
                 <Paragraph>마이 페이지</Paragraph>
             </Navigation>
-            <Navigation id="createMagazine">
-              <VscBook onClick={redirectToCreateMagazine}/>
+            <Navigation id="createMagazine" onClick={redirectToCreateMagazine}>
+              <VscBook />
               <Paragraph>매거진 작성</Paragraph>
             </Navigation>
-            <Navigation id="createFeed">
-              <VscEdit onClick={redirectToCreateFeed}/>
+            <Navigation id="createFeed" onClick={redirectToCreateFeed}>
+              <VscEdit />
               <Paragraph>피드 작성</Paragraph>
             </Navigation>
           </label>
         </Switch>
       </>
-   ) : null }
+   {/* ) : null } */}
   </div>
 )}
 

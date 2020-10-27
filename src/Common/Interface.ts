@@ -28,7 +28,6 @@ export interface FeedTypes {
 
 export interface displayModalProps {
   title: string;
-  isOpen: boolean;
   onClose: () => void;
   toSignUp?: () => void;
 }

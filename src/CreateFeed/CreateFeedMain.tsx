@@ -27,6 +27,14 @@ import { ModalCloseImg } from "../Modal/component/ModalStyles";
 import closeIcon from "../Common/close.png";
 import Error from "../Modal/component/Error";
 import "quill/dist/quill.snow.css";
+import ReactHtmlParser from 'react-html-parser';
+import { submitFeedApi } from "../Api/feed";
+
+interface locationProps {
+  place_name: string;
+  x: string;
+  y: string;
+}
 
 function CreateFeedMain({ history }: RouteComponentProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +56,6 @@ function CreateFeedMain({ history }: RouteComponentProps) {
       ...feedContentsData,
       content: e,
     });
-    // console.log(feedContentsData);
   };
 
   const handleChange = (e: any) => {
@@ -57,7 +64,6 @@ function CreateFeedMain({ history }: RouteComponentProps) {
       ...feedContentsData,
       [id]: value,
     });
-    // console.log(feedContentsData);
   };
   const redirectToMain = () => {
     history.push("/");
@@ -71,21 +77,30 @@ function CreateFeedMain({ history }: RouteComponentProps) {
         feedContentsData.content === undefined
       )
     ) {
-      const data = { feedContentsData };
+      const title = feedContentsData.title;
+      const content = feedContentsData.content;
+      const subtitle = feedContentsData.subTitle;
+      const starsRate = stars;
+      const location = {};
       // submit Action
-      console.log("Data is ", data);
+      // 기존 contents들과 stars, map location을 같이 보내달라
+      // console.log("Data is ", feedContentsData);
+      submitFeedApi(title, content, subtitle, starsRate, location);
       redirectToMain();
     } else {
       // rejected Action
-      // console.log("It is empty.");
+      console.log("It is empty.");
     }
   };
 
   const { success } = useSelector((state: RootState) => state.authReducer);
+  // let html = convertDeltaToHtml(feedContentsData.content);
+  // console.log(html);
+
 
   return (
     <>
-      {success ? (
+      {/* {success ? ( */}
         <MainWrapper>
           <ModalCloseImg src={closeIcon} onClick={redirectToMain} />
           <FeedLabel>
@@ -150,16 +165,19 @@ function CreateFeedMain({ history }: RouteComponentProps) {
             </EditorWrap>
             <SaveButton onClick={submitHandler}>피드 저장하기</SaveButton>
           </EditArea>
-          <div className="ql-snow">
+          {/* <div>
+            {ReactHtmlParser(feedContentsData.content)}
+          </div> */}
+          {/* <div className="ql-snow">
             <div
               className="ql-editor"
               dangerouslySetInnerHTML={{ __html: feedContentsData.content }}
             ></div>
-          </div>
+          </div> */}
         </MainWrapper>
-      ) : (
-        <Error />
-      )}
+       {/* ) : (
+         <Error />
+       )} */}
     </>
   );
 }

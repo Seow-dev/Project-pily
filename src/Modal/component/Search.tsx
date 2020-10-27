@@ -16,11 +16,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import "antd/dist/antd.css";
 import { results } from "../../Common/SearchDummy";
 import { displayModalProps } from "../../Common/Interface";
+import { searchApi } from "../../Api/search";
 
 // console.log(category, date, value) 찍히게끔
 // useEffect로 조건에 맞게끔
 
-export default function Search({ title, isOpen, onClose }: displayModalProps) {
+export default function Search({ title, onClose }: displayModalProps) : JSX.Element{
   // Category Items Interface
 
   interface items {
@@ -37,6 +38,12 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
     searchDate: new Date(),
     searchCategory: "",
   });
+  const [disablePicker, setDisablePicker] = useState(false);
+  const diasbleHandler = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) =>{
+    setDisablePicker(
+      e.currentTarget.checked
+    )
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // setMagazineTitle(e.target.value);
@@ -53,7 +60,7 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
   };
 
   // 2020-09 와 같이 포맷팅
-  function date_to_str(format: Date) {
+  function date_to_str(format: Date) : string {
     let tmpMonth = "";
     var year = format.getFullYear().toString();
     var month = format.getMonth() + 1;
@@ -62,7 +69,7 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
     } else {
       tmpMonth = month.toString();
     }
-    return year + "-" + tmpMonth;
+    return disablePicker ? "" : (year + "-" + tmpMonth) ;
   }
 
   const datehandleChange = (e: Date) => {
@@ -72,39 +79,18 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
     });
   };
 
-  // console.log(
-  //   "Title :",
-  //   formState.searchTitle,
-  //   "Date :",
-  //   date_to_str(formState.searchDate),
-  //   "Category :",
-  //   formState.searchCategory
-  // );
-
   const submitHandler = () => {
-    // console.log(results);
     // console.log(date_to_str(formState.searchDate)); // fotmatting 된 Date 벨류
-    if (formState.searchCategory) {
-      const tmp = results.filter(e =>
-        e.category?.includes(formState.searchCategory),
-      );
 
-      // console.log(tmp);
-    }
-    if (formState.searchTitle) {
-      const tmpTitle = results.filter(e =>
-        e.title?.includes(formState.searchTitle),
-      );
-
-      // console.log("Title result: ",tmpTitle);
-    }
-    if (formState.searchDate) {
-      const tmpDate = results.filter(e =>
-        e.createdAt?.includes(date_to_str(formState.searchDate)),
-      );
-
-      // console.log(tmpDate);
-    }
+    searchApi(formState.searchTitle, date_to_str(formState.searchDate), formState.searchCategory);
+    console.log(
+      "Title :",
+        formState.searchTitle,
+      "Date :",
+        date_to_str(formState.searchDate),
+      "Category :",
+        formState.searchCategory    
+    );
     // onClose();
   };
 
@@ -119,7 +105,7 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
     ]);
   }, []);
 
-  return isOpen ? (
+  return (
     <ModalPage>
       <ModalSearchBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
@@ -133,12 +119,18 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
           />
         </ModalSearchContent>
         <ModalSearchContent>
+          <div>
+            <input type="checkbox" onClick={diasbleHandler}/> 모두
+          </div>
           <DatePicker
             selected={formState.searchDate}
             onChange={datehandleChange}
             dateFormat="MMM/yyyy"
             showMonthYearPicker
+            // customInput
+            disabled={disablePicker}
           />
+
           <Select
             placeholder="카테고리를 선택하세요"
             onChange={selectHandleChange}
@@ -159,5 +151,5 @@ export default function Search({ title, isOpen, onClose }: displayModalProps) {
         </ModalSearchContent>
       </ModalSearchBox>
     </ModalPage>
-  ) : null;
+  )
 }

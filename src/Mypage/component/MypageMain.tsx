@@ -28,6 +28,7 @@ import {
   updateUserNameApi,
 } from "../../Api/user";
 import { AxiosResponse } from "axios";
+import { getMyFeedApi } from "../../Api/feed";
 
 const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   const [userData, setUserData] = useState<UserData>({
@@ -62,6 +63,7 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
       setSubData(result);
     } else if (curMenu === "myFeed") {
       // 내가 작성한 피드 목록 조회 api 출동
+      // getMyFeedApi();
       setCurData(results);
     } else if (curMenu === "myMagazine") {
       // 내가 작성한 매거진 목록 조회 api 출동
@@ -208,9 +210,11 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
             </SideTabMenu>
           </MagazineListWrap>
         </MainWrapper>
+
       ) : (
         <Error />
       )}
+
     </>
   );
 };

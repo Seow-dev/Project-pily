@@ -1,18 +1,21 @@
 import * as React from "react";
 import { Component } from "react";
 import ReactQuill from "./CreateFeed_Config";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 // import "quill/dist/quill.core.css"
 import "./EditorStyle.css";
+import { uploadFeedImageApi } from "../Api/feed";
 
 type appProps = {
   changeFeedContent: (e: string) => void;
+  
 };
 
 type appState = {
   text: string;
 };
+
 
 class Editor extends Component<appProps, appState> {
   constructor(props: appProps) {
@@ -41,15 +44,8 @@ class Editor extends Component<appProps, appState> {
       upload: async (file: File) => {
         const bodyFormData = new FormData();
         bodyFormData.append("img", file);
-        const response = await axios({
-          method: "post",
-          url: "http://localhost:4000/upload",
-          data: bodyFormData,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        // console.log(response.data.location);
+
+        const response : AxiosResponse = await uploadFeedImageApi(bodyFormData);
         return response.data.location;
       },
     },
