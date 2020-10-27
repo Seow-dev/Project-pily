@@ -19,10 +19,10 @@ export const thumbnailApi = (formData: FormData) =>
 export const publishApi = (data: MagazineDataTypes) =>
   axios.post(`${baseUrl}/`, data, { withCredentials: true });
 
-export const getMagazineApi = (id: number) =>
+export const getMagazineDetailApi = (id: number) =>
   axios.get(`${baseUrl}/`, { withCredentials: true });
 
-export const findMagazineApi = (
+export const getMagazine = (
   offset: number,
   query?: string,
   sort?: string,

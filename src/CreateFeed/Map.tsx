@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { locationProps } from "../Common/Interface";
+import { locationProps, location } from "../Common/Interface";
 import "./MapStyle.css";
 
 declare global {
@@ -10,7 +10,11 @@ declare global {
   }
 }
 interface props {
-  setLocation: ({ place_name, x, y }: locationProps) => void;
+  setLocation: ({
+    location_name,
+    location_x,
+    location_y,
+  }: locationProps) => void;
 }
 
 const Map = ({ setLocation }: props) => {
@@ -43,7 +47,7 @@ const Map = ({ setLocation }: props) => {
     ps.keywordSearch(query, placeSearchCB, { size: 5 }); // 일단 5개만 불러오기
 
     // 검색된 이후에 동작하는 콜백
-    function placeSearchCB(data: locationProps[]) {
+    function placeSearchCB(data: location[]) {
       if (window.kakao.maps.services.Status.OK) {
         let bounds = new window.kakao.maps.LatLngBounds();
         for (let i = 0; i < data.length; i += 1) {
@@ -55,7 +59,7 @@ const Map = ({ setLocation }: props) => {
     }
 
     // 지도상에 표시되는 마커 관련 코드
-    function displayMarker(places: locationProps) {
+    function displayMarker(places: location) {
       let marker = new window.kakao.maps.Marker({
         map: map,
         position: new window.kakao.maps.LatLng(places.y, places.x),
@@ -69,9 +73,9 @@ const Map = ({ setLocation }: props) => {
         infowindow.open(map, marker);
 
         setLocation({
-          place_name: places.place_name,
-          x: places.x,
-          y: places.y,
+          location_name: places.place_name,
+          location_x: places.x,
+          location_y: places.y,
         });
       });
     }
