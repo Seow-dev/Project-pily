@@ -95,6 +95,14 @@ export const CoverTitle = styled.header<{ align: number; only?: boolean }>`
     margin: 0;
     margin-bottom: 0.5rem;
   }
+
+  p {
+    color: inherit;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #51cf66;
+    width: fit-content;
+  }
 `;
 
 export const CoverUser = styled.div`
@@ -118,7 +126,7 @@ export const CoverUser = styled.div`
       font-weight: 400;
       margin: 0;
       margin-left: 10px;
-
+      border: none;
       a {
         text-decoration: none;
       }
@@ -139,6 +147,7 @@ export const LikeButton = styled.button`
   padding: 4px;
   text-align: center;
   background-color: none;
+  margin-left: 10px;
 
   svg {
     margin-left: 5px;
@@ -151,7 +160,6 @@ export const LikeButton = styled.button`
   }
 `;
 export const SubButton = styled.button<{ active: boolean }>`
-  margin-left: 10px;
   border-radius: 50%;
   border: none;
   font-size: 1.2rem;
