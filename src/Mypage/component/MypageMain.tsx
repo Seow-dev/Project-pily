@@ -22,11 +22,7 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Modules";
 import Error from "../../Modal/component/Error";
-import {
-  getUserDataApi,
-  updateImgApi,
-  updateUserNameApi,
-} from "../../Api/user";
+import * as userApi from "../../Api/user";
 import { AxiosResponse } from "axios";
 import { getMyFeedApi } from "../../Api/feed";
 
@@ -39,9 +35,9 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
 
   useEffect(() => {
     (async () => {
-      const data = await getUserDataApi().then(
-        (res: AxiosResponse) => res.data,
-      );
+      const data = await userApi
+        .getUserDataApi()
+        .then((res: AxiosResponse) => res.data);
 
       if (data) {
         setUserData({
@@ -57,18 +53,22 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   const [subData, setSubData] = useState<UserData[]>([]);
   useEffect(() => {
     // 메뉴에 따른 데이터 목록 가지고 오는 훅
-    if (curMenu === "like") {
-      setCurData(results);
-    } else if (curMenu === "subscribe") {
-      setSubData(result);
-    } else if (curMenu === "myFeed") {
-      // 내가 작성한 피드 목록 조회 api 출동
-      // getMyFeedApi();
-      setCurData(results);
-    } else if (curMenu === "myMagazine") {
-      // 내가 작성한 매거진 목록 조회 api 출동
-      setCurData(results);
-    }
+    (async () => {
+      if (curMenu === "like") {
+        // const data = await userApi.getLikeMagazine().then((res: AxiosResponse) => res.data)
+        setCurData(results);
+      } else if (curMenu === "subscribe") {
+        // const data = await userApi.getSubscribeApi().then((res: AxiosResponse) => res.data)
+        setSubData(result);
+      } else if (curMenu === "myFeed") {
+        // const data = await getMyFeedApi().then((res: AxiosResponse) => res.data)
+        setCurData(results);
+      } else if (curMenu === "myMagazine") {
+        // 내가 작성한 매거진 목록 조회 api 출동
+        // const data = await userApi.getMyMagazine().then((res: AxiosResponse) => res.data)
+        setCurData(results);
+      }
+    })();
   }, [curMenu]);
 
   const [change, setChange] = useState<boolean>(false);
@@ -80,7 +80,7 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
     });
   };
   const updateUsername = async () => {
-    await updateUserNameApi(userData.username);
+    await userApi.updateUserNameApi(userData.username);
     setChange(false);
   };
 
@@ -91,7 +91,9 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
     if (e.currentTarget.files) {
       const formData = new FormData();
       formData.append("img", e.currentTarget.files[0]);
-      await updateImgApi(formData).then((res: AxiosResponse) => res.data);
+      await userApi
+        .updateImgApi(formData)
+        .then((res: AxiosResponse) => res.data);
     }
   };
 

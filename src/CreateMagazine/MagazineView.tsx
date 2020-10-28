@@ -17,6 +17,7 @@ import "react-quill/dist/quill.snow.css";
 import { PreviewMagazineModal } from "../Modal/component/Preview";
 import { CATEGORY } from "../Common/Dummy";
 import { SelectValue } from "antd/lib/select";
+import { getCategory, thumbnailUploadApi } from "../Api/magazine";
 
 interface props {
   waitList: FeedTypes[];
@@ -67,9 +68,17 @@ export default function MagazineView({
     const { files } = e.currentTarget;
     if (files) {
       const form = new FormData();
-      form.append("thumbnail", files[0]);
-      // api call
-      // const res = await postThumbnailApi()
+      form.append("img", files[0]);
+
+      // const result = await thumbnailUploadApi(form);
+      // if (result.status === 200) {
+      //   setThumbnail((prev) => ({
+      //     ...prev,
+      //     url: result.data.location,
+      //     name: files[0].name
+      //   }))
+      // }
+
       setThumbnail(prev => ({
         ...prev,
         url:
@@ -80,9 +89,12 @@ export default function MagazineView({
   };
 
   const [category, setCategory] = useState<categoryTypes[]>([]);
-  const [cur, setCur] = useState<number>(0);
+  const [cur, setCur] = useState(1);
   useEffect(() => {
-    // category 목록 받아오는 api
+    // (async () => {
+    //   const result = await getCategory();
+    //   setCategory(result.data);
+    // })()
     setCategory(CATEGORY);
   }, []);
 
@@ -95,6 +107,7 @@ export default function MagazineView({
       magazineSubTitle: option.magazineSubTitle,
       thumbnail: thumbnail.url,
       feedList: waitList.map(item => item.feedId),
+      categoryId: cur,
     };
     publish(datas);
   };
@@ -108,6 +121,7 @@ export default function MagazineView({
       grid,
       titleAlign,
       isVertical: vertical,
+      categoryName: category[cur].name,
     };
     preview(data);
   };
@@ -121,15 +135,15 @@ export default function MagazineView({
         onClose={onClosePreview}
       />
       <M.ButtonBar>
-        {vertical ? (
-          <M.PublishButton onClick={handleView}>
-            <IoIosRefresh style={{ fontSize: "0.8rem" }} /> 가로형 매거진
-          </M.PublishButton>
-        ) : (
+        <M.PublishButton onClick={handleView}>
+          <IoIosRefresh style={{ fontSize: "0.8rem" }} />
+          {vertical ? "가로형 매거진" : "세로형 매거진"}
+        </M.PublishButton>
+        {/* ) : (
           <M.PublishButton onClick={handleView}>
             <IoIosRefresh style={{ fontSize: "0.8rem" }} /> 세로형 매거진
           </M.PublishButton>
-        )}
+        )} */}
         <div>
           <M.PublishButton onClick={handlePreivew}>
             <VscOpenPreview /> 미리보기
@@ -143,92 +157,96 @@ export default function MagazineView({
         </div>
       </M.ButtonBar>
       <M.PublishOption>
-        <M.OptionItem>
-          <h3>카테고리 설정</h3>
-          <M.StyledSelect
-            onChange={(value: SelectValue) => setCur(Number(value))}
-            defaultValue=""
-          >
-            {category.map((list: categoryTypes) => {
-              return (
-                <Option key={list.id} value={list.id}>
-                  {list.name}
-                </Option>
-              );
-            })}
-          </M.StyledSelect>
-        </M.OptionItem>
-        <M.OptionItem>
-          <h3>매거진 그리드 선택</h3>
-          {!vertical && (
-            <M.StyledRadio.Group
-              value={grid}
-              onChange={(e: RadioChangeEvent) => setGrid(e.target.value)}
+        <M.OptionHalf>
+          <M.OptionItem>
+            <h3>카테고리 설정</h3>
+            <M.StyledSelect
+              onChange={(value: SelectValue) => setCur(Number(value))}
+              defaultValue={cur}
             >
-              <M.StyledRadio.Button value={1}>1단</M.StyledRadio.Button>
-              <M.StyledRadio.Button value={2}>2단</M.StyledRadio.Button>
-              <M.StyledRadio.Button value={3}>3단</M.StyledRadio.Button>
-            </M.StyledRadio.Group>
-          )}
-          {vertical && (
+              {category.map((list: categoryTypes) => {
+                return (
+                  <Option key={list.id} value={list.id}>
+                    {list.name}
+                  </Option>
+                );
+              })}
+            </M.StyledSelect>
+          </M.OptionItem>
+          <M.OptionItem>
+            <h3>매거진 그리드 선택</h3>
+            {!vertical && (
+              <M.StyledRadio.Group
+                value={grid}
+                onChange={(e: RadioChangeEvent) => setGrid(e.target.value)}
+              >
+                <M.StyledRadio.Button value={1}>1단</M.StyledRadio.Button>
+                <M.StyledRadio.Button value={2}>2단</M.StyledRadio.Button>
+                <M.StyledRadio.Button value={3}>3단</M.StyledRadio.Button>
+              </M.StyledRadio.Group>
+            )}
+            {vertical && (
+              <M.StyledRadio.Group
+                value={grid}
+                onChange={(e: RadioChangeEvent) => setGrid(e.target.value)}
+              >
+                <M.StyledRadio.Button value={1}>1단</M.StyledRadio.Button>
+                <M.StyledRadio.Button value={2}>2단</M.StyledRadio.Button>
+              </M.StyledRadio.Group>
+            )}
+          </M.OptionItem>
+          <M.OptionItem>
+            <h3>매거진 타이틀 정렬</h3>
             <M.StyledRadio.Group
-              value={grid}
-              onChange={(e: RadioChangeEvent) => setGrid(e.target.value)}
+              value={titleAlign}
+              onChange={(e: RadioChangeEvent) => setTitleAlign(e.target.value)}
             >
-              <M.StyledRadio.Button value={1}>1단</M.StyledRadio.Button>
-              <M.StyledRadio.Button value={2}>2단</M.StyledRadio.Button>
+              <M.StyledRadio.Button value={1}>
+                <BiAlignLeft />
+              </M.StyledRadio.Button>
+              <M.StyledRadio.Button value={2}>
+                <BiAlignMiddle />
+              </M.StyledRadio.Button>
+              <M.StyledRadio.Button value={3}>
+                <BiAlignRight />
+              </M.StyledRadio.Button>
             </M.StyledRadio.Group>
-          )}
-        </M.OptionItem>
-        <M.OptionItem>
-          <h3>매거진 타이틀 정렬</h3>
-          <M.StyledRadio.Group
-            value={titleAlign}
-            onChange={(e: RadioChangeEvent) => setTitleAlign(e.target.value)}
-          >
-            <M.StyledRadio.Button value={1}>
-              <BiAlignLeft />
-            </M.StyledRadio.Button>
-            <M.StyledRadio.Button value={2}>
-              <BiAlignMiddle />
-            </M.StyledRadio.Button>
-            <M.StyledRadio.Button value={3}>
-              <BiAlignRight />
-            </M.StyledRadio.Button>
-          </M.StyledRadio.Group>
-        </M.OptionItem>
-        <M.OptionItem>
-          <h3>매거진 제목</h3>
-          <M.MagazineOptionInput
-            name="magazineTitle"
-            value={option.magazineTitle}
-            onChange={handleOption}
-          />
-        </M.OptionItem>
-        <M.OptionItem>
-          <h3>매거진 소제목</h3>
-          <M.MagazineOptionInput
-            name="magazineSubTitle"
-            value={option.magazineSubTitle}
-            onChange={handleOption}
-          />
-        </M.OptionItem>
-        <M.OptionItem>
-          <h3>매거진 썸네일 업로드</h3>
-          <M.Uploadbox>
-            <M.UploadButton onClick={() => thumbnailRef.current?.click()}>
-              업로드
-            </M.UploadButton>
-            <input
-              ref={thumbnailRef}
-              name="thumbnail"
-              onChange={handleThumb}
-              type="file"
-              accept="image/jpg,image/png,image/jpeg,image/gif"
+          </M.OptionItem>
+        </M.OptionHalf>
+        <M.OptionHalf>
+          <M.OptionItem>
+            <h3>매거진 제목</h3>
+            <M.MagazineOptionInput
+              name="magazineTitle"
+              value={option.magazineTitle}
+              onChange={handleOption}
             />
-            <M.UploadName>{thumbnail.name}</M.UploadName>
-          </M.Uploadbox>
-        </M.OptionItem>
+          </M.OptionItem>
+          <M.OptionItem>
+            <h3>매거진 소제목</h3>
+            <M.MagazineOptionInput
+              name="magazineSubTitle"
+              value={option.magazineSubTitle}
+              onChange={handleOption}
+            />
+          </M.OptionItem>
+          <M.OptionItem>
+            <h3>매거진 썸네일 업로드</h3>
+            <M.Uploadbox>
+              <M.UploadButton onClick={() => thumbnailRef.current?.click()}>
+                업로드
+              </M.UploadButton>
+              <input
+                ref={thumbnailRef}
+                name="thumbnail"
+                onChange={handleThumb}
+                type="file"
+                accept="image/jpg,image/png,image/jpeg,image/gif"
+              />
+              <M.UploadName>{thumbnail.name}</M.UploadName>
+            </M.Uploadbox>
+          </M.OptionItem>
+        </M.OptionHalf>
       </M.PublishOption>
       {!vertical && (
         <M.HorizontalViewWrap align={titleAlign}>

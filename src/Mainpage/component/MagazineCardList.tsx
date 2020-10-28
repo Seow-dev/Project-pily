@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { DataTypes } from "../../Common/Interface";
+import { media } from "../../Common/DeviceSize";
 
 interface props {
   menus: string;
@@ -60,7 +61,6 @@ export default function MagazineCardList({ datas, headers, menus }: props) {
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 1rem 0;
   align-items: center;
 `;
 const HeadCard = styled.header<{ menu: string }>`
@@ -69,7 +69,7 @@ const HeadCard = styled.header<{ menu: string }>`
   justify-content: flex-end;
   flex-direction: column;
   flex: 0 0 280px;
-  margin: 0 1rem 10px;
+  margin: 2rem 1rem 10px;
   background: ${props =>
     props.menu === "created_at"
       ? `linear-gradient(
@@ -94,8 +94,8 @@ const HeadCard = styled.header<{ menu: string }>`
 
 const CardList = styled.section`
   display: flex;
-  justify-content: space-around;
-
+  justify-content: flex-start;
+  padding-top: 2rem;
   overflow-x: scroll;
 
   &::-webkit-scrollbar {
@@ -122,6 +122,11 @@ const CardWrap = styled.article`
   clear: both;
   position: relative;
   border-radius: 10px;
+
+  // ${media.medium} {
+  //   width: 280px;
+  //   min-width: 220px;
+  // }
 
   &:focus-within ~ .card,
   &:hover ~ .card {
