@@ -99,7 +99,7 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
 
   return (
     <>
-      {success ? (
+      {/* {success ? ( */}
         <MainWrapper>
           <Modalpage />
           <UserInfo>
@@ -212,9 +212,9 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
             </SideTabMenu>
           </MagazineListWrap>
         </MainWrapper>
-      ) : (
+      {/* ) : (
         <Error />
-      )}
+      )} */}
     </>
   );
 };

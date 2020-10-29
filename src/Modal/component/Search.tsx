@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import closeIcon from "../../Common/close.png";
 import styled from "styled-components";
+
 import {
   ModalPage,
   ModalSearchBox,
-  ModalTitle,
   ModalSearchContent,
   ModalCloseImg,
   SearchInput,
+  ModalSearchOptions,
+  ModalSearchDateSelector,
+  SearchBtn,
+  ModalSearchWrapper,
 } from "./ModalStyles";
 import DatePicker from "react-datepicker";
 import { Select } from "antd";
@@ -17,6 +21,7 @@ import "antd/dist/antd.css";
 import { results } from "../../Common/SearchDummy";
 import { displayModalProps } from "../../Common/Interface";
 import { searchApi } from "../../Api/search";
+import { url } from "inspector";
 
 // console.log(category, date, value) 찍히게끔
 // useEffect로 조건에 맞게끔
@@ -109,47 +114,65 @@ export default function Search({ title, onClose }: displayModalProps) : JSX.Elem
     <ModalPage>
       <ModalSearchBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
-        <ModalTitle>{title}</ModalTitle>
-        <ModalSearchContent>
-          <SearchInput
-            id="searchTitle"
-            placeholder="제목을 입력해주세요"
-            value={formState.searchTitle}
-            onChange={handleChange}
-          />
-        </ModalSearchContent>
-        <ModalSearchContent>
-          <div>
-            <input type="checkbox" onClick={diasbleHandler}/> 모두
-          </div>
-          <DatePicker
-            selected={formState.searchDate}
-            onChange={datehandleChange}
-            dateFormat="MMM/yyyy"
-            showMonthYearPicker
-            // customInput
-            disabled={disablePicker}
-          />
-
-          <Select
-            placeholder="카테고리를 선택하세요"
-            onChange={selectHandleChange}
-            style={{ width: 256 }}
-            allowClear
-          >
-            {items.map(val => {
-              return (
-                <Option id="category" key={val.id} value={val.value}>
-                  {val.name}
-                </Option>
-              );
-            })}
-          </Select>
-          <button type="submit" onClick={submitHandler}>
+        {/* <ModalTitle>{title}</ModalTitle> */}
+          <ModalSearchContent>
+            <SearchInput
+              id="searchTitle"
+              placeholder="검색어를 입력해주세요"
+              value={formState.searchTitle}
+              onChange={handleChange}
+              />
+          </ModalSearchContent>
+        <ModalSearchWrapper>
+          <ModalSearchDateSelector>
+              <span>모든 날짜선택</span>
+              <input id="selectDate" type="checkbox"  onClick={diasbleHandler}/>
+              <label htmlFor="selectDate"></label>
+          </ModalSearchDateSelector>
+          <ModalSearchOptions dis={disablePicker}>
+            <DatePicker
+              className="picker"
+              selected={formState.searchDate}
+              onChange={datehandleChange}
+              dateFormat="MMM/yyyy"
+              showMonthYearPicker
+              disabled={disablePicker}
+              />
+            <Select
+              className="calendar"
+              placeholder="카테고리를 선택하세요"
+              onChange={selectHandleChange}
+              style={SelectStyle}
+              bordered={false}
+              allowClear
+              defaultValue="All"
+              >
+              {items.map(val => {
+                return (
+                  <Option id="category" key={val.id} value={val.value}>
+                    {val.name}
+                  </Option>
+                );
+              })}
+            </Select>
+          </ModalSearchOptions>
+        </ModalSearchWrapper>
+          <SearchBtn type="submit" onClick={submitHandler}>
             검색
-          </button>
-        </ModalSearchContent>
+          </SearchBtn>
       </ModalSearchBox>
     </ModalPage>
   )
+}
+
+
+const SelectStyle={
+  width:"250px",
+  marginLeft:"2rem",
+  color: "black",
+  borderTop: "none",
+  borderLeft: "none",
+  borderRight: "none",
+  borderBottom: "2px solid black",
+  fontSize: "20px",
 }
