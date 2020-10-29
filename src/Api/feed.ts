@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { baseUrl } from "../Common/base";
+import { FeedDataTypes } from "../Common/Interface";
 
 export const getMyFeedApi = (
   offset: number,
@@ -22,14 +23,6 @@ export const uploadFeedImageApi = (img: FormData) : Promise<AxiosResponse>  => {
   });
 };
 
-export const submitFeedApi = (
-  title: string,
-  content: string,
-  subtitle?: string,
-  stars?: number,
-  location?: object) => {
-  const data = {
-    title, content, subtitle, stars, location
-  };
+export const submitFeedApi = (data:FeedDataTypes) => {
   return axios.post(`${baseUrl}/`, data, { withCredentials: true });
 };

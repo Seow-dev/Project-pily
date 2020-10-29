@@ -19,7 +19,7 @@ import {
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import Map from "./Map";
 import Editor from "./Editor";
-import { FeedContents, locationProps } from "../Common/Interface";
+import { FeedContents, FeedDataTypes, locationProps } from "../Common/Interface";
 import { useSelector } from "react-redux";
 import { RootState } from "../Modules";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -32,7 +32,7 @@ import { submitFeedApi } from "../Api/feed";
 function CreateFeedMain({ history }: RouteComponentProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [stars, setStars] = useState(0);
-  const [location, setLocation] = useState<locationProps>({
+  const [mapLocation, setLocation] = useState<locationProps>({
     location_name: "",
     location_x: "",
     location_y: "",
@@ -70,15 +70,17 @@ function CreateFeedMain({ history }: RouteComponentProps) {
         feedContentsData.content === undefined
       )
     ) {
-      const title = feedContentsData.title;
-      const content = feedContentsData.content;
-      const subtitle = feedContentsData.subTitle;
-      const starsRate = stars;
-      const location = {};
+      const data:FeedDataTypes = {
+        title: feedContentsData.title,
+        content: feedContentsData.content,
+        subtitle : feedContentsData.subTitle,
+        location : mapLocation,
+        stars : stars,
+      }
       // submit Action
       // 기존 contents들과 stars, map location을 같이 보내달라
       // console.log("Data is ", feedContentsData);
-      submitFeedApi(title, content, subtitle, starsRate, location);
+      submitFeedApi(data);
       redirectToMain();
     } else {
       // rejected Action
@@ -87,12 +89,10 @@ function CreateFeedMain({ history }: RouteComponentProps) {
   };
 
   const { success } = useSelector((state: RootState) => state.authReducer);
-  // let html = convertDeltaToHtml(feedContentsData.content);
-  // console.log(html);
 
   return (
     <>
-      {success ? (
+      {/* {success ? ( */}
         <MainWrapper>
           <ModalCloseImg src={closeIcon} onClick={redirectToMain} />
           <FeedLabel>
@@ -167,9 +167,9 @@ function CreateFeedMain({ history }: RouteComponentProps) {
             ></div>
           </div> */}
         </MainWrapper>
-      ) : (
+      {/* ) : (
         <Error />
-      )}
+      )} */}
     </>
   );
 }
