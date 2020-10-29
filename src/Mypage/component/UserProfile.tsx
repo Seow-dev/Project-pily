@@ -5,7 +5,7 @@ import MypageList from "./MypageList";
 import * as S from "./CommonStyle";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { DataTypes, UserData } from "../../Common/Interface";
-import { getProfileApi } from "../../Api/user";
+import { getProfileApi, subscribeApi, unSubscribeApi } from "../../Api/user";
 
 interface matchprops {
   username: string;
@@ -18,31 +18,13 @@ const UserProfile = ({ match, history }: RouteComponentProps<matchprops>) => {
     username: "",
   });
 
-  const [isSub, setSub] = useState<boolean>(false);
-  const confirm = window.confirm;
-  const handleSub = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      e.preventDefault();
-      if (isSub) {
-        if (confirm(`정말 ${userData.username}님의 구독을 취소하시겠습니까?`)) {
-          // 구독 취소 api
-          setSub(false);
-        }
-      } else {
-        // 구독하기 api
-        setSub(true);
-      }
-    },
-    [isSub],
-  );
-
   const paramUsername: string = match.params.username;
   useEffect(() => {
     (async () => {
       const result = await getProfileApi(paramUsername);
 
       if (result.status === 200) {
-        console.log(result.data);
+        // console.log(result.data);
         setUserData({
           username: result.data.username,
           profileImage: result.data.IMG
@@ -57,6 +39,22 @@ const UserProfile = ({ match, history }: RouteComponentProps<matchprops>) => {
       }
     })();
   }, []);
+
+  const [isSub, setSub] = useState<boolean>(false);
+  const confirm = window.confirm;
+  const handleSub = useCallback(async () => {
+    if (isSub) {
+      if (confirm(`정말 ${userData.username}님의 구독을 취소하시겠습니까?`)) {
+        // 구독 취소 api
+        setSub(false);
+        await unSubscribeApi(paramUsername);
+      }
+    } else {
+      // 구독하기 api
+      setSub(true);
+      await subscribeApi(paramUsername);
+    }
+  }, [isSub]);
 
   return (
     <MainWrapper>

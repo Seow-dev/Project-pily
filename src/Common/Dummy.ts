@@ -360,6 +360,12 @@ function createFeedData(): FeedTypes[] {
         subTitle: `Test Subtitle ${i}`,
         content: HTMLEXAPME1,
         createdAt: `2020-08`,
+        stars: 4,
+        location: {
+          location_name: "낙성대 버거킹",
+          location_x: "126.96379092885",
+          location_y: "37.4766500263963",
+        },
       });
     } else {
       arr.push({
@@ -377,10 +383,10 @@ function createFeedData(): FeedTypes[] {
 export const feedResult: FeedTypes[] = createFeedData();
 
 export const detailDummy: detailTypes = {
-  magazineId: 1,
+  magazineId: 2,
   magazineTitle: "미니부터 맥스까지, 아이폰12",
   magazineSubTitle: "반가운 소식, 애플의 새로운 아이폰 이야기를 준비했습니다.",
-  author: "아이폰12",
+  author: "네이버",
   authorImg:
     "https://www.apple.com/v/apple-events/home/e/images/september-2019/meta/og__fodnljjkwl6y.png?201912111726",
   createdAt: "2020-10",
@@ -392,6 +398,7 @@ export const detailDummy: detailTypes = {
   grid: 3,
   isVertical: false,
   titleAlign: 2,
+  categoryName: "일상",
 };
 
 export const CATEGORIES = [

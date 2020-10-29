@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "../../Common/DeviceSize";
 
 export const UserInfo = styled.section`
   display: flex;
@@ -73,6 +74,7 @@ export const SideTabMenu = styled.div`
 export const TabMenu = styled.div<{ cur?: boolean }>`
   width: 100%;
   padding: 16px 8px;
+  margin-bottom: 5px;
   font-size: 1.3rem;
   border: none;
   cursor: pointer;
@@ -85,5 +87,14 @@ export const TabMenu = styled.div<{ cur?: boolean }>`
     box-shadow: #ced4da 0 1px 2px;
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
+  }
+
+  ${media.desktop} {
+    padding: 12px 8px;
+    font-size: 1rem;
+  }
+  ${media.tablet} {
+    padding: 10px 6px;
+    font-size: 0.8rem;
   }
 `;

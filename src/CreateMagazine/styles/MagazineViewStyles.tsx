@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Radio, Select } from "antd";
+import { media } from "../../Common/DeviceSize";
 
 export const MagazineViewWrap = styled.section`
   width: 100%;
@@ -39,16 +40,33 @@ export const PublishOption = styled.div`
   width: 100%;
   height: 120px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   box-shadow: #dee2e6 0 1px 4px;
+
+  ${media.desktop} {
+    height: 240px;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: center;
+  }
+`;
+export const OptionHalf = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  ${media.desktop} {
+    width: 100%;
+    // justify-content: space-between;
+  }
 `;
 export const OptionItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
   padding: 1rem;
-  max-width: 20%;
 
   h3 {
     font-size: 1.2rem;
@@ -248,5 +266,25 @@ export const Items = styled.div`
     font-weight: 500;
     padding-left: 1rem;
     padding-bottom: 8px;
+  }
+`;
+export const LocationWrap = styled.div`
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: fit-content;
+  border: none;
+  border-radius: 5px;
+  box-shadow: #f1f3f5 0 1px 4px;
+  margin-left: 1rem;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #40c057;
   }
 `;

@@ -24,6 +24,8 @@ export interface FeedTypes {
   subTitle: string;
   content: string;
   createdAt: string;
+  stars?: number;
+  location?: locationProps;
 }
 
 export interface displayModalProps {
@@ -66,6 +68,7 @@ export interface MagazineDataTypes {
   magazineSubTitle?: string;
   thumbnail?: string;
   feedList: number[];
+  categoryId: number;
 }
 
 // magazine detail types
@@ -83,6 +86,7 @@ export interface detailTypes {
   grid: number;
   isVertical: boolean;
   titleAlign: number;
+  categoryName: string;
 }
 
 // preview types
@@ -94,6 +98,7 @@ export interface previewTypes {
   grid: number;
   isVertical: boolean;
   titleAlign: number;
+  categoryName: string;
 }
 
 // location types

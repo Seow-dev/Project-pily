@@ -13,8 +13,10 @@ import {
   previewTypes,
 } from "../Common/Interface";
 import Preview from "./Preview";
+import * as api from "../Api/magazine";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
-const CreateMagazineMain = () => {
+const CreateMagazineMain = withRouter(({ history }: RouteComponentProps) => {
   const { success } = useSelector((state: RootState) => state.authReducer);
 
   // feed slide
@@ -44,8 +46,15 @@ const CreateMagazineMain = () => {
     },
     [publishList],
   );
-  const handlePublish = (data: MagazineDataTypes) => {
-    console.log(data);
+  const handlePublish = async (data: MagazineDataTypes) => {
+    // const result = await api.publishMagazineApi(data);
+    // if (result.status === 200) {
+    //   alert('매거진이 잘 발행되었습니다.');
+    //   history.push(`/magazine/${result.data.magazineId}`)
+    // } else {
+    //   alert('권한이 없습니다.')
+    //   history.push('/');
+    // }
   };
 
   const [isPreviewModalOpen, setPreviewModalState] = useState(false);
@@ -111,7 +120,7 @@ const CreateMagazineMain = () => {
       )} */}
     </>
   );
-};
+});
 export default React.memo(CreateMagazineMain);
 
 const Wrapper = styled.section`

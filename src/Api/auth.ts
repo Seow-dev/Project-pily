@@ -1,20 +1,22 @@
 import axios from "axios";
 import { baseUrl } from "../Common/base";
 
-
+//1
 export const oauthApi = () =>
   axios.get(`${baseUrl}/oauth`, { withCredentials: true });
 
+//1
 export const signUpApi = (username: string) =>
   axios.post(`${baseUrl}/signup`, { username }, { withCredentials: true });
 
-
+//1
 export const signOutApi = () =>
   axios.get(`${baseUrl}/signout`, { withCredentials: true });
 
-
+//1
 export const vaildateUsernameApi = (nick?: string) => {
-  const params = { nick }
-  return axios.get(`${baseUrl}/`, {params, withCredentials: true });
-}
-
+  // const params = { nick }
+  return axios.get(`${baseUrl}/user/available/${nick}`, {
+    withCredentials: true,
+  });
+};

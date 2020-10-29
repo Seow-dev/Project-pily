@@ -9,6 +9,7 @@ import { detailTypes } from "../Common/Interface";
 import DetailHeader from "./DetailHeader";
 import * as D from "./styles/DetailHeadStyles";
 import DetailContent from "./DetailContent";
+import { getMagazineDetailApi } from "../Api/magazine";
 
 interface matchProps {
   id: string;
@@ -20,8 +21,12 @@ function MagazineDetailMain({ match }: RouteComponentProps<matchProps>) {
 
   const [data, setData] = useState<detailTypes | null>(null);
   useEffect(() => {
-    // get Magazine Detail api here
-    console.log(typeof Number(id));
+    // (async () => {
+    //   const result = await getMagazineDetailApi(Number(id));
+    //   if (result.status === 200) {
+    //     setData(result.data)
+    //   }
+    // })()
     setData(detailDummy);
   }, []);
 

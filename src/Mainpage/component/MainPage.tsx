@@ -21,10 +21,10 @@ export default function Mainpage() {
       setSelected(results.filter(result => result.megazineId % 4 === 0));
       setMagazine(results);
     } else if (menu === "like") {
-      setSelected(results.filter(result => result.megazineId % 4 === 0));
+      setSelected(results.filter(result => result.megazineId % 4 === 1));
       setMagazine(results);
     }
-  }, [menu]);
+  }, [menu, cur]);
 
   const changePage = (page: number) => {
     setCur(page);
@@ -33,7 +33,11 @@ export default function Mainpage() {
   return (
     <MainWrapper>
       <Modalpage />
-      <MainPhrase style={{ color: "#D58936" }}>
+      <MainPhrase>평범한 일상을 피드로 기록하고</MainPhrase>
+      <MainPhrase style={{ color: "#adb5bd" }}>
+        감성 충만한 매거진으로 발행하세요.
+      </MainPhrase>
+      <MainPhrase style={{ color: "#D58936", marginBottom: "2.5rem" }}>
         일상을 발행하다. <span style={{ color: "#A3320B" }}>PILY</span>
       </MainPhrase>
       <MenuWrap>
@@ -89,7 +93,7 @@ export const MainWrapper = styled.div`
 
   // 반응형
   ${media.desktop} {
-    width: 760px;
+    width: 100%;
   }
   ${media.tablet} {
     margin: 60px auto;
@@ -97,10 +101,13 @@ export const MainWrapper = styled.div`
   }
 `;
 const MainPhrase = styled.h2`
-  padding: 1rem;
-  font-size: 3rem;
+  display: block;
+  padding-left: 1rem;
+  margin-bottom: 4px;
+  font-size: 2rem;
   font-weight: 700;
   font-family: "Noto Serif KR", serif;
+  color: #ced4da;
 `;
 const MainLabel = styled.h3`
   font-size: 1.8rem;
@@ -143,6 +150,7 @@ const MenuWrap = styled.ul`
   align-items: center;
   padding-left: 1rem;
   margin-top: 1rem;
+  margin-bottom: 0;
 `;
 const Menus = styled.li<{ cur?: boolean }>`
   font-size: 1.5rem;

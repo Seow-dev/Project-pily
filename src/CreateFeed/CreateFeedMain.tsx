@@ -145,7 +145,33 @@ function CreateFeedMain({ history }: RouteComponentProps) {
                   </div>
                 </OptionWrap>
                 <MapArea>
-                  <Labels>위치 정보 기록</Labels>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                    }}
+                  >
+                    <Labels>피드 위치 정보</Labels>
+                    <input
+                      placeholder="위치 이름을 기록하세요."
+                      value={location.location_name}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setLocation({
+                          ...location,
+                          location_name: e.target.value,
+                        })
+                      }
+                      style={{
+                        fontSize: "1rem",
+                        margin: "0 0 15px 20px",
+                        border: "none",
+                        borderBottom: "1px solid #343a40",
+                        paddingBottom: "5px",
+                        width: "fit-content",
+                      }}
+                    />
+                  </div>
                   <Map setLocation={setLocation} />
                 </MapArea>
               </Option>
