@@ -114,12 +114,13 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
       }
     }
   };
+  
 
   return (
     <>
       {success ? (
         <MainWrapper>
-          <Modalpage />
+          <Modalpage getSearchData={()=>{}}/>
           <UserInfo>
             <input
               ref={imageUploader}

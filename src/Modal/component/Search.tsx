@@ -19,17 +19,15 @@ import { Select } from "antd";
 import "react-datepicker/dist/react-datepicker.css";
 import "antd/dist/antd.css";
 import { results } from "../../Common/SearchDummy";
-import { displayModalProps } from "../../Common/Interface";
+import { displayModalProps, DataTypes } from "../../Common/Interface";
 import { searchApi } from "../../Api/search";
-import { url } from "inspector";
 
-// console.log(category, date, value) 찍히게끔
-// useEffect로 조건에 맞게끔
+interface SearchData extends displayModalProps{
+  getSearchData : (data:DataTypes[]) => void;
+}
 
-export default function Search({
-  title,
-  onClose,
-}: displayModalProps): JSX.Element {
+export default function Search({ getSearchData, onClose }: SearchData) : JSX.Element{
+
   // Category Items Interface
 
   interface items {
@@ -54,7 +52,6 @@ export default function Search({
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setMagazineTitle(e.target.value);
     setFormState({
       ...formState,
       [e.target.id]: e.target.value,
@@ -87,22 +84,14 @@ export default function Search({
     });
   };
 
-  const submitHandler = () => {
+
+  // 서브밋을하면 페이지에 렌더해주는 상태를 호출
+  const submitHandler = async () => {
     // console.log(date_to_str(formState.searchDate)); // fotmatting 된 Date 벨류
 
-    searchApi(
-      formState.searchTitle,
-      date_to_str(formState.searchDate),
-      formState.searchCategory,
-    );
-    console.log(
-      "Title :",
-      formState.searchTitle,
-      "Date :",
-      date_to_str(formState.searchDate),
-      "Category :",
-      formState.searchCategory,
-    );
+    const result = await searchApi(formState.searchTitle, date_to_str(formState.searchDate), formState.searchCategory);
+    
+    getSearchData(result.data.results as DataTypes[]) ;
     // onClose();
   };
 
@@ -156,7 +145,7 @@ export default function Search({
             >
               {items.map(val => {
                 return (
-                  <Option id="category" key={val.id} value={val.value}>
+                  <Option id="category" key={val.id} value={val.id}>
                     {val.name}
                   </Option>
                 );

@@ -4,6 +4,7 @@ import {
   ModalBox,
   ModalTitle,
   ModalSearchContent,
+  ModalLoginBox,
 } from "./ModalStyles";
 import { displayModalProps } from "../../Common/Interface";
 import { signUpApi, vaildateUsernameApi } from "../../Api/auth";
@@ -19,7 +20,7 @@ export default function SignUp({
     setNick(e.target.value);
   };
 
-  const [valid, setValid] = useState(true);
+  const [valid, setValid] = useState(false);
   const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
     // 서버에 회원가입 관련 닉네임 데이터를 날립니다.
     e.preventDefault();
@@ -35,28 +36,21 @@ export default function SignUp({
       }
     }
   };
-  // 스타일에 대한 스테이트 validate => 스타일...
-  // 벨리데이션
 
   useEffect(() => {
-    // nick 값이 변경될 때마다 서버에 중복 검사 요청을 날립니다.
-    // setVaild를 이용해서 valid의 값을 True, False로 변경하게 하며, True일때 회원가입 가능 / False일땐 불가능
-
     (async () => {
       const result = await vaildateUsernameApi(nick);
-      if (result.status === 200) {
-        if (!result.data.isValidate) {
-          setValid(false);
-        } else {
-          setValid(true);
-        }
+      if(result.status === 404){
+        setValid(false);
+      }else if(result.status === 200){
+        setValid(result.data.isValidate);
       }
     })();
   }, [nick]);
 
   return (
     <ModalPage>
-      <ModalBox>
+      <ModalLoginBox>
         <ModalTitle>{title}</ModalTitle>
         <ModalSearchContent>
           { valid ? (
@@ -73,7 +67,7 @@ export default function SignUp({
             <button onClick={handleSignUp} disabled={!valid}>회원가입</button>
           <button onClick={onClose}>취소</button>
         </ModalSearchContent>
-      </ModalBox>
+      </ModalLoginBox>
     </ModalPage>
   );
 }

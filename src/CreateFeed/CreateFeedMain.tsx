@@ -79,13 +79,12 @@ function CreateFeedMain({ history }: RouteComponentProps) {
       const data: FeedDataTypes = {
         title: feedContentsData.title,
         content: feedContentsData.content,
-        subtitle: feedContentsData.subTitle,
-        location: mapLocation,
-        stars: stars,
+        subTitle : feedContentsData.subTitle,
+        location : mapLocation,
+        stars : stars,
       };
+
       // submit Action
-      // 기존 contents들과 stars, map location을 같이 보내달라
-      // console.log("Data is ", feedContentsData);
       submitFeedApi(data);
       redirectToMain();
     } else {

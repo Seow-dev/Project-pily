@@ -14,13 +14,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../Modules/auth";
 import { signOutApi } from "../../Api/auth";
 import { PreviewModal } from "../component/Preview";
+import { DataTypes } from "../../Common/Interface";
+
 
 interface PreaviewState {
   title: string;
   content: string;
 }
+interface SearchDataState{
+  getSearchData: (data:DataTypes[]) => void;
+}
 
-export const Modalpage = () => {
+export const Modalpage = ({getSearchData}:SearchDataState) => {
   const [isSearchModalOpen, setSearchModalState] = useState(false);
   const [isLoginModalOpen, setLoginModalState] = useState(false);
   const [isSignUpModalOpen, setSignUpModalState] = useState(false);
@@ -61,10 +66,16 @@ export const Modalpage = () => {
         </>
       )}
 
-      <StyledSearchOutlined onClick={searchToggleModal} />
-      {isSearchModalOpen ? (
-        <Search title={"Search"} onClose={searchToggleModal} />
-      ) : null}
+      <StyledSearchOutlined
+        onClick={searchToggleModal}
+      />
+      { isSearchModalOpen ? (
+        <Search
+          title={"Search"}
+          getSearchData = {getSearchData}
+          onClose={searchToggleModal}
+        />
+      ) : (null)}
       <Action />
       {isSignUpModalOpen ? (
         <SignUp title={"회원가입"} onClose={signUpToggleModal} />

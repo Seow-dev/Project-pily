@@ -15,8 +15,7 @@ export const signOutApi = () =>
 
 //1
 export const vaildateUsernameApi = (nick?: string) => {
-  // const params = { nick }
   return axios.get(`${baseUrl}/user/available/${nick}`, {
     withCredentials: true,
-  });
+  }).catch(err => err.response);
 };

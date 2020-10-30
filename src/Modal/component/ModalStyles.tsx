@@ -306,7 +306,7 @@ export const ModalLoginBox = styled.div`
   border-radius: 10px;
   background-color: #fff;
   cursor: auto;
-`;
+`
 
 export const ModalLoginContent = styled.div`
   position: relative;
