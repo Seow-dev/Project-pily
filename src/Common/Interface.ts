@@ -46,7 +46,7 @@ export interface FeedContents {
 export interface FeedDataTypes{
   title: string,
   content: string,
-  subtitle?: string,
+  subTitle?: string,
   location?: locationProps,
   stars?: number
 }

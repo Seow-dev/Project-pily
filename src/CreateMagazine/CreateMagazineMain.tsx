@@ -83,7 +83,7 @@ const CreateMagazineMain = withRouter(({ history }: RouteComponentProps) => {
 
   return (
     <>
-      {/* {success ? ( */}
+      {success ? (
         <>
           <Wrapper>
             <Container>
@@ -115,9 +115,9 @@ const CreateMagazineMain = withRouter(({ history }: RouteComponentProps) => {
             />
           )}
         </>
-      {/* ) : (
+      ) : (
         <Error />
-      )} */}
+      )}
     </>
   );
 });

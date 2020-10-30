@@ -30,9 +30,15 @@ export default function Mainpage() {
     setCur(page);
   };
 
+  // 상태 변화시켜주는 함수
+  // const getSearchData = (el:DataTypes[]) => {
+  //   setMagazine(el);
+  // }
+
+
   return (
     <MainWrapper>
-      <Modalpage />
+      <Modalpage getSearchData={setMagazine}/>
       <MainPhrase>평범한 일상을 피드로 기록하고</MainPhrase>
       <MainPhrase style={{ color: "#adb5bd" }}>
         감성 충만한 매거진으로 발행하세요.

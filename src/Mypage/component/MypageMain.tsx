@@ -96,12 +96,13 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
         .then((res: AxiosResponse) => res.data);
     }
   };
+  
 
   return (
     <>
-      {/* {success ? ( */}
+      {success ? (
         <MainWrapper>
-          <Modalpage />
+          <Modalpage getSearchData={()=>{}}/>
           <UserInfo>
             <input
               ref={imageUploader}
@@ -212,9 +213,9 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
             </SideTabMenu>
           </MagazineListWrap>
         </MainWrapper>
-      {/* ) : (
+      ) : (
         <Error />
-      )} */}
+      )}
     </>
   );
 };

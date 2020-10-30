@@ -44,8 +44,7 @@ class Editor extends Component<appProps, appState> {
       upload: async (file: File) => {
         const bodyFormData = new FormData();
         bodyFormData.append("img", file);
-
-        const response : AxiosResponse = await uploadFeedImageApi(bodyFormData);
+        const response = await uploadFeedImageApi(bodyFormData);
         return response.data.location;
       },
     },

@@ -73,13 +73,11 @@ function CreateFeedMain({ history }: RouteComponentProps) {
       const data:FeedDataTypes = {
         title: feedContentsData.title,
         content: feedContentsData.content,
-        subtitle : feedContentsData.subTitle,
+        subTitle : feedContentsData.subTitle,
         location : mapLocation,
         stars : stars,
       }
       // submit Action
-      // 기존 contents들과 stars, map location을 같이 보내달라
-      // console.log("Data is ", feedContentsData);
       submitFeedApi(data);
       redirectToMain();
     } else {
@@ -92,7 +90,7 @@ function CreateFeedMain({ history }: RouteComponentProps) {
 
   return (
     <>
-      {/* {success ? ( */}
+      {success ? (
         <MainWrapper>
           <ModalCloseImg src={closeIcon} onClick={redirectToMain} />
           <FeedLabel>
@@ -155,10 +153,10 @@ function CreateFeedMain({ history }: RouteComponentProps) {
                     <Labels>피드 위치 정보</Labels>
                     <input
                       placeholder="위치 이름을 기록하세요."
-                      value={location.location_name}
+                      value={mapLocation.location_name}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setLocation({
-                          ...location,
+                          ...mapLocation,
                           location_name: e.target.value,
                         })
                       }
@@ -193,9 +191,9 @@ function CreateFeedMain({ history }: RouteComponentProps) {
             ></div>
           </div> */}
         </MainWrapper>
-      {/* ) : (
+      ) : (
         <Error />
-      )} */}
+      )}
     </>
   );
 }

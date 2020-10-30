@@ -10,17 +10,11 @@ export const getMyFeedApi = (offset: number, query?: string, date?: string) => {
   };
   return axios.get(`${baseUrl}/`, { params, withCredentials: true });
 };
-
-export const uploadFeedImageApi = (img: FormData): Promise<AxiosResponse> => {
-  return axios.post(`${baseUrl}/feed/img-upload`, img, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-    withCredentials: true,
-  });
+// 
+export const uploadFeedImageApi = (img: FormData) : Promise<AxiosResponse> => {
+  return axios.post(`${baseUrl}/feed/img-upload`, img, { withCredentials: true });
 };
 
 export const submitFeedApi = (data:FeedDataTypes) => {
-  return axios.post(`${baseUrl}/`, data, { withCredentials: true });
+  return axios.post(`${baseUrl}/feed/create`, data, { withCredentials: true });
 };
-
