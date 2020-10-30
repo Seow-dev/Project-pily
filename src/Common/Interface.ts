@@ -43,6 +43,18 @@ export interface FeedContents {
   content: string;
 }
 
+// FeedSubmit
+
+export interface FeedDataTypes{
+  title: string,
+  content: string,
+  subtitle?: string,
+  location?: locationProps,
+  stars?: number
+}
+
+
+
 // optionProps
 export interface OptionProps {
   query: string;
@@ -93,9 +105,9 @@ export interface previewTypes {
 
 // location types
 export interface locationProps {
-  location_name: string;
-  location_x: string;
-  location_y: string;
+  location_name?: string;
+  location_x?: string;
+  location_y?: string;
 }
 export interface location {
   place_name: string;

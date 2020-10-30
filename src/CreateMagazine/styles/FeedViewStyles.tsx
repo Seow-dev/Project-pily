@@ -191,8 +191,8 @@ export const CloseButton = styled.p`
 
 export const StyledSearchOutlined = styled(SearchOutlined)`
   position: relative;
-  top:30px;
-  left:185px;
+  top:32px;
+  left: calc(100% - 29px);
   font-size: 20px;
   border:1px solid black;
   border-radius:5px;

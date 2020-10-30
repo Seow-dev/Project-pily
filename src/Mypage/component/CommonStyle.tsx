@@ -125,7 +125,7 @@ export const MagazineListContainer = styled.section`
   width: 100%;
   height: 600px;
   padding: 1rem;
-  overflow: scroll;
+  overflow: hidden;
 `;
 export const SideTabMenu = styled.div`
   width: 100%;

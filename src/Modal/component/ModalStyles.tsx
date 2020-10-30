@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { SearchOutlined } from "@ant-design/icons";
+import { media } from "../../Common/DeviceSize";
+import { OmitProps } from "antd/lib/transfer/ListBody";
 
 /*
   0a. General Modal
@@ -35,6 +37,7 @@ export const ModalPage = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
+
   z-index: 3;
 `;
 export const ModalOverlay = styled.div`
@@ -54,6 +57,7 @@ export const ModalBox = styled.div`
   padding: 50px;
   box-sizing: border-box;
   border-radius: 10px;
+
   background-color: #fff;
   cursor: auto;
 `;
@@ -110,6 +114,9 @@ export const ModalSearchBox = styled.div`
   padding: 50px;
   box-sizing: border-box;
   background-color: #fff;
+  // background-image: url(https://user-images.githubusercontent.com/66622150/97462167-cb774900-1981-11eb-944f-ce10937378e5.jpg);
+  // background-size: 100% 100%;
+  // background-repeat: no-repeat;
 `;
 export const ModalSearchContent = styled.div`
   display: flex;
@@ -118,19 +125,171 @@ export const ModalSearchContent = styled.div`
   margin-top: 10rem;
   color: #6b6b6b;
   font-size: 16px;
-`;
 
+  ${media.tablet} {
+    // width: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 export const SearchInput = styled.input`
-  height: 30px;
-  width: 600px;
+  height: 50px;
+  font-size: 30px;
+  width: 50rem;
+  color: black;
   border-top: none;
   border-left: none;
   border-right: none;
   border-color: #463333;
-  border-radius: 0.3rem;
   text-indent: 0.8rem;
   &:hover {
     border-bottom-width: 3px;
+  }
+
+  ${media.tablet} {
+    width: 35rem;
+    font-size: 26px;
+  }
+`;
+
+export const ModalSearchWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+  right: 2rem;
+
+  ${media.tablet} {
+    min-width: 570px;
+  }
+`;
+
+export const ModalSearchDateSelector = styled.div`
+  position: relative;
+  top: -3rem;
+  left: 3.3rem;
+  font-size: 20px;
+  margin-right: 0.5rem;
+
+  > input {
+    display: none;
+  }
+
+  > input + label {
+    display: inline-block;
+    margin-left: 0.5rem;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #bcbcbc;
+    cursor: pointer;
+  }
+
+  > input:checked + label {
+    background-color: grey;
+  }
+  // > input:checked + & .picker {
+  //   color: red !important;
+  // }
+
+  . picker {
+    font-size: ${props => (props.defaultChecked ? "1px" : "20px")};
+    color: ${props => (props.defaultChecked ? "#fff" : "#000")};
+  }
+  ${media.desktop} {
+    font-size: 18px;
+    top: -3.3rem;
+    width: 290px;
+    left: 3rem;
+    > input + label {
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  ${media.tablet} {
+    font-size: 15px;
+    top: -3.6rem;
+    width: 270px;
+    left: 2.6rem;
+
+    > input + label {
+      position: relative;
+      top: 3px;
+    }
+  }
+`;
+
+export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
+  transition: all 0.3s;
+
+  & .picker {
+    width: 300px;
+    height: 36px;
+    font-size: 20px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid black;
+    text-indent: 0.5rem;
+    cursor: ${props => (props.dis ? "not-allowed" : "pointer")};
+    color: ${props => (props.dis ? "red" : "black")};
+  }
+
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${media.desktop} {
+    & .picker {
+      position: relative;
+      left: -20%;
+      width: 250px;
+      font-size: 15px;
+    }
+    & .calendar {
+      width: 230px !important;
+      font-size: 15px !important;
+    }
+  }
+
+  ${media.tablet} {
+    & .picker {
+      position: relative;
+      left: -20%;
+      width: 200px;
+      font-size: 15px;
+    }
+    & .calendar {
+      width: 200px !important;
+      font-size: 15px !important;
+    }
+  }
+`;
+
+export const SearchBtn = styled.button`
+  position: relative;
+  left: calc(45% - 30px);
+  margin-top: 3rem;
+  width: 10rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  font-weight: border;
+  border-radius: 5px;
+  &: hover {
+    cursor: pointer;
+    color: white;
+    background-color: black;
+  }
+
+  ${media.tablet} {
+    // position:absolute;
+    // left: calc(45% - 30px);
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
   }
 `;
 
@@ -240,8 +399,8 @@ export const ModalFededBox = styled.div`
 
 export const MyFeedPreview = styled(SearchOutlined)`
   position: relative;
-  top: -85px;
-  left: 190px;
+  top: -35%;
+  left: calc(100% - 35px);
   font-size: 20px;
 `;
 
@@ -285,7 +444,7 @@ export const Hamburger = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  left: 93.5%;
+  right: calc(100% - 98.5%);
   bottom: 8%;
   width: 56px;
   height: 56px;
@@ -304,7 +463,7 @@ export const Navigation = styled.div`
   justify-content: center;
   align-items: center;
   visibility: none;
-  left: 93.5%;
+  right: calc(100% - 98%);
   bottom: 10%;
   width: 48px;
   height: 48px;
