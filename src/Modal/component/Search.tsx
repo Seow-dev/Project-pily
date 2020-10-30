@@ -21,7 +21,10 @@ import { searchApi } from "../../Api/search";
 // console.log(category, date, value) 찍히게끔
 // useEffect로 조건에 맞게끔
 
-export default function Search({ title, onClose }: displayModalProps) : JSX.Element{
+export default function Search({
+  title,
+  onClose,
+}: displayModalProps): JSX.Element {
   // Category Items Interface
 
   interface items {
@@ -39,11 +42,11 @@ export default function Search({ title, onClose }: displayModalProps) : JSX.Elem
     searchCategory: "",
   });
   const [disablePicker, setDisablePicker] = useState(false);
-  const diasbleHandler = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) =>{
-    setDisablePicker(
-      e.currentTarget.checked
-    )
-  }
+  const diasbleHandler = (
+    e: React.MouseEvent<HTMLInputElement, MouseEvent>,
+  ) => {
+    setDisablePicker(e.currentTarget.checked);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // setMagazineTitle(e.target.value);
@@ -60,7 +63,7 @@ export default function Search({ title, onClose }: displayModalProps) : JSX.Elem
   };
 
   // 2020-09 와 같이 포맷팅
-  function date_to_str(format: Date) : string {
+  function date_to_str(format: Date): string {
     let tmpMonth = "";
     var year = format.getFullYear().toString();
     var month = format.getMonth() + 1;
@@ -69,7 +72,7 @@ export default function Search({ title, onClose }: displayModalProps) : JSX.Elem
     } else {
       tmpMonth = month.toString();
     }
-    return disablePicker ? "" : (year + "-" + tmpMonth) ;
+    return disablePicker ? "" : year + "-" + tmpMonth;
   }
 
   const datehandleChange = (e: Date) => {
@@ -82,14 +85,18 @@ export default function Search({ title, onClose }: displayModalProps) : JSX.Elem
   const submitHandler = () => {
     // console.log(date_to_str(formState.searchDate)); // fotmatting 된 Date 벨류
 
-    searchApi(formState.searchTitle, date_to_str(formState.searchDate), formState.searchCategory);
+    searchApi(
+      formState.searchTitle,
+      date_to_str(formState.searchDate),
+      formState.searchCategory,
+    );
     console.log(
       "Title :",
-        formState.searchTitle,
+      formState.searchTitle,
       "Date :",
-        date_to_str(formState.searchDate),
+      date_to_str(formState.searchDate),
       "Category :",
-        formState.searchCategory    
+      formState.searchCategory,
     );
     // onClose();
   };
@@ -120,7 +127,7 @@ export default function Search({ title, onClose }: displayModalProps) : JSX.Elem
         </ModalSearchContent>
         <ModalSearchContent>
           <div>
-            <input type="checkbox" onClick={diasbleHandler}/> 모두
+            <input type="checkbox" onClick={diasbleHandler} /> 모두
           </div>
           <DatePicker
             selected={formState.searchDate}
@@ -151,5 +158,5 @@ export default function Search({ title, onClose }: displayModalProps) : JSX.Elem
         </ModalSearchContent>
       </ModalSearchBox>
     </ModalPage>
-  )
+  );
 }

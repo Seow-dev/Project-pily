@@ -57,6 +57,7 @@ export const StyledListWrap = styled.section`
   };
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(80px, 1fr));
+    overflow: auto;
   }
   // align-items: center;
   // justify-content: center;

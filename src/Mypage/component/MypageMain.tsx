@@ -10,6 +10,7 @@ import {
   ChangeButton,
   UserDetail,
   ButtonWrap,
+  ValidBox,
 } from "./CommonStyle";
 import { MainWrapper } from "../../Mainpage/component/MainPage";
 import React, { useEffect, useRef, useState } from "react";
@@ -25,6 +26,7 @@ import Error from "../../Modal/component/Error";
 import * as userApi from "../../Api/user";
 import { AxiosResponse } from "axios";
 import { getMyFeedApi } from "../../Api/feed";
+import { vaildateUsernameApi } from "../../Api/auth";
 
 const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   const [userData, setUserData] = useState<UserData>({
@@ -46,7 +48,7 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
         });
       }
     })();
-  }, []);
+  }, [userData.profileImage]);
 
   const [curMenu, setCurMenu] = useState<string>("like");
   const [curData, setCurData] = useState<DataTypes[]>([]);
@@ -72,12 +74,26 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   }, [curMenu]);
 
   const [change, setChange] = useState<boolean>(false);
-  const changeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [valid, setValid] = useState(true);
+  const changeUsername = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    if (value.length === 0) {
+      setValid(false);
+    }
     setUserData({
       ...userData,
       [name]: value,
     });
+
+    const result = await vaildateUsernameApi(value);
+    if (result.status === 200) {
+      if (!result.data.isValidate) {
+        setValid(false);
+      } else {
+        setValid(true);
+      }
+    }
   };
   const updateUsername = async () => {
     await userApi.updateUserNameApi(userData.username);
@@ -91,9 +107,11 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
     if (e.currentTarget.files) {
       const formData = new FormData();
       formData.append("img", e.currentTarget.files[0]);
-      await userApi
-        .updateImgApi(formData)
-        .then((res: AxiosResponse) => res.data);
+      const result = await userApi.updateImgApi(formData);
+
+      if (result.status === 200) {
+        window.location.reload();
+      }
     }
   };
 
@@ -113,16 +131,23 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
             <UserImg
               ref={uploadedImage}
               src={userData.profileImage}
-              alt="이미지를 변경하시려면 클릭하세요"
+              alt="유저 이미지"
             />
             <UserDetail>
               {change ? (
                 <>
-                  <UserNameInput
-                    name="username"
-                    value={userData.username}
-                    onChange={changeUsername}
-                  />
+                  <ValidBox>
+                    <UserNameInput
+                      name="username"
+                      value={userData.username}
+                      onChange={changeUsername}
+                    />
+                    <span style={valid ? { color: "green" } : { color: "red" }}>
+                      {valid
+                        ? "사용 가능한 닉네임 입니다."
+                        : "사용 불가능한 닉네임 입니다."}
+                    </span>
+                  </ValidBox>
                   <ButtonWrap>
                     <ChangeButton
                       save
@@ -131,7 +156,6 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
                           imageUploader.current.click();
                         }
                       }}
-                      style={{ marginRight: "12px" }}
                     >
                       이미지 변경
                     </ChangeButton>
@@ -151,7 +175,6 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
                           imageUploader.current.click();
                         }
                       }}
-                      style={{ marginRight: "12px" }}
                     >
                       이미지 변경
                     </ChangeButton>

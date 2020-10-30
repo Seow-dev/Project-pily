@@ -15,9 +15,12 @@ import { SearchOutlined } from "@ant-design/icons";
 
 export const LoginModal = styled.a`
   position: absolute;
-  top: 21px;
-  right: 65px;
-  fontsize: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  top: 20px;
+  right: 85px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #343a40;
   &:hover {
     color: #ff0000;
   }
@@ -91,11 +94,11 @@ export const ModalContent = styled.div`
 
 export const StyledSearchOutlined = styled(SearchOutlined)`
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: 4px;
+  top: 5px;
   margin-top: 20px;
   margin-right: 30px;
-  font-size: 23px;
+  font-size: 1.4rem;
 `;
 
 // 1a. Search Modal Page
@@ -145,8 +148,6 @@ export const ModalLoginBox = styled.div`
   background-color: #fff;
   cursor: auto;
 `;
-
-
 
 export const ModalLoginContent = styled.div`
   position: relative;
@@ -235,7 +236,6 @@ export const ModalFededBox = styled.div`
   cursor: auto;
 `;
 
-
 // 4a. Preivew on MyPage
 
 export const MyFeedPreview = styled(SearchOutlined)`
@@ -244,7 +244,6 @@ export const MyFeedPreview = styled(SearchOutlined)`
   left: 190px;
   font-size: 20px;
 `;
-
 
 //5a. ActionBtn
 

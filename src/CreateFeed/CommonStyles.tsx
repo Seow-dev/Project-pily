@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Rate } from "antd";
+import { media } from "../Common/DeviceSize";
 
 export const FeedLabel = styled.h2`
   font-size: 2rem;
@@ -10,6 +11,14 @@ export const FeedLabel = styled.h2`
   span {
     font-size: 2rem;
     font-weight: 600;
+    ${media.desktop} {
+      font-size: 1.5rem;
+    }
+  }
+
+  ${media.desktop} {
+    font-size: 1.5rem;
+    padding-left: 1rem;
   }
 `;
 export const Head = styled.section`
@@ -96,6 +105,10 @@ export const Option = styled.section`
   align-items: center;
   border: 1px solid black;
   box-shadow: #ced4da 0 1px 2px;
+
+  ${media.tablet} {
+    flex-direction: column;
+  }
 `;
 export const OptionWrap = styled.section`
   width: 45%;
@@ -112,6 +125,18 @@ export const OptionWrap = styled.section`
   }
   div:nth-child(1) {
     margin-bottom: 2.5rem;
+
+    ${media.tablet} {
+      margin-bottom: 0;
+    }
+  }
+
+  ${media.tablet} {
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-bottom: 2rem;
   }
 `;
 export const Labels = styled.h3`
@@ -119,6 +144,11 @@ export const Labels = styled.h3`
   font-weight: 600;
   margin: 0;
   margin-bottom: 20px;
+
+  ${media.tablet} {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
 `;
 export const Subtitle = styled.input`
   width: 80%;
@@ -133,16 +163,33 @@ export const Subtitle = styled.input`
     color: #495057;
     opacity: 0.4;
     font-weight: 600;
+    ${media.tablet} {
+      font-weight: 400;
+    }
   }
   &:-ms-input-placeholder {
     color: #495057;
     opacity: 0.4;
     font-weight: 600;
+    ${media.tablet} {
+      font-weight: 400;
+    }
+  }
+
+  ${media.tablet} {
+    font-size: 0.9rem;
+    border-bottom: 1px solid #495057;
+    padding-bottom: 6px;
   }
 `;
 export const MapArea = styled.div`
   width: 45%;
   height: 250px;
+
+  ${media.tablet} {
+    width: 100%;
+    height: 300px;
+  }
 `;
 
 export const EditArea = styled.section`
@@ -171,4 +218,32 @@ export const SaveButton = styled.button`
 export const StyledRate = styled(Rate)`
   font-size: 2.2rem;
   height: 50px;
+
+  ${media.tablet} {
+    font-size: 1.5rem;
+  }
+`;
+
+export const Wrapdiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  ${media.tablet} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+export const MapInput = styled.input`
+  font-size: 1rem;
+  margin: 0 0 15px 20px;
+  border: none;
+  border-bottom: 1px solid #343a40;
+  padding-bottom: 5px;
+  width: fit-content;
+
+  ${media.tablet} {
+    font-size: 0.8rem;
+    margin: 0 0 15px 0;
+  }
 `;

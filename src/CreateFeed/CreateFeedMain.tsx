@@ -15,6 +15,8 @@ import {
   Labels,
   StyledRate,
   MapArea,
+  Wrapdiv,
+  MapInput,
 } from "./CommonStyles";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import Map from "./Map";
@@ -145,15 +147,9 @@ function CreateFeedMain({ history }: RouteComponentProps) {
                   </div>
                 </OptionWrap>
                 <MapArea>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "flex-start",
-                    }}
-                  >
+                  <Wrapdiv>
                     <Labels>피드 위치 정보</Labels>
-                    <input
+                    <MapInput
                       placeholder="위치 이름을 기록하세요."
                       value={location.location_name}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -162,16 +158,8 @@ function CreateFeedMain({ history }: RouteComponentProps) {
                           location_name: e.target.value,
                         })
                       }
-                      style={{
-                        fontSize: "1rem",
-                        margin: "0 0 15px 20px",
-                        border: "none",
-                        borderBottom: "1px solid #343a40",
-                        paddingBottom: "5px",
-                        width: "fit-content",
-                      }}
                     />
-                  </div>
+                  </Wrapdiv>
                   <Map setLocation={setLocation} />
                 </MapArea>
               </Option>
