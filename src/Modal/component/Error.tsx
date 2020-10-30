@@ -2,6 +2,7 @@ import styled from "styled-components";
 // import { MainWrapper } from "../../Mainpage/component/MagazineGrid";
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { media } from "../../Common/DeviceSize";
 
 function Error({ history }: RouteComponentProps) {
   return (
@@ -19,6 +20,9 @@ const ErrorDiv = styled.div`
   width: 100%;
   height: 100vh;
 
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,6 +33,11 @@ const ErrorMessage = styled.h1`
   margin-bottom: 2rem;
   font-size: 3rem;
   font-weight: 700;
+
+  ${media.tablet} {
+    font-size: 2rem;
+    font-weight: 600;
+  }
 `;
 const GobackButton = styled.button`
   padding: 1rem;
@@ -38,4 +47,9 @@ const GobackButton = styled.button`
   background-color: #adb5bd;
   width: fit-content;
   cursor: pointer;
+
+  ${media.tablet} {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
 `;

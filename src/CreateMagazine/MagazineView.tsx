@@ -139,11 +139,6 @@ export default function MagazineView({
           <IoIosRefresh style={{ fontSize: "0.8rem" }} />
           {vertical ? "가로형 매거진" : "세로형 매거진"}
         </M.PublishButton>
-        {/* ) : (
-          <M.PublishButton onClick={handleView}>
-            <IoIosRefresh style={{ fontSize: "0.8rem" }} /> 세로형 매거진
-          </M.PublishButton>
-        )} */}
         <div>
           <M.PublishButton onClick={handlePreivew}>
             <VscOpenPreview /> 미리보기

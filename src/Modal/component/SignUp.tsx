@@ -29,6 +29,7 @@ export default function SignUp({
       if (result.status === 200) {
         setNick("");
         onClose();
+        window.location.reload();
       } else {
         alert("닉네임을 다시 정해주세요.");
         setNick("");

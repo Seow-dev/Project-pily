@@ -114,6 +114,13 @@ const MainPhrase = styled.h2`
   font-weight: 700;
   font-family: "Noto Serif KR", serif;
   color: #ced4da;
+
+  ${media.desktop} {
+    font-size: 1.8rem;
+  }
+  ${media.tablet} {
+    font-size: 1.5rem;
+  }
 `;
 const MainLabel = styled.h3`
   font-size: 1.8rem;
@@ -123,6 +130,15 @@ const MainLabel = styled.h3`
   padding-bottom: 8px;
   width: fit-content;
   border-bottom: 4px solid #343a40;
+
+  ${media.desktop} {
+    font-size: 1.4rem;
+    border-bottom: 2px solid #343a40;
+  }
+  ${media.tablet} {
+    font-size: 1rem;
+    border-bottom: 1px solid #343a40;
+  }
 `;
 export const StyledPagination = styled(Pagination)`
   text-align: center;
@@ -188,6 +204,15 @@ const Menus = styled.li<{ cur?: boolean }>`
   &:hover {
     transform: scale(1.1);
     transition: transform 0.4s linear;
+  }
+
+  ${media.desktop} {
+    font-size: 1.2rem;
+  }
+
+  ${media.tablet} {
+    font-size: 1rem;
+    padding: 0;
   }
 `;
 const SlideWrap = styled.section`

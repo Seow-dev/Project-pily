@@ -13,6 +13,8 @@ export const MagazineViewWrap = styled.section`
   border-radius: 8px;
   background-color: #fff;
   box-shadow: #868e96 0 1px 4px;
+
+  min-width: 600px;
 `;
 export const ButtonBar = styled.section`
   display: flex;
@@ -35,6 +37,11 @@ export const PublishButton = styled.button`
     font-size: 0.8rem;
     margin-right: 6px;
   }
+
+  ${media.tablet} {
+    font-size: 0.8rem;
+    padding: 10px 6px;
+  }
 `;
 export const PublishOption = styled.div`
   width: 100%;
@@ -45,10 +52,10 @@ export const PublishOption = styled.div`
   box-shadow: #dee2e6 0 1px 4px;
 
   ${media.desktop} {
-    height: 240px;
+    height: 320px;
     padding: 1rem;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
   }
 `;
 export const OptionHalf = styled.div`
@@ -59,7 +66,8 @@ export const OptionHalf = styled.div`
 
   ${media.desktop} {
     width: 100%;
-    // justify-content: space-between;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 `;
 export const OptionItem = styled.div`
@@ -73,6 +81,10 @@ export const OptionItem = styled.div`
     font-weight: 500;
     margin: 0;
     margin-bottom: 10px;
+
+    ${media.tablet} {
+      font-size: 0.9rem;
+    }
   }
 `;
 export const StyledRadio = styled(Radio)`
@@ -82,6 +94,14 @@ export const StyledRadio = styled(Radio)`
   svg {
     font-size: 0.8rem;
     font-weight: 600;
+    ${media.tablet} {
+      font-size: 0.6rem;
+    }
+  }
+  label {
+    ${media.tablet} {
+      padding: 0 5px;
+    }
   }
 `;
 export const StyledSelect = styled(Select)`
@@ -96,6 +116,10 @@ export const MagazineOptionInput = styled.input`
   text-align: left;
   border: none;
   border-bottom: 2px solid #343a40;
+
+  ${media.tablet} {
+    width: 70%;
+  }
 `;
 export const Uploadbox = styled.div`
   display: flex;
@@ -121,6 +145,10 @@ export const UploadButton = styled.button`
     color: #fff;
     background-color: #69db7c;
     transition: color 0.3s, background-color 0.3s ease;
+  }
+
+  ${media.tablet} {
+    font-size: 0.8rem;
   }
 `;
 export const UploadName = styled.div`

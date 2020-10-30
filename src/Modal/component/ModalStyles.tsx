@@ -17,9 +17,12 @@ import { OmitProps } from "antd/lib/transfer/ListBody";
 
 export const LoginModal = styled.a`
   position: absolute;
-  top: 21px;
-  right: 65px;
-  fontsize: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  top: 20px;
+  right: 85px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #343a40;
   &:hover {
     color: #ff0000;
   }
@@ -34,7 +37,7 @@ export const ModalPage = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  
+
   z-index: 3;
 `;
 export const ModalOverlay = styled.div`
@@ -54,7 +57,7 @@ export const ModalBox = styled.div`
   padding: 50px;
   box-sizing: border-box;
   border-radius: 10px;
-  
+
   background-color: #fff;
   cursor: auto;
 `;
@@ -95,12 +98,12 @@ export const ModalContent = styled.div`
 
 export const StyledSearchOutlined = styled(SearchOutlined)`
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: 4px;
+  top: 5px;
   margin-top: 20px;
   margin-right: 30px;
-  font-size: 23px;
-`
+  font-size: 1.4rem;
+`;
 
 // 1a. Search Modal Page
 
@@ -114,8 +117,7 @@ export const ModalSearchBox = styled.div`
   // background-image: url(https://user-images.githubusercontent.com/66622150/97462167-cb774900-1981-11eb-944f-ce10937378e5.jpg);
   // background-size: 100% 100%;
   // background-repeat: no-repeat;
-
-`
+`;
 export const ModalSearchContent = styled.div`
   display: flex;
   align-items: center;
@@ -124,17 +126,16 @@ export const ModalSearchContent = styled.div`
   color: #6b6b6b;
   font-size: 16px;
 
-  ${media.tablet}{
+  ${media.tablet} {
     // width: 30rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
-`
+`;
 export const SearchInput = styled.input`
   height: 50px;
-  font-size:30px;
+  font-size: 30px;
   width: 50rem;
   color: black;
   border-top: none;
@@ -146,13 +147,11 @@ export const SearchInput = styled.input`
     border-bottom-width: 3px;
   }
 
-  ${media.tablet}{
+  ${media.tablet} {
     width: 35rem;
     font-size: 26px;
   }
-  
-
-`
+`;
 
 export const ModalSearchWrapper = styled.div`
   position: relative;
@@ -162,16 +161,13 @@ export const ModalSearchWrapper = styled.div`
   margin-top: 10rem;
   right: 2rem;
 
-  ${media.tablet}{
+  ${media.tablet} {
     min-width: 570px;
   }
-
-`
-
+`;
 
 export const ModalSearchDateSelector = styled.div`
-
-  position:relative;
+  position: relative;
   top: -3rem;
   left: 3.3rem;
   font-size: 20px;
@@ -183,27 +179,27 @@ export const ModalSearchDateSelector = styled.div`
 
   > input + label {
     display: inline-block;
-    margin-left : 0.5rem;
+    margin-left: 0.5rem;
     width: 20px;
     height: 20px;
     border: 3px solid #bcbcbc;
-    cursor:pointer;
+    cursor: pointer;
   }
 
   > input:checked + label {
-    background-color : grey;
+    background-color: grey;
   }
   // > input:checked + & .picker {
   //   color: red !important;
   // }
 
-  . picker{
+  . picker {
     font-size: ${props => (props.defaultChecked ? "1px" : "20px")};
     color: ${props => (props.defaultChecked ? "#fff" : "#000")};
   }
-  ${media.desktop}{
+  ${media.desktop} {
     font-size: 18px;
-    top:-3.3rem;
+    top: -3.3rem;
     width: 290px;
     left: 3rem;
     > input + label {
@@ -212,9 +208,9 @@ export const ModalSearchDateSelector = styled.div`
     }
   }
 
-  ${media.tablet}{
+  ${media.tablet} {
     font-size: 15px;
-    top:-3.6rem;
+    top: -3.6rem;
     width: 270px;
     left: 2.6rem;
 
@@ -223,58 +219,55 @@ export const ModalSearchDateSelector = styled.div`
       top: 3px;
     }
   }
+`;
 
+export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
+  transition: all 0.3s;
 
-`
-
-export const ModalSearchOptions = styled.div<{dis ?: boolean}>`
-
-transition: all 0.3s;
-
-& .picker{
+  & .picker {
     width: 300px;
     height: 36px;
     font-size: 20px;
-    border-top:none;
-    border-left:none;
-    border-right:none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     border-bottom: 2px solid black;
     text-indent: 0.5rem;
     cursor: ${props => (props.dis ? "not-allowed" : "pointer")};
-    color: ${props => ( props.dis ? "red" : "black" )};
+    color: ${props => (props.dis ? "red" : "black")};
   }
-  
+
   font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  ${media.desktop}{
-    & .picker{
+
+  ${media.desktop} {
+    & .picker {
       position: relative;
       left: -20%;
       width: 250px;
       font-size: 15px;
     }
-    & .calendar{
+    & .calendar {
       width: 230px !important;
       font-size: 15px !important;
     }
   }
 
-  ${media.tablet}{
-    & .picker{
+  ${media.tablet} {
+    & .picker {
       position: relative;
       left: -20%;
       width: 200px;
       font-size: 15px;
     }
-    & .calendar{
+    & .calendar {
       width: 200px !important;
       font-size: 15px !important;
     }
   }
-`
+`;
 
 export const SearchBtn = styled.button`
   position: relative;
@@ -285,23 +278,20 @@ export const SearchBtn = styled.button`
   font-size: 1.5rem;
   font-weight: border;
   border-radius: 5px;
-  &: hover{
-    cursor:pointer;
+  &: hover {
+    cursor: pointer;
     color: white;
     background-color: black;
   }
 
-  ${media.tablet}{
+  ${media.tablet} {
     // position:absolute;
     // left: calc(45% - 30px);
     // display: flex;
     // align-items: center;
     // justify-content: center;
   }
-
-`
-
-
+`;
 
 // 2a. Social Login Button
 // KAKAO refer : 컨테이너 #FEE500 / 심볼 #000000 / 레이블 #000000 85% / border radius 12px /
@@ -405,7 +395,6 @@ export const ModalFededBox = styled.div`
   cursor: auto;
 `;
 
-
 // 4a. Preivew on MyPage
 
 export const MyFeedPreview = styled(SearchOutlined)`
@@ -414,7 +403,6 @@ export const MyFeedPreview = styled(SearchOutlined)`
   left: calc(100% - 35px);
   font-size: 20px;
 `;
-
 
 //5a. ActionBtn
 

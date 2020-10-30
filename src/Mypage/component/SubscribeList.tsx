@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { StyledListWrap } from "./MypageList";
 import { UserData } from "../../Common/Interface";
 import { Link } from "react-router-dom";
+import { media } from "../../Common/DeviceSize";
 
 interface props {
   listData: UserData[];
@@ -42,12 +43,18 @@ const SbUserCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-right: 1rem;
-  width: 200px;
+  width: 100%;
+  height: 50%;
   padding: 15px;
   border-radius: 5px;
   border: 1px solid #495057;
   box-shadow: #ced4da 0 1px 4px;
+
+  ${media.tablet} {
+    height: 100%;
+  }
 `;
 const SbUserImage = styled.img`
   width: 72px;
@@ -59,6 +66,11 @@ const SbUserImage = styled.img`
     opacity: 1;
     transition: opacity 0.3s ease;
   }
+
+  ${media.desktop} {
+    width: 60px;
+    height: 60px;
+  }
 `;
 const SbUserName = styled.h3`
   margin: 0;
@@ -66,6 +78,10 @@ const SbUserName = styled.h3`
   font-size: 1.2rem;
   font-weight: 600;
   text-align: center;
+
+  ${media.desktop} {
+    font-size: 1rem;
+  }
 `;
 const SbDetailButton = styled.button`
   font-size: 1rem;
@@ -86,6 +102,11 @@ const SbDetailButton = styled.button`
   a {
     color: inherit;
   }
+
+  ${media.desktop} {
+    font-size: 0.8rem;
+    width: 110px;
+  }
 `;
 const SbCancelButton = styled.button`
   font-size: 1rem;
@@ -105,5 +126,10 @@ const SbCancelButton = styled.button`
 
   a {
     color: inherit;
+  }
+
+  ${media.desktop} {
+    font-size: 0.8rem;
+    width: 110px;
   }
 `;

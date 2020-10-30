@@ -22,13 +22,12 @@ import { results } from "../../Common/SearchDummy";
 import { displayModalProps, DataTypes } from "../../Common/Interface";
 import { searchApi } from "../../Api/search";
 
-
 interface SearchData extends displayModalProps{
   getSearchData : (data:DataTypes[]) => void;
 }
 
-
 export default function Search({ getSearchData, onClose }: SearchData) : JSX.Element{
+
   // Category Items Interface
 
   interface items {
@@ -46,11 +45,11 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
     searchCategory: "",
   });
   const [disablePicker, setDisablePicker] = useState(false);
-  const diasbleHandler = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) =>{
-    setDisablePicker(
-      e.currentTarget.checked
-    )
-  }
+  const diasbleHandler = (
+    e: React.MouseEvent<HTMLInputElement, MouseEvent>,
+  ) => {
+    setDisablePicker(e.currentTarget.checked);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
@@ -66,7 +65,7 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
   };
 
   // 2020-09 와 같이 포맷팅
-  function date_to_str(format: Date) : string {
+  function date_to_str(format: Date): string {
     let tmpMonth = "";
     var year = format.getFullYear().toString();
     var month = format.getMonth() + 1;
@@ -75,7 +74,7 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
     } else {
       tmpMonth = month.toString();
     }
-    return disablePicker ? "" : (year + "-" + tmpMonth) ;
+    return disablePicker ? "" : year + "-" + tmpMonth;
   }
 
   const datehandleChange = (e: Date) => {
@@ -91,17 +90,8 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
     // console.log(date_to_str(formState.searchDate)); // fotmatting 된 Date 벨류
 
     const result = await searchApi(formState.searchTitle, date_to_str(formState.searchDate), formState.searchCategory);
-
+    
     getSearchData(result.data.results as DataTypes[]) ;
-    // console.log("results: ",result.data.results);
-    // console.log(
-    //   "Title :",
-    //     formState.searchTitle,
-    //   "Date :",
-    //     date_to_str(formState.searchDate),
-    //   "Category :",
-    //     formState.searchCategory    
-    // );
     // onClose();
   };
 
@@ -121,19 +111,19 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
       <ModalSearchBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
         {/* <ModalTitle>{title}</ModalTitle> */}
-          <ModalSearchContent>
-            <SearchInput
-              id="searchTitle"
-              placeholder="검색어를 입력해주세요"
-              value={formState.searchTitle}
-              onChange={handleChange}
-              />
-          </ModalSearchContent>
+        <ModalSearchContent>
+          <SearchInput
+            id="searchTitle"
+            placeholder="검색어를 입력해주세요"
+            value={formState.searchTitle}
+            onChange={handleChange}
+          />
+        </ModalSearchContent>
         <ModalSearchWrapper>
           <ModalSearchDateSelector>
-              <span>모든 날짜선택</span>
-              <input id="selectDate" type="checkbox"  onClick={diasbleHandler}/>
-              <label htmlFor="selectDate"></label>
+            <span>모든 날짜선택</span>
+            <input id="selectDate" type="checkbox" onClick={diasbleHandler} />
+            <label htmlFor="selectDate"></label>
           </ModalSearchDateSelector>
           <ModalSearchOptions dis={disablePicker}>
             <DatePicker
@@ -143,7 +133,7 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
               dateFormat="MMM/yyyy"
               showMonthYearPicker
               disabled={disablePicker}
-              />
+            />
             <Select
               className="calendar"
               placeholder="카테고리를 선택하세요"
@@ -152,7 +142,7 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
               bordered={false}
               allowClear
               defaultValue="All"
-              >
+            >
               {items.map(val => {
                 return (
                   <Option id="category" key={val.id} value={val.id}>
@@ -163,22 +153,21 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
             </Select>
           </ModalSearchOptions>
         </ModalSearchWrapper>
-          <SearchBtn type="submit" onClick={submitHandler}>
-            검색
-          </SearchBtn>
+        <SearchBtn type="submit" onClick={submitHandler}>
+          검색
+        </SearchBtn>
       </ModalSearchBox>
     </ModalPage>
-  )
+  );
 }
 
-
-const SelectStyle={
-  width:"250px",
-  marginLeft:"2rem",
+const SelectStyle = {
+  width: "250px",
+  marginLeft: "2rem",
   color: "black",
   borderTop: "none",
   borderLeft: "none",
   borderRight: "none",
   borderBottom: "2px solid black",
   fontSize: "20px",
-}
+};
