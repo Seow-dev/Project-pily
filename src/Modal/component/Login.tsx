@@ -12,12 +12,12 @@ import {
 } from "./ModalStyles";
 import closeIcon from "../../Common/close.png";
 import { displayModalProps } from "../../Common/Interface";
+import { baseUrl } from "../../Common/base";
 
-function Login({ title, onClose, toSignUp }: displayModalProps) : JSX.Element {
-  const baseurl = "http://localhost:4000/signin";
+function Login({ title, onClose, toSignUp }: displayModalProps): JSX.Element {
   const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget;
-    window.open(`${baseurl}/${value}`);
+    window.open(`${baseUrl}/signin/${value}`);
   };
 
   return (
@@ -43,7 +43,7 @@ function Login({ title, onClose, toSignUp }: displayModalProps) : JSX.Element {
         </div>
       </ModalLoginBox>
     </ModalPage>
-  )
+  );
 }
 
 export default Login;

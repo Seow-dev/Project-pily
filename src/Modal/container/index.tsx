@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Search from "../component/Search";
 
-import { 
+import {
   LoginModal,
   StyledSearchOutlined,
-  MyFeedPreview } from '../component/ModalStyles';
+  MyFeedPreview,
+} from "../component/ModalStyles";
 import Login from "../component/Login";
 import Action from "../component/Action";
 import SignUp from "../component/SignUp";
@@ -14,13 +15,10 @@ import { signOut } from "../../Modules/auth";
 import { signOutApi } from "../../Api/auth";
 import { PreviewModal } from "../component/Preview";
 
-
-interface PreaviewState{
-  title : string;
+interface PreaviewState {
+  title: string;
   content: string;
 }
-
-
 
 export const Modalpage = () => {
   const [isSearchModalOpen, setSearchModalState] = useState(false);
@@ -47,58 +45,47 @@ export const Modalpage = () => {
   return (
     <div>
       {loginState ? (
-        <LoginModal onClick={handleSignout}>Logout</LoginModal>
+        <LoginModal onClick={handleSignout} style={{ color: "#ff0000" }}>
+          Logout
+        </LoginModal>
       ) : (
         <>
           <LoginModal onClick={loginToggleModal}>Login</LoginModal>
-          { isLoginModalOpen ? (
+          {isLoginModalOpen ? (
             <Login
               title={"Login"}
               onClose={loginToggleModal}
               toSignUp={signUpToggleModal}
             />
-          ) : (null) }
+          ) : null}
         </>
       )}
 
-      <StyledSearchOutlined
-        onClick={searchToggleModal}
-      />
-      { isSearchModalOpen ? (
-        <Search
-          title={"Search"}
-          onClose={searchToggleModal}
-        />
-      ) : (null)}
+      <StyledSearchOutlined onClick={searchToggleModal} />
+      {isSearchModalOpen ? (
+        <Search title={"Search"} onClose={searchToggleModal} />
+      ) : null}
       <Action />
-      { isSignUpModalOpen  ? (
-        <SignUp
-          title={"회원가입"}
-          onClose={signUpToggleModal}
-        />
-      ) : (null)}
+      {isSignUpModalOpen ? (
+        <SignUp title={"회원가입"} onClose={signUpToggleModal} />
+      ) : null}
     </div>
   );
 };
 
-
-export const PreviewMyPage = ({title, content}:PreaviewState) => {
-
+export const PreviewMyPage = ({ title, content }: PreaviewState) => {
   const [isPreviewModalOpen, setPreviewModalState] = useState(false);
   const previewToggleModal = () => setPreviewModalState(!isPreviewModalOpen);
 
-
-  return(
+  return (
     <>
-      <MyFeedPreview
-        onClick={previewToggleModal}
-      />
-      <PreviewModal 
+      <MyFeedPreview onClick={previewToggleModal} />
+      <PreviewModal
         title={title}
         content={content}
         isOpen={isPreviewModalOpen}
         onClose={previewToggleModal}
       />
     </>
-  )
-}
+  );
+};

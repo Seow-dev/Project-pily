@@ -1,3 +1,5 @@
+import { RouteComponentProps } from "react-router-dom";
+
 // 매거진 데이터 타입
 export interface DataTypes {
   megazineId: number;

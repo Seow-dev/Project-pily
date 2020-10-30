@@ -15,11 +15,17 @@ import {
   Labels,
   StyledRate,
   MapArea,
+  Wrapdiv,
+  MapInput,
 } from "./CommonStyles";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import Map from "./Map";
 import Editor from "./Editor";
-import { FeedContents, FeedDataTypes, locationProps } from "../Common/Interface";
+import {
+  FeedContents,
+  FeedDataTypes,
+  locationProps,
+} from "../Common/Interface";
 import { useSelector } from "react-redux";
 import { RootState } from "../Modules";
 import { RouteComponentProps, withRouter } from "react-router-dom";
@@ -70,13 +76,13 @@ function CreateFeedMain({ history }: RouteComponentProps) {
         feedContentsData.content === undefined
       )
     ) {
-      const data:FeedDataTypes = {
+      const data: FeedDataTypes = {
         title: feedContentsData.title,
         content: feedContentsData.content,
-        subtitle : feedContentsData.subTitle,
-        location : mapLocation,
-        stars : stars,
-      }
+        subtitle: feedContentsData.subTitle,
+        location: mapLocation,
+        stars: stars,
+      };
       // submit Action
       // 기존 contents들과 stars, map location을 같이 보내달라
       // console.log("Data is ", feedContentsData);
@@ -92,7 +98,7 @@ function CreateFeedMain({ history }: RouteComponentProps) {
 
   return (
     <>
-      {/* {success ? ( */}
+      {success ? (
         <MainWrapper>
           <ModalCloseImg src={closeIcon} onClick={redirectToMain} />
           <FeedLabel>
@@ -145,33 +151,19 @@ function CreateFeedMain({ history }: RouteComponentProps) {
                   </div>
                 </OptionWrap>
                 <MapArea>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "flex-start",
-                    }}
-                  >
+                  <Wrapdiv>
                     <Labels>피드 위치 정보</Labels>
-                    <input
+                    <MapInput
                       placeholder="위치 이름을 기록하세요."
-                      value={location.location_name}
+                      value={mapLocation.location_name}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setLocation({
-                          ...location,
+                          ...mapLocation,
                           location_name: e.target.value,
                         })
                       }
-                      style={{
-                        fontSize: "1rem",
-                        margin: "0 0 15px 20px",
-                        border: "none",
-                        borderBottom: "1px solid #343a40",
-                        paddingBottom: "5px",
-                        width: "fit-content",
-                      }}
                     />
-                  </div>
+                  </Wrapdiv>
                   <Map setLocation={setLocation} />
                 </MapArea>
               </Option>
@@ -193,9 +185,9 @@ function CreateFeedMain({ history }: RouteComponentProps) {
             ></div>
           </div> */}
         </MainWrapper>
-      {/* ) : (
+      ) : (
         <Error />
-      )} */}
+      )}
     </>
   );
 }
