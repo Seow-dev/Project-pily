@@ -57,6 +57,15 @@ export interface OptionProps {
   date: { Moment: moment.Moment | null; dateString: string };
 }
 
+// searchDateProps
+
+export interface searchDateProps{
+  Moment: moment.Moment | null;
+  dateString: string;
+}
+
+
+
 // magazineSubmit
 export interface MagazineDataTypes {
   isVertical: boolean;

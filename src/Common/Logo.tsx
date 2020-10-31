@@ -11,7 +11,7 @@ export const Logo = () => {
   );
 };
 
-const LogoStyles = styled.h2`
+const LogoStyles = styled.span`
   font-family: "Abril Fatface", cursive;
   position: relative;
   top: 1rem;

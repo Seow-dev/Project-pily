@@ -402,6 +402,7 @@ export const detailDummy: detailTypes = {
 };
 
 export const CATEGORIES = [
+  "All",
   "그림",
   "IT",
   "사진",
@@ -415,7 +416,7 @@ export const CATEGORIES = [
 ];
 const generateCategory = () => {
   const result = [];
-  let index = 1;
+  let index = 0;
   for (let prop of CATEGORIES) {
     result.push({ id: index, name: prop });
     index += 1;

@@ -2,19 +2,21 @@ import React from "react";
 import {
   ModalPage,
   ModalLoginBox,
-  ModalTitle,
   ModalLoginContent,
   ModalCloseImg,
   BtnWrap,
   KakaoBtn,
   NaverBtn,
   GoogleBtn,
+  LoginParagraph,
+  LoginLogo,
+  SearchB2,
 } from "./ModalStyles";
 import closeIcon from "../../Common/close.png";
 import { displayModalProps } from "../../Common/Interface";
 import { baseUrl } from "../../Common/base";
 
-function Login({ title, onClose, toSignUp }: displayModalProps): JSX.Element {
+function Login({ onClose, toSignUp }: displayModalProps): JSX.Element {
   const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget;
     window.open(`${baseUrl}/signin/${value}`);
@@ -24,9 +26,10 @@ function Login({ title, onClose, toSignUp }: displayModalProps): JSX.Element {
     <ModalPage>
       <ModalLoginBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
-        <ModalTitle>{title}</ModalTitle>
         <ModalLoginContent>
           <BtnWrap>
+            <LoginLogo src="/image/logo.png" />
+            <LoginParagraph>일상을 발행하다,<SearchB2>PILY</SearchB2></LoginParagraph>
             <KakaoBtn value="kakao" onClick={onClickHandler}>
               KAKAO LOGIN
             </KakaoBtn>
