@@ -17,29 +17,35 @@ import {
   StyledDatePicker,
 } from "./ModalStyles";
 import { Select } from "antd";
-import { displayModalProps, DataTypes, categoryTypes, searchDateProps } from "../../Common/Interface";
+import {
+  displayModalProps,
+  DataTypes,
+  categoryTypes,
+  searchDateProps,
+} from "../../Common/Interface";
 import { searchApi } from "../../Api/search";
 import { CATEGORY } from "../../Common/Dummy";
 import { SelectValue } from "antd/lib/select";
 import "antd/dist/antd.css";
 
-
-interface SearchData extends displayModalProps{
-  getSearchData : (data:DataTypes[]) => void;
+interface SearchData extends displayModalProps {
+  getSearchData: (data: DataTypes[]) => void;
 }
 
-export default function Search({ getSearchData, onClose }: SearchData) : JSX.Element{
-
+export default function Search({
+  getSearchData,
+  onClose,
+}: SearchData): JSX.Element {
   // Category Items Interface
 
   const { Option } = Select;
   const [formState, setFormState] = useState({
-    searchTitle: ""
+    searchTitle: "",
   });
   const [date, setDate] = useState<searchDateProps>({
     Moment: null,
-    dateString: ""
-  })
+    dateString: "",
+  });
 
   const [disablePicker, setDisablePicker] = useState(false);
   const diasbleHandler = (
@@ -55,33 +61,27 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
     });
   };
 
-
   const [category, setCategory] = useState<categoryTypes[]>([]);
   const [cur, setCur] = useState(0);
   useEffect(() => {
     setCategory(CATEGORY);
   }, []);
 
-
-
   const submitHandler = async () => {
-    const result = await searchApi(
-      formState.searchTitle,
-      date.dateString
-    );
-    getSearchData(result.data.results as DataTypes[]) ;
+    const result = await searchApi(formState.searchTitle, date.dateString, cur);
+    getSearchData(result.data.results as DataTypes[]);
     // onClose();
   };
-  
 
   return (
     <ModalPage>
       <ModalSearchBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
-          <SearchParagraph>당신의 일상을 
-            <SearchB1> 발행</SearchB1>하다.
-            <SearchB2>PILY</SearchB2>
-          </SearchParagraph>
+        <SearchParagraph>
+          당신의 일상을
+          <SearchB1> 발행</SearchB1>하다.
+          <SearchB2>PILY</SearchB2>
+        </SearchParagraph>
         <ModalSearchContent>
           <SearchInput
             id="searchTitle"
@@ -90,13 +90,13 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
             onChange={handleChange}
           />
         </ModalSearchContent>
-          <ModalSearchWrapper>
-            <ModalSearchDateSelector>
-              <span>모든 날짜선택</span>
-              <input id="selectDate" type="checkbox" onClick={diasbleHandler} />
-              <label htmlFor="selectDate"></label>
-            </ModalSearchDateSelector>
-            <ModalSearchOptions dis={disablePicker}>
+        <ModalSearchWrapper>
+          <ModalSearchDateSelector>
+            <span>모든 날짜선택</span>
+            <input id="selectDate" type="checkbox" onClick={diasbleHandler} />
+            <label htmlFor="selectDate"></label>
+          </ModalSearchDateSelector>
+          <ModalSearchOptions dis={disablePicker}>
             <StyledDatePicker
               className="picker"
               value={date.Moment}

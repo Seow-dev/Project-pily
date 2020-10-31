@@ -4,8 +4,9 @@ import * as FeedStyles from "./styles/FeedViewStyles";
 import { FeedTypes, OptionProps } from "../Common/Interface";
 import { animated } from "react-spring";
 import { GrFormClose } from "react-icons/gr";
-import { feedResult, result } from "../Common/Dummy";
+import { feedResult } from "../Common/Dummy";
 import "react-quill/dist/quill.snow.css";
+import { getMyFeedApi } from "../Api/feed";
 
 interface props {
   styles: any;
@@ -28,28 +29,35 @@ function FeedView({
     query: "",
     date: { Moment: null, dateString: "" },
   });
-  const [feedData, setFeedData] = useState<FeedTypes[]>([]);
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setOption(prev => ({ ...prev, query: value }));
   };
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+  const [feedData, setFeedData] = useState<FeedTypes[]>([]);
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // option을 이용해서 검색이 넘어온 데이터를 여기서 처리.
     if (option.date.dateString.length === 0 && option.query.length === 0) {
       alert("피드를 검색하거나 생성일을 조회해주세요.");
     } else {
+      // try {
+      //   const result = await getMyFeedApi(
+      //     15,
+      //     option.query,
+      //     option.date.dateString,
+      //   );
+      //   if (result.status === 200) {
+      //     setFeedData(result.data.results);
+      //   }
+      // } catch (err) {
+      //   alert("피드를 검색할 수 없습니다.");
+      // }
       const data = feedResult.filter(
         el =>
           el.createdAt === option.date.dateString ||
           el.title.includes(option.query),
       );
       setFeedData(data);
-      setOption(prev => ({
-        ...prev,
-        query: "",
-        date: { Moment: null, dateString: "" },
-      }));
     }
   };
 
@@ -84,14 +92,20 @@ function FeedView({
           <FeedStyles.SelectBox>
             <FeedStyles.StyledDatePicker
               value={option.date.Moment}
-              onChange={(date, dateString) => {
+              onChange={(date, string) => {
                 setOption({
                   ...option,
-                  date: { Moment: date, dateString },
+                  date: {
+                    Moment: date,
+                    dateString: `${Number(
+                      date?.startOf("month").toDate(),
+                    )},${Number(date?.endOf("month").toDate())}`,
+                  },
                 });
               }}
               placeholder="조회할 월을 선택하세요."
               picker="month"
+              format="YYYY-MM"
             />
           </FeedStyles.SelectBox>
         </FeedStyles.ControllerBox>

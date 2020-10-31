@@ -90,6 +90,10 @@ const HeadCard = styled.header<{ menu: string }>`
     margin: 0 0 1rem;
     font-weight: 700;
   }
+
+  ${media.tablet} {
+    display: none;
+  }
 `;
 
 const CardList = styled.section`
@@ -105,6 +109,10 @@ const CardList = styled.section`
   &::-webkit-scrollbar-thumb {
     background: #f2f3f5;
     border-radius: 10px;
+  }
+
+  ${media.tablet} {
+    margin-left: 1rem;
   }
 `;
 

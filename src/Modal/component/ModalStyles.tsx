@@ -14,8 +14,6 @@ import { DatePicker } from "antd";
   5a. ActionBtn
 */
 
-
-
 // 0a. General Modal
 export const LoginModal = styled.a`
   position: absolute;
@@ -28,7 +26,7 @@ export const LoginModal = styled.a`
   &:hover {
     color: #ff0000;
   }
-`
+`;
 export const ModalPage = styled.div`
   position: fixed;
   top: 0;
@@ -39,7 +37,7 @@ export const ModalPage = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 3;
-`
+`;
 export const ModalOverlay = styled.div`
   position: absolute;
   top: 0;
@@ -47,7 +45,7 @@ export const ModalOverlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-`
+`;
 export const ModalBox = styled.div`
   position: relative;
   width: 80%;
@@ -59,7 +57,7 @@ export const ModalBox = styled.div`
   background-color: #fff;
   cursor: auto;
   min-width: 500px;
-`
+`;
 export const ModalTitle = styled.div`
   display: flex;
   justify-content: center;
@@ -68,7 +66,7 @@ export const ModalTitle = styled.div`
   word-break: break-all;
   // overflow:hidden;
   // text-overflow:ellipsis;
-`
+`;
 export const ModalCloseImg = styled.img`
   position: absolute;
   top: 20px;
@@ -80,7 +78,7 @@ export const ModalCloseImg = styled.img`
     transform: rotate(180deg);
     cursor: pointer;
   }
-`
+`;
 export const ModalContent = styled.div`
   display: flex;
   align-items: center;
@@ -92,7 +90,7 @@ export const ModalContent = styled.div`
   img {
     vertical-align: bottom;
   }
-`
+`;
 export const StyledSearchOutlined = styled(SearchOutlined)`
   position: absolute;
   right: 4px;
@@ -100,9 +98,7 @@ export const StyledSearchOutlined = styled(SearchOutlined)`
   margin-top: 20px;
   margin-right: 30px;
   font-size: 1.4rem;
-`
-
-
+`;
 
 // 1a. Search Modal Page
 export const ModalSearchBox = styled.div`
@@ -116,28 +112,27 @@ export const ModalSearchBox = styled.div`
   padding: 50px;
   box-sizing: border-box;
   background-color: #fff;
-` 
+`;
 // background-image: url("/image/login_background.png");
 //   background-size: 100% 100%;
 export const SearchParagraph = styled.p`
-  font-Size: 2rem;
+  font-size: 2rem;
   color: grey;
-  margin-Top: -10rem;
-  padding-Bottom: 4rem;
+  margin-top: -10rem;
+  padding-bottom: 4rem;
   min-width: 500px;
-`
+`;
 export const SearchB1 = styled.b`
   font-weight: 500;
   color: black;
-`
+`;
 export const SearchB2 = styled.b`
-  font-family : "Abril Fatface", cursive;
+  font-family: "Abril Fatface", cursive;
   font-weight: 500;
   color: black;
   font-size: 2.5rem;
   margin-left: 0.8rem;
-`
-
+`;
 
 export const ModalSearchContent = styled.div`
   display: flex;
@@ -145,13 +140,12 @@ export const ModalSearchContent = styled.div`
   justify-content: center;
   color: #6b6b6b;
   font-size: 16px;
-
   ${media.tablet} {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-`
+`;
 export const SearchInput = styled.input`
   height: 50px;
   font-size: 30px;
@@ -167,7 +161,7 @@ export const SearchInput = styled.input`
     width: 35rem;
     font-size: 26px;
   }
-`
+`;
 export const ModalSearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -179,7 +173,7 @@ export const ModalSearchWrapper = styled.div`
   ${media.tablet} {
     width: 35rem;
   }
-`
+`;
 export const ModalSearchDateSelector = styled.div`
   font-size: 20px;
   > input {
@@ -191,13 +185,13 @@ export const ModalSearchDateSelector = styled.div`
     width: 20px;
     height: 20px;
     border: 3px solid #bcbcbc;
-    border-radius : 5px;
+    border-radius: 5px;
     cursor: pointer;
   }
   > input:checked + label {
     background-color: red;
   }
-`
+`;
 export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
   transition: all 0.3s;
   width: 100%;
@@ -211,13 +205,13 @@ export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
     text-indent: 0.5rem;
     color: ${props => (props.dis ? "red" : "black")};
 
-    &:hover{
+    &:hover {
       border-bottom: 3px solid black;
       cursor: ${props => (props.dis ? "not-allowed" : "pointer")};
     }
   }
-  & .calendar{
-    &:hover{
+  & .calendar {
+    &:hover {
       border-bottom: 3px solid black !important;
     }
   }
@@ -225,7 +219,7 @@ export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   ${media.tablet} {
     flex-direction: column;
     & .picker {
@@ -237,12 +231,12 @@ export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
       margin-bottom: 1.5rem;
     }
   }
-`
+`;
 export const StyledDatePicker = styled(DatePicker)`
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
-`
+`;
 
 export const SearchBtn = styled.button`
   width: 10rem;
@@ -250,18 +244,15 @@ export const SearchBtn = styled.button`
   font-weight: border;
   border-radius: 5px;
   padding: 8px 15px;
-
   &: hover {
     cursor: pointer;
     color: white;
     background-color: black;
   }
-
   ${media.tablet} {
     width: 100%;
   }
-`
-
+`;
 
 // 2a. Social Login Button
 // KAKAO refer : 컨테이너 #FEE500 / 심볼 #000000 / 레이블 #000000 85% / border radius 12px /
@@ -278,35 +269,34 @@ export const ModalLoginBox = styled.div`
   border-radius: 10px;
   background-image: url("/image/login_background.png");
   background-size: 100% 100%;
-  
-`
+`;
 export const ModalLoginContent = styled.div`
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   text-align: center;
   color: #6b6b6b;
-`
+`;
 export const BtnWrap = styled.div`
   border: 3px solid white;
   width: 25rem;
   height: 30rem;
-`
+`;
 
 export const LoginLogo = styled.img`
-  padding-Top: 1rem;
+  padding-top: 1rem;
   width: 20%;
   border-radius: 50%;
-`
+`;
 
 export const LoginParagraph = styled.p`
   display: block;
-  padding-Top: 1rem;
-  padding-Bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
   font-family: "Nanum Myeongjo", serif;
-  font-size : 1.5rem;
+  font-size: 1.5rem;
   letter-spacing: -1px;
   color: #000;
-`
+`;
 
 export const KakaoBtn = styled.button`
   margin-bottom: 1.2625rem;
@@ -323,7 +313,7 @@ export const KakaoBtn = styled.button`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 export const NaverBtn = styled.button`
   margin-bottom: 1.2625rem;
   padding: 10px;
@@ -339,7 +329,7 @@ export const NaverBtn = styled.button`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 export const GoogleBtn = styled.button`
   padding: 10px;
   width: 200px;
@@ -355,7 +345,7 @@ export const GoogleBtn = styled.button`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 // 2b. Social SignUp Page
 
@@ -368,11 +358,11 @@ export const SignUpBox = styled.div`
   height: 100%;
   background-image: url("/image/signUp_background.jpg");
   background-size: 100% 100%;
-`
+`;
 export const SignUpWrapper = styled.div`
   flex-direction: column;
   padding-bottom: 20rem;
-`
+`;
 export const SignUpInput = styled.input<{ valid?: boolean }>`
   color: ${props => (props.valid ? "black" : "red")};
   border: none;
@@ -384,32 +374,32 @@ export const SignUpInput = styled.input<{ valid?: boolean }>`
   font-size: 20px;
   width: 40rem;
   text-indent: 0.8rem;
-  &:hover{
+  &:hover {
     border-bottom: 3px solid #463333;
   }
 
-  ${media.tablet}{
-    font-size:18px;
+  ${media.tablet} {
+    font-size: 18px;
     width: 23.5rem;
   }
-`
-export const SignUpBtnWrapper= styled.div`
+`;
+export const SignUpBtnWrapper = styled.div`
   text-align: center;
-`
+`;
 
-styled(SearchOutlined)
+styled(SearchOutlined);
 export const SignUpCancel = styled(FcCancel)`
   position: relative;
   font-size: 30px;
   top: 0.6rem;
   margin-right: 5px;
-`
+`;
 export const SignUpCheck = styled(FcCheckmark)`
   position: relative;
   font-size: 30px;
   top: 0.6rem;
   margin-right: 5px;
-`
+`;
 
 export const SignUpCancelBtn = styled.button`
   width: 11rem;
@@ -417,7 +407,7 @@ export const SignUpCancelBtn = styled.button`
   margin-left: 1rem;
   border-radius: 5px;
   font-size: 1.2rem;
-  font-weight : bold;
+  font-weight: bold;
   background-color: white;
 
   &: hover {
@@ -425,24 +415,22 @@ export const SignUpCancelBtn = styled.button`
     color: white;
     background-color: black;
   }
-`
+`;
 export const SignUpBtn = styled.button<{ disabled?: boolean }>`
   width: 11rem;
   padding: 0.5rem;
   margin-right: 1rem;
   border-radius: 5px;
   font-size: 1.2rem;
-  font-weight : bold;
+  font-weight: bold;
   background-color: white;
-  
+
   &: hover {
     color: ${props => (props.disabled ? "black" : "white")};
     background-color: ${props => (props.disabled ? "white" : "black")};
     cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
   }
-`
-
-
+`;
 
 // 3a. Magazine FeedPreview
 export const ModalFededBox = styled.div`
@@ -456,10 +444,7 @@ export const ModalFededBox = styled.div`
   border-radius: 10px;
   background-color: #fff;
   cursor: auto;
-`
-
-
-
+`;
 
 // 4a. Preivew on MyPage
 export const MyFeedPreview = styled(SearchOutlined)`
@@ -467,10 +452,7 @@ export const MyFeedPreview = styled(SearchOutlined)`
   top: -35%;
   left: calc(100% - 35px);
   font-size: 20px;
-`
-
-
-
+`;
 
 //5a. ActionBtn
 export const Span = styled.span`
@@ -482,10 +464,10 @@ export const Span = styled.span`
   & + & {
     margin-top: 4px;
   }
-`
+`;
 export const SpanWrapper = styled.div`
   opacity: 1;
-`
+`;
 export const Paragraph = styled.p`
   z-index: 5;
   visibility: hidden;
@@ -500,7 +482,7 @@ export const Paragraph = styled.p`
   font-weight: bold;
   background-color: black;
   color: #ffffff;
-`
+`;
 export const Hamburger = styled.div`
   z-index: 6;
   position: fixed;
@@ -517,7 +499,7 @@ export const Hamburger = styled.div`
   background-color: black;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-`
+`;
 export const Navigation = styled.div`
   z-index: 5;
   position: fixed;
@@ -545,7 +527,7 @@ export const Navigation = styled.div`
   &:hover ${Paragraph} {
     visibility: visible;
   }
-`
+`;
 export const Switch = styled.div`
   > input {
     display: none;
@@ -582,4 +564,4 @@ export const Switch = styled.div`
     transform: translateY(-375%);
     font-size: 25px;
   }
-`
+`;

@@ -16,16 +16,15 @@ import { signOutApi } from "../../Api/auth";
 import { PreviewModal } from "../component/Preview";
 import { DataTypes } from "../../Common/Interface";
 
-
 interface PreaviewState {
   title: string;
   content: string;
 }
-interface SearchDataState{
-  getSearchData: (data:DataTypes[]) => void;
+interface SearchDataState {
+  getSearchData: (data: DataTypes[]) => void;
 }
 
-export const Modalpage = ({getSearchData}:SearchDataState) => {
+export const Modalpage = ({ getSearchData }: SearchDataState) => {
   const [isSearchModalOpen, setSearchModalState] = useState(false);
   const [isLoginModalOpen, setLoginModalState] = useState(false);
   const [isSignUpModalOpen, setSignUpModalState] = useState(false);
@@ -68,16 +67,14 @@ export const Modalpage = ({getSearchData}:SearchDataState) => {
         </>
       )}
 
-      <StyledSearchOutlined
-        onClick={searchToggleModal}
-      />
-      { isSearchModalOpen ? (
+      <StyledSearchOutlined onClick={searchToggleModal} />
+      {isSearchModalOpen ? (
         <Search
           title={"Search"}
-          getSearchData = {getSearchData}
+          getSearchData={getSearchData}
           onClose={searchToggleModal}
         />
-      ) : (null)}
+      ) : null}
       <Action />
       {isSignUpModalOpen ? (
         <SignUp title={"회원가입"} onClose={signUpToggleModal} />
