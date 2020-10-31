@@ -22,12 +22,14 @@ import { results } from "../../Common/SearchDummy";
 import { displayModalProps, DataTypes } from "../../Common/Interface";
 import { searchApi } from "../../Api/search";
 
-interface SearchData extends displayModalProps{
-  getSearchData : (data:DataTypes[]) => void;
+interface SearchData extends displayModalProps {
+  getSearchData: (data: DataTypes[]) => void;
 }
 
-export default function Search({ getSearchData, onClose }: SearchData) : JSX.Element{
-
+export default function Search({
+  getSearchData,
+  onClose,
+}: SearchData): JSX.Element {
   // Category Items Interface
 
   interface items {
@@ -84,14 +86,17 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
     });
   };
 
-
   // 서브밋을하면 페이지에 렌더해주는 상태를 호출
   const submitHandler = async () => {
     // console.log(date_to_str(formState.searchDate)); // fotmatting 된 Date 벨류
 
-    const result = await searchApi(formState.searchTitle, date_to_str(formState.searchDate), formState.searchCategory);
-    
-    getSearchData(result.data.results as DataTypes[]) ;
+    const result = await searchApi(
+      formState.searchTitle,
+      date_to_str(formState.searchDate),
+      formState.searchCategory,
+    );
+
+    getSearchData(result.data.results as DataTypes[]);
     // onClose();
   };
 
@@ -151,11 +156,11 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
                 );
               })}
             </Select>
+            <SearchBtn type="submit" onClick={submitHandler}>
+              검색
+            </SearchBtn>
           </ModalSearchOptions>
         </ModalSearchWrapper>
-        <SearchBtn type="submit" onClick={submitHandler}>
-          검색
-        </SearchBtn>
       </ModalSearchBox>
     </ModalPage>
   );
@@ -163,7 +168,6 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
 
 const SelectStyle = {
   width: "250px",
-  marginLeft: "2rem",
   color: "black",
   borderTop: "none",
   borderLeft: "none",

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { SearchOutlined } from "@ant-design/icons";
 import { media } from "../../Common/DeviceSize";
-import { OmitProps } from "antd/lib/transfer/ListBody";
 
 /*
   0a. General Modal
@@ -10,11 +9,8 @@ import { OmitProps } from "antd/lib/transfer/ListBody";
   3a. Magazine FeedPreview
   4a. Preivew on MyPage
   5a. ActionBtn
-
 */
-
 // 0a. General Modal
-
 export const LoginModal = styled.a`
   position: absolute;
   font-family: "Noto Sans KR", sans-serif;
@@ -27,7 +23,6 @@ export const LoginModal = styled.a`
     color: #ff0000;
   }
 `;
-
 export const ModalPage = styled.div`
   position: fixed;
   top: 0;
@@ -37,7 +32,6 @@ export const ModalPage = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-
   z-index: 3;
 `;
 export const ModalOverlay = styled.div`
@@ -48,7 +42,6 @@ export const ModalOverlay = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
 `;
-
 export const ModalBox = styled.div`
   position: relative;
   width: 80%;
@@ -57,11 +50,10 @@ export const ModalBox = styled.div`
   padding: 50px;
   box-sizing: border-box;
   border-radius: 10px;
-
   background-color: #fff;
   cursor: auto;
+  min-width: 500px;
 `;
-
 export const ModalTitle = styled.div`
   display: flex;
   justify-content: center;
@@ -95,7 +87,6 @@ export const ModalContent = styled.div`
     vertical-align: bottom;
   }
 `;
-
 export const StyledSearchOutlined = styled(SearchOutlined)`
   position: absolute;
   right: 4px;
@@ -104,28 +95,25 @@ export const StyledSearchOutlined = styled(SearchOutlined)`
   margin-right: 30px;
   font-size: 1.4rem;
 `;
-
 // 1a. Search Modal Page
-
 export const ModalSearchBox = styled.div`
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   padding: 50px;
   box-sizing: border-box;
   background-color: #fff;
-  // background-image: url(https://user-images.githubusercontent.com/66622150/97462167-cb774900-1981-11eb-944f-ce10937378e5.jpg);
-  // background-size: 100% 100%;
-  // background-repeat: no-repeat;
 `;
 export const ModalSearchContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10rem;
   color: #6b6b6b;
   font-size: 16px;
-
   ${media.tablet} {
     // width: 30rem;
     display: flex;
@@ -146,37 +134,32 @@ export const SearchInput = styled.input`
   &:hover {
     border-bottom-width: 3px;
   }
-
   ${media.tablet} {
     width: 35rem;
     font-size: 26px;
   }
 `;
-
 export const ModalSearchWrapper = styled.div`
-  position: relative;
+  // position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10rem;
-  right: 2rem;
-
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  margin-top: 4rem;
+  width: 50rem;
   ${media.tablet} {
-    min-width: 570px;
+    width: 35rem;
   }
 `;
-
 export const ModalSearchDateSelector = styled.div`
-  position: relative;
-  top: -3rem;
-  left: 3.3rem;
+  // position: relative;
+  // top: -3rem;
+  // left: 3.3rem;
   font-size: 20px;
-  margin-right: 0.5rem;
-
+  // margin-right: 0.5rem;
   > input {
     display: none;
   }
-
   > input + label {
     display: inline-block;
     margin-left: 0.5rem;
@@ -185,52 +168,40 @@ export const ModalSearchDateSelector = styled.div`
     border: 3px solid #bcbcbc;
     cursor: pointer;
   }
-
   > input:checked + label {
     background-color: grey;
   }
-  // > input:checked + & .picker {
-  //   color: red !important;
+  // ${media.desktop} {
+  //   font-size: 18px;
+  //   top: -3.3rem;
+  //   width: 290px;
+  //   left: 3rem;
+  //   > input + label {
+  //     position: relative;
+  //     top: 3px;
+  //   }
   // }
-
-  . picker {
-    font-size: ${props => (props.defaultChecked ? "1px" : "20px")};
-    color: ${props => (props.defaultChecked ? "#fff" : "#000")};
-  }
-  ${media.desktop} {
-    font-size: 18px;
-    top: -3.3rem;
-    width: 290px;
-    left: 3rem;
-    > input + label {
-      position: relative;
-      top: 3px;
-    }
-  }
-
-  ${media.tablet} {
-    font-size: 15px;
-    top: -3.6rem;
-    width: 270px;
-    left: 2.6rem;
-
-    > input + label {
-      position: relative;
-      top: 3px;
-    }
-  }
+  // ${media.tablet} {
+  //   font-size: 15px;
+  //   top: -3.6rem;
+  //   width: 270px;
+  //   left: 2.6rem;
+  //   > input + label {
+  //     position: relative;
+  //     top: 3px;
+  //   }
+  // }
 `;
-
 export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
   transition: all 0.3s;
+  width: 100%;
+  margin-top: 1rem;
 
   & .picker {
     width: 300px;
     height: 36px;
     font-size: 20px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    border: none;
     border-bottom: 2px solid black;
     text-indent: 0.5rem;
     cursor: ${props => (props.dis ? "not-allowed" : "pointer")};
@@ -240,50 +211,34 @@ export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
   font-size: 15px;
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  ${media.desktop} {
-    & .picker {
-      position: relative;
-      left: -20%;
-      width: 250px;
-      font-size: 15px;
-    }
-    & .calendar {
-      width: 230px !important;
-      font-size: 15px !important;
-    }
-  }
-
+  justify-content: space-between;
+  // ${media.desktop} {
+  //   & .picker {
+  //     position: relative;
+  //     left: -20%;
+  //     width: 250px;
+  //     font-size: 15px;
+  //   }
+  //   & .calendar {
+  //     width: 230px !important;
+  //     font-size: 15px !important;
+  //   }
+  // }
   ${media.tablet} {
-    & .picker {
-      position: relative;
-      left: -20%;
-      width: 200px;
-      font-size: 15px;
-    }
-    & .calendar {
-      width: 200px !important;
-      font-size: 15px !important;
-    }
+    flex-direction: column;
   }
 `;
-
 export const SearchBtn = styled.button`
-  position: relative;
-  left: calc(45% - 30px);
-  margin-top: 3rem;
-  width: 10rem;
-  height: 3rem;
-  font-size: 1.5rem;
+  // height: 3rem;
+  font-size: 1.2rem;
   font-weight: border;
   border-radius: 5px;
+  padding: 8px 15px;
   &: hover {
     cursor: pointer;
     color: white;
     background-color: black;
   }
-
   ${media.tablet} {
     // position:absolute;
     // left: calc(45% - 30px);
@@ -292,10 +247,8 @@ export const SearchBtn = styled.button`
     // justify-content: center;
   }
 `;
-
 // 2a. Social Login Button
 // KAKAO refer : 컨테이너 #FEE500 / 심볼 #000000 / 레이블 #000000 85% / border radius 12px /
-
 export const ModalLoginBox = styled.div`
   position: fixed;
   width: 100%;
@@ -306,8 +259,7 @@ export const ModalLoginBox = styled.div`
   border-radius: 10px;
   background-color: #fff;
   cursor: auto;
-`
-
+`;
 export const ModalLoginContent = styled.div`
   position: relative;
   display: flex;
@@ -317,7 +269,6 @@ export const ModalLoginContent = styled.div`
   color: #6b6b6b;
   font-size: 16px;
 `;
-
 export const BtnWrap = styled.div`
   position: absoulte;
   // display: block;
@@ -328,7 +279,6 @@ export const BtnWrap = styled.div`
   width: 400px;
   height: 350px;
 `;
-
 export const KakaoBtn = styled.button`
   margin-bottom: 1.2625rem;
   padding: 10px;
@@ -341,7 +291,6 @@ export const KakaoBtn = styled.button`
   color: black;
   background-color: #fee500;
   box-shadow: 1px 1px 1px grey;
-
   &:hover {
     cursor: pointer;
   }
@@ -358,7 +307,6 @@ export const NaverBtn = styled.button`
   color: #fff;
   background-color: #19ce60;
   box-shadow: 1px 1px 1px grey;
-
   &:hover {
     cursor: pointer;
   }
@@ -374,14 +322,11 @@ export const GoogleBtn = styled.button`
   color: #444;
   background-color: white;
   white-space: nowrap;
-
   &:hover {
     cursor: pointer;
   }
 `;
-
 // 3a. Magazine FeedPreview
-
 export const ModalFededBox = styled.div`
   position: relative;
   width: 80%;
@@ -394,18 +339,14 @@ export const ModalFededBox = styled.div`
   background-color: #fff;
   cursor: auto;
 `;
-
 // 4a. Preivew on MyPage
-
 export const MyFeedPreview = styled(SearchOutlined)`
   position: relative;
   top: -35%;
   left: calc(100% - 35px);
   font-size: 20px;
 `;
-
 //5a. ActionBtn
-
 export const Span = styled.span`
   display: block;
   width: 25px;
@@ -416,11 +357,9 @@ export const Span = styled.span`
     margin-top: 4px;
   }
 `;
-
 export const SpanWrapper = styled.div`
   opacity: 1;
 `;
-
 export const Paragraph = styled.p`
   z-index: 5;
   visibility: hidden;
@@ -436,7 +375,6 @@ export const Paragraph = styled.p`
   background-color: black;
   color: #ffffff;
 `;
-
 export const Hamburger = styled.div`
   z-index: 6;
   position: fixed;
@@ -454,7 +392,6 @@ export const Hamburger = styled.div`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 `;
-
 export const Navigation = styled.div`
   z-index: 5;
   position: fixed;
@@ -473,7 +410,6 @@ export const Navigation = styled.div`
   background-color: #f9f9f9;
   cursor: pointer;
   transition: all 0.3s ease-in;
-
   &:hover {
     font-size: 28px !important;
     background-color: wheat;
@@ -484,7 +420,6 @@ export const Navigation = styled.div`
     visibility: visible;
   }
 `;
-
 export const Switch = styled.div`
   > input {
     display: none;

@@ -21,19 +21,19 @@ const UserProfile = ({ match, history }: RouteComponentProps<matchprops>) => {
   const paramUsername: string = match.params.username;
   useEffect(() => {
     (async () => {
-      const result = await getProfileApi(paramUsername);
-
-      if (result.status === 200) {
-        // console.log(result.data);
-        setUserData({
-          username: result.data.username,
-          profileImage: result.data.IMG
-            ? result.data.IMG
-            : "/image/default_user.png",
-        });
-        setSub(true); // 일단!
-        setCurData(result.data.results);
-      } else if (result.status === 404) {
+      try {
+        const result = await getProfileApi(paramUsername);
+        if (result.status === 200) {
+          setUserData({
+            username: result.data.username,
+            profileImage: result.data.IMG
+              ? result.data.IMG
+              : "/image/default_user.png",
+          });
+          setSub(true); // 일단!
+          setCurData(result.data.results);
+        }
+      } catch (err) {
         alert("유저 정보를 찾을 수 없습니다.");
         history.push("/");
       }

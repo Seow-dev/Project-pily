@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Component } from "react";
 import ReactQuill from "./CreateFeed_Config";
-import axios, { AxiosResponse } from "axios";
 
 // import "quill/dist/quill.core.css"
 import "./EditorStyle.css";
@@ -9,13 +8,11 @@ import { uploadFeedImageApi } from "../Api/feed";
 
 type appProps = {
   changeFeedContent: (e: string) => void;
-  
 };
 
 type appState = {
   text: string;
 };
-
 
 class Editor extends Component<appProps, appState> {
   constructor(props: appProps) {
