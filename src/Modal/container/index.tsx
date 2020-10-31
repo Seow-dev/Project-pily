@@ -32,21 +32,23 @@ export const Modalpage = ({getSearchData}:SearchDataState) => {
 
   const searchToggleModal = () => setSearchModalState(!isSearchModalOpen);
   const loginToggleModal = () => setLoginModalState(!isLoginModalOpen);
-  const signUpToggleModal = () => {
-    setLoginModalState(false);
-    setSignUpModalState(!isSignUpModalOpen);
-  };
-
+  const signUpToggleModal = () => setSignUpModalState(!isSignUpModalOpen);
+  
   const dispatch = useDispatch();
   const loginState = useSelector(
     (state: RootState) => state.authReducer.success,
-  );
+    );
   const handleSignout = (e: React.MouseEvent) => {
     e.preventDefault();
     dispatch(signOut());
     signOutApi();
   };
 
+  const handleSignIn = () => {
+    setLoginModalState(false);
+    setSignUpModalState(true);
+  }
+    
   return (
     <div>
       {loginState ? (
@@ -60,7 +62,7 @@ export const Modalpage = ({getSearchData}:SearchDataState) => {
             <Login
               title={"Login"}
               onClose={loginToggleModal}
-              toSignUp={signUpToggleModal}
+              toSignUp={handleSignIn}
             />
           ) : null}
         </>
