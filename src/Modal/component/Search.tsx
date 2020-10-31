@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import closeIcon from "../../Common/close.png";
-import styled from "styled-components";
 
 import {
   ModalPage,
@@ -12,15 +11,18 @@ import {
   ModalSearchDateSelector,
   SearchBtn,
   ModalSearchWrapper,
+  SearchB1,
+  SearchB2,
+  SearchParagraph,
+  StyledDatePicker,
 } from "./ModalStyles";
-import DatePicker from "react-datepicker";
 import { Select } from "antd";
-
-import "react-datepicker/dist/react-datepicker.css";
-import "antd/dist/antd.css";
-import { results } from "../../Common/SearchDummy";
-import { displayModalProps, DataTypes } from "../../Common/Interface";
+import { displayModalProps, DataTypes, categoryTypes, searchDateProps } from "../../Common/Interface";
 import { searchApi } from "../../Api/search";
+import { CATEGORY } from "../../Common/Dummy";
+import { SelectValue } from "antd/lib/select";
+import "antd/dist/antd.css";
+
 
 interface SearchData extends displayModalProps{
   getSearchData : (data:DataTypes[]) => void;
@@ -30,20 +32,15 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
 
   // Category Items Interface
 
-  interface items {
-    id: number;
-    name: string;
-    value: string;
-  }
-
-  let temp: items[] = [];
-  const [items, setItems] = useState(temp);
   const { Option } = Select;
   const [formState, setFormState] = useState({
-    searchTitle: "",
-    searchDate: new Date(),
-    searchCategory: "",
+    searchTitle: ""
   });
+  const [date, setDate] = useState<searchDateProps>({
+    Moment: null,
+    dateString: ""
+  })
+
   const [disablePicker, setDisablePicker] = useState(false);
   const diasbleHandler = (
     e: React.MouseEvent<HTMLInputElement, MouseEvent>,
@@ -57,60 +54,34 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
       [e.target.id]: e.target.value,
     });
   };
-  const selectHandleChange = (e: string) => {
-    setFormState({
-      ...formState,
-      searchCategory: e,
-    });
-  };
-
-  // 2020-09 와 같이 포맷팅
-  function date_to_str(format: Date): string {
-    let tmpMonth = "";
-    var year = format.getFullYear().toString();
-    var month = format.getMonth() + 1;
-    if (month < 10) {
-      tmpMonth = "0" + month.toString();
-    } else {
-      tmpMonth = month.toString();
-    }
-    return disablePicker ? "" : year + "-" + tmpMonth;
-  }
-
-  const datehandleChange = (e: Date) => {
-    setFormState({
-      ...formState,
-      searchDate: e,
-    });
-  };
 
 
-  // 서브밋을하면 페이지에 렌더해주는 상태를 호출
+  const [category, setCategory] = useState<categoryTypes[]>([]);
+  const [cur, setCur] = useState(0);
+  useEffect(() => {
+    setCategory(CATEGORY);
+  }, []);
+
+
+
   const submitHandler = async () => {
-    // console.log(date_to_str(formState.searchDate)); // fotmatting 된 Date 벨류
-
-    const result = await searchApi(formState.searchTitle, date_to_str(formState.searchDate), formState.searchCategory);
-    
+    const result = await searchApi(
+      formState.searchTitle,
+      date.dateString
+    );
     getSearchData(result.data.results as DataTypes[]) ;
     // onClose();
   };
-
-  // API가 완성되면 setItems를 axios를 이용해서 데이터 가공하기 (카테고리 종류)
-  // 기본 값을 All로 지정하고 쿼리문에서 빈 값을 검색하게 되면 모든 데이터를 타겟지정
-  useEffect(() => {
-    setItems([
-      { id: 0, name: "All", value: "All" },
-      { id: 1, name: "일상", value: "일상" },
-      { id: 2, name: "IT", value: "IT" },
-      { id: 3, name: "여행", value: "여행" },
-    ]);
-  }, []);
+  
 
   return (
     <ModalPage>
       <ModalSearchBox>
         <ModalCloseImg src={closeIcon} onClick={onClose} />
-        {/* <ModalTitle>{title}</ModalTitle> */}
+          <SearchParagraph>당신의 일상을 
+            <SearchB1> 발행</SearchB1>하다.
+            <SearchB2>PILY</SearchB2>
+          </SearchParagraph>
         <ModalSearchContent>
           <SearchInput
             id="searchTitle"
@@ -119,31 +90,40 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
             onChange={handleChange}
           />
         </ModalSearchContent>
-        <ModalSearchWrapper>
-          <ModalSearchDateSelector>
-            <span>모든 날짜선택</span>
-            <input id="selectDate" type="checkbox" onClick={diasbleHandler} />
-            <label htmlFor="selectDate"></label>
-          </ModalSearchDateSelector>
-          <ModalSearchOptions dis={disablePicker}>
-            <DatePicker
+          <ModalSearchWrapper>
+            <ModalSearchDateSelector>
+              <span>모든 날짜선택</span>
+              <input id="selectDate" type="checkbox" onClick={diasbleHandler} />
+              <label htmlFor="selectDate"></label>
+            </ModalSearchDateSelector>
+            <ModalSearchOptions dis={disablePicker}>
+            <StyledDatePicker
               className="picker"
-              selected={formState.searchDate}
-              onChange={datehandleChange}
-              dateFormat="MMM/yyyy"
-              showMonthYearPicker
+              value={date.Moment}
+              onChange={(date, string) => {
+                setDate({
+                  ...date,
+                  Moment: date,
+                  dateString: `${Number(
+                    date?.startOf("month").toDate(),
+                  )},${Number(date?.endOf("month").toDate())}`,
+                });
+              }}
+              placeholder="조회할 월을 선택하세요."
+              picker="month"
+              format="YYYY-MM"
               disabled={disablePicker}
             />
             <Select
               className="calendar"
               placeholder="카테고리를 선택하세요"
-              onChange={selectHandleChange}
+              onChange={(value: SelectValue) => setCur(Number(value))}
               style={SelectStyle}
               bordered={false}
               allowClear
               defaultValue="All"
             >
-              {items.map(val => {
+              {category.map((val: categoryTypes) => {
                 return (
                   <Option id="category" key={val.id} value={val.id}>
                     {val.name}
@@ -151,11 +131,11 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
                 );
               })}
             </Select>
+            <SearchBtn type="submit" onClick={submitHandler}>
+              검색
+            </SearchBtn>
           </ModalSearchOptions>
         </ModalSearchWrapper>
-        <SearchBtn type="submit" onClick={submitHandler}>
-          검색
-        </SearchBtn>
       </ModalSearchBox>
     </ModalPage>
   );
@@ -163,11 +143,8 @@ export default function Search({ getSearchData, onClose }: SearchData) : JSX.Ele
 
 const SelectStyle = {
   width: "250px",
-  marginLeft: "2rem",
   color: "black",
-  borderTop: "none",
-  borderLeft: "none",
-  borderRight: "none",
+  border: "none",
   borderBottom: "2px solid black",
   fontSize: "20px",
 };

@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import {
+  ModalCloseImg,
   ModalPage,
-  ModalBox,
-  ModalTitle,
-  ModalSearchContent,
-  ModalLoginBox,
+  SignUpBox,
+  SignUpBtn,
+  SignUpBtnWrapper,
+  SignUpCancel,
+  SignUpCancelBtn,
+  SignUpCheck,
+  SignUpInput,
+  SignUpWrapper,
 } from "./ModalStyles";
 import { displayModalProps } from "../../Common/Interface";
 import { signUpApi, vaildateUsernameApi } from "../../Api/auth";
-import { FcCancel, FcCheckmark } from "react-icons/fc";
-import { AxiosResponse } from "axios";
+import closeIcon from "../../Common/close.png";
 
-export default function SignUp({
-  title,
-  onClose,
-}: displayModalProps): JSX.Element {
+export default function SignUp({ onClose }: displayModalProps): JSX.Element {
   const [nick, setNick] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNick(e.target.value);
@@ -50,24 +51,30 @@ export default function SignUp({
 
   return (
     <ModalPage>
-      <ModalLoginBox>
-        <ModalTitle>{title}</ModalTitle>
-        <ModalSearchContent>
+      <SignUpBox>
+      <ModalCloseImg src={closeIcon} onClick={onClose} />
+        <SignUpWrapper>
           { valid ? (
-            <FcCheckmark style={{ fontSize: "20px", marginRight: "5px" }} />
+            <SignUpCheck />
           ) : (
-            <FcCancel style={{ fontSize: "20px", marginRight: "5px" }} /> 
+            <SignUpCancel /> 
           )}
-            <input
+            <SignUpInput
               value={nick}
               onChange={handleChange}
               placeholder="닉네임을 입력해주세요."
-              style={valid ? {color: "black"} : {color: "red" }}
+              valid={valid}
             />
-            <button onClick={handleSignUp} disabled={!valid}>회원가입</button>
-          <button onClick={onClose}>취소</button>
-        </ModalSearchContent>
-      </ModalLoginBox>
+            <SignUpBtnWrapper>
+              <SignUpBtn onClick={handleSignUp} disabled={!valid}> 
+                회원가입
+              </SignUpBtn>
+              <SignUpCancelBtn onClick={onClose}>
+                취소
+              </SignUpCancelBtn>
+            </SignUpBtnWrapper>
+          </SignUpWrapper>
+      </SignUpBox>
     </ModalPage>
   );
 }
