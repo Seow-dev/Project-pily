@@ -34,7 +34,6 @@ export default function MagazineCardList({ datas }: props) {
               to={`/magazine/${data.id}`}
               style={{ textDecoration: "none" }}
             >
-              <CardOverlay />
               <CardContent>
                 <h2>{data.title}</h2>
                 <p>{data.subTitle}</p>
@@ -49,6 +48,7 @@ export default function MagazineCardList({ datas }: props) {
                   <p>{data.User.author}</p>
                 </UserInfo>
               </CardContent>
+              <CardOverlay />
             </Link>
           </CardWrap>
         ))}
@@ -184,6 +184,7 @@ const CardContent = styled.section`
     opacity: 0.9;
     font-size: 2rem;
     font-weight: 700;
+    text-shadow: 2px 2px 0 #fff;
     margin: 0;
     margin-bottom: 12px;
     text-overflow: ellipsis;
@@ -208,6 +209,7 @@ const CardContent = styled.section`
     -webkit-box-orient: vertical;
     word-break: break-word;
     overflow: hidden;
+    text-shadow: 2px 2px 0 #fff;
   }
 `;
 const UserInfo = styled.div`

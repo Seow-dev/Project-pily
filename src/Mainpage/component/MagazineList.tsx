@@ -19,11 +19,11 @@ export default function MagazineList({ datas }: props) {
             }
           />
           <Link to={`/magazine/${data.id}`} style={{ textDecoration: "none" }}>
-            <ItemOverlay />
             <ItemContent>
               <h3>{data.title}</h3>
               <p>{data.User.author}</p>
             </ItemContent>
+            <ItemOverlay />
           </Link>
         </ListItemBox>
       ))}
@@ -106,6 +106,7 @@ const ItemContent = styled.article`
     -webkit-box-orient: vertical;
     word-break: break-word;
     overflow: hidden;
+    text-shadow: 2px 2px 0 #fff;
   }
 
   p {
@@ -118,5 +119,6 @@ const ItemContent = styled.article`
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     word-break: break-;
+    text-shadow: 2px 2px 0 #fff;
   }
 `;
