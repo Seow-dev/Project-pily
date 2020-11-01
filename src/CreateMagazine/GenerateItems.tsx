@@ -20,7 +20,7 @@ export function generateItems(col: number, items: FeedTypes[]) {
                     {item.subTitle.length !== 0 && (
                       <h4 className="item-subtitle">{item.subTitle}</h4>
                     )}
-                    {item.stars && (
+                    {item.stars !== 0 && (
                       <StyledRate
                         style={{ paddingLeft: "1rem", fontSize: "1.8rem" }}
                         disabled
