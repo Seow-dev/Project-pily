@@ -21,13 +21,13 @@ export default function MypageList({ listData, own, getFeedData, onActivePreview
       <StyledListWrap>
         {listData
           .map((listEl, idx: number) => (
-              <StyledMagazine>
+              <StyledMagazine key={idx}>
                 <StyledOverlay />
                 <MyFeedPreview onClick={()=>{
                   onActivePreview();
                   getFeedData(listEl);
                 }} />
-                <Link key={idx} to={`/magazine/${listEl.title}`}>
+                <Link to={`/magazine/${listEl.title}`}>
                 <StyledInfo>
                   <StyledTitle>{listEl.title}</StyledTitle>
                   {!own && (

@@ -61,11 +61,16 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
         // const data = await userApi.getLikeMagazine().then((res: AxiosResponse) => res.data)
         setCurData(results);
       } else if (curMenu === "subscribe") {
-        // const data = await userApi.getSubscribeApi().then((res: AxiosResponse) => res.data)
-        setSubData(result);
+        try {
+          const result = await userApi.getSubscribeApi();
+          console.log(result.data.results);
+          setSubData(result.data.results);
+        } catch (err) {
+          console.log("error");
+        }
       } else if (curMenu === "myFeed") {
-        // const data = await getMyFeedApi().then((res: AxiosResponse) => res.data)
-        setCurData(results);
+        const data = await getMyFeedApi(24);
+        setCurData(data.data.results);
       } else if (curMenu === "myMagazine") {
         // 내가 작성한 매거진 목록 조회 api 출동
         // const data = await userApi.getMyMagazine().then((res: AxiosResponse) => res.data)

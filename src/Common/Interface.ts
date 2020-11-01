@@ -19,13 +19,15 @@ export interface UserData {
 
 // 유저 피드 타입
 export interface FeedTypes {
-  feedId: number;
+  id: number;
   title: string;
   subTitle: string;
   content: string;
   createdAt: string;
   stars?: number;
-  location?: locationProps;
+  location_name?: string;
+  location_x?: string;
+  location_y?: string;
 }
 
 export interface displayModalProps {
@@ -59,12 +61,10 @@ export interface OptionProps {
 
 // searchDateProps
 
-export interface searchDateProps{
+export interface searchDateProps {
   Moment: moment.Moment | null;
   dateString: string;
 }
-
-
 
 // magazineSubmit
 export interface MagazineDataTypes {

@@ -2,8 +2,9 @@ import axios, { AxiosResponse } from "axios";
 import { baseUrl } from "../Common/base";
 import { FeedDataTypes } from "../Common/Interface";
 
+//1
 export const getMyFeedApi = (
-  offset: number,
+  offset?: number,
   query?: string,
   date?: string,
   page?: number,

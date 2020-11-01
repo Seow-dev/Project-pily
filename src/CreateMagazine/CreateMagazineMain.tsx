@@ -36,10 +36,10 @@ const CreateMagazineMain = withRouter(({ history }: RouteComponentProps) => {
   const [publishList, setPublishList] = useState<FeedTypes[]>([]);
   const handleWaitList = useCallback(
     (data: FeedTypes) => {
-      const id = data.feedId;
-      const check = publishList.filter(el => el.feedId === id);
+      const id = data.id;
+      const check = publishList.filter(el => el.id === id);
       if (check.length !== 0) {
-        setPublishList(publishList.filter(list => list.feedId !== id));
+        setPublishList(publishList.filter(list => list.id !== id));
       } else {
         setPublishList(publishList.concat([data]));
       }

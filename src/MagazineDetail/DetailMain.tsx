@@ -1,9 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../Modules";
-import Error from "../Modal/component/Error";
 import { detailDummy } from "../Common/Dummy";
 import { detailTypes } from "../Common/Interface";
 import DetailHeader from "./DetailHeader";
@@ -16,7 +13,6 @@ interface matchProps {
 }
 
 function MagazineDetailMain({ match }: RouteComponentProps<matchProps>) {
-  const { success } = useSelector((state: RootState) => state.authReducer);
   const id = match.params.id;
 
   const [data, setData] = useState<detailTypes | null>(null);
@@ -32,7 +28,7 @@ function MagazineDetailMain({ match }: RouteComponentProps<matchProps>) {
 
   return (
     <>
-      {success && data ? (
+      {data ? (
         <>
           {data.isVertical ? (
             <D.DetailWrap vertical={true}>
@@ -50,9 +46,7 @@ function MagazineDetailMain({ match }: RouteComponentProps<matchProps>) {
             </D.DetailWrap>
           )}
         </>
-      ) : (
-        <Error />
-      )}
+      ) : null}
     </>
   );
 }

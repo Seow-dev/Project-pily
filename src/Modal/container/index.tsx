@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../Modules/auth";
 import { signOutApi } from "../../Api/auth";
 import { DataTypes } from "../../Common/Interface";
+import { baseUrl } from "../../Common/base";
 
 interface SearchDataState {
   getSearchData: (data: DataTypes[]) => void;
@@ -22,22 +23,23 @@ export const Modalpage = ({ getSearchData }: SearchDataState) => {
   const searchToggleModal = () => setSearchModalState(!isSearchModalOpen);
   const loginToggleModal = () => setLoginModalState(!isLoginModalOpen);
   const signUpToggleModal = () => setSignUpModalState(!isSignUpModalOpen);
-  
+
   const dispatch = useDispatch();
   const loginState = useSelector(
     (state: RootState) => state.authReducer.success,
-    );
+  );
   const handleSignout = (e: React.MouseEvent) => {
     e.preventDefault();
     dispatch(signOut());
+    window.open(`${baseUrl}/signout`);
     signOutApi();
   };
 
   const handleSignIn = () => {
     setLoginModalState(false);
     setSignUpModalState(true);
-  }
-    
+  };
+
   return (
     <div>
       {loginState ? (
