@@ -8,25 +8,19 @@ import {
   ModalCloseImg,
   SearchInput,
   ModalSearchOptions,
-  ModalSearchDateSelector,
   SearchBtn,
   ModalSearchWrapper,
   SearchB1,
   SearchB2,
   SearchParagraph,
   StyledDatePicker,
-  StyeldSelect,
 } from "./ModalStyles";
-import { Select } from "antd";
 import {
   displayModalProps,
   DataTypes,
-  categoryTypes,
   searchDateProps,
 } from "../../Common/Interface";
 import { searchApi } from "../../Api/search";
-import { CATEGORY } from "../../Common/Dummy";
-import { SelectValue } from "antd/lib/select";
 import "antd/dist/antd.css";
 
 interface SearchData extends displayModalProps {
@@ -37,9 +31,7 @@ export default function Search({
   getSearchData,
   onClose,
 }: SearchData): JSX.Element {
-  // Category Items Interface
 
-  const { Option } = Select;
   const [formState, setFormState] = useState({
     searchTitle: "",
   });
@@ -48,13 +40,6 @@ export default function Search({
     dateString: "",
   });
 
-  const [disablePicker, setDisablePicker] = useState(false);
-  const diasbleHandler = (
-    e: React.MouseEvent<HTMLInputElement, MouseEvent>,
-  ) => {
-    setDisablePicker(e.currentTarget.checked);
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
       ...formState,
@@ -62,14 +47,8 @@ export default function Search({
     });
   };
 
-  const [category, setCategory] = useState<categoryTypes[]>([]);
-  const [cur, setCur] = useState(0);
-  useEffect(() => {
-    setCategory(CATEGORY);
-  }, []);
-
   const submitHandler = async () => {
-    const result = await searchApi(formState.searchTitle, date.dateString, cur);
+    const result = await searchApi(formState.searchTitle, date.dateString);
     getSearchData(result.data.results as DataTypes[]);
     // onClose();
   };
@@ -92,12 +71,7 @@ export default function Search({
           />
         </ModalSearchContent>
         <ModalSearchWrapper>
-          <ModalSearchDateSelector>
-            <span>모든 날짜선택</span>
-            <input id="selectDate" type="checkbox" onClick={diasbleHandler} />
-            <label htmlFor="selectDate"></label>
-          </ModalSearchDateSelector>
-          <ModalSearchOptions dis={disablePicker}>
+          <ModalSearchOptions>
             <StyledDatePicker
               value={date.Moment}
               onChange={(date, string) => {
@@ -112,23 +86,7 @@ export default function Search({
               placeholder="조회할 월을 선택하세요."
               picker="month"
               format="YYYY-MM"
-              disabled={disablePicker}
             />
-            <StyeldSelect
-              placeholder="카테고리를 선택하세요"
-              onChange={(value: SelectValue) => setCur(Number(value))}
-              bordered={false}
-              allowClear
-              defaultValue="All"
-            >
-              {category.map((val: categoryTypes) => {
-                return (
-                  <Option id="category" key={val.id} value={val.id}>
-                    {val.name}
-                  </Option>
-                );
-              })}
-            </StyeldSelect>
             <SearchBtn type="submit" onClick={submitHandler}>
               검색
             </SearchBtn>

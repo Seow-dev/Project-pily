@@ -75,7 +75,6 @@ export interface MagazineDataTypes {
   magazineSubTitle?: string;
   thumbnail?: string;
   feedList: number[];
-  categoryId: number;
 }
 
 // magazine detail types
@@ -93,7 +92,6 @@ export interface detailTypes {
   grid: number;
   isVertical: boolean;
   titleAlign: number;
-  categoryName: string;
 }
 
 // preview types
@@ -105,7 +103,6 @@ export interface previewTypes {
   grid: number;
   isVertical: boolean;
   titleAlign: number;
-  categoryName: string;
 }
 
 // location types
@@ -120,8 +117,3 @@ export interface location {
   y: string;
 }
 
-// category types
-export interface categoryTypes {
-  id: number;
-  name: string;
-}

@@ -58,12 +58,12 @@ export const StyledListWrap = styled.section`
   grid-gap: 1rem;
   width: 100%;
   height: 90%;
-  grid-template-columns:
-    repeat(4, minmax(100px, 1fr))
-  };
+  grid-template-columns:repeat(4, minmax(100px, 1fr));
+  grid-template-rows: 1fr 1fr;
 
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(80px, 1fr));
+    grid-template-rows : none;
   }
 `;
 
