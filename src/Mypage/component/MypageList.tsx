@@ -19,7 +19,7 @@ export default function MypageList({ listData, own }: props) {
       <StyledListWrap>
         {listData
           .map((listEl, idx: number) => (
-            <StyledMagazine>
+            <StyledMagazine key={idx}>
               <PreviewMyPage title={listEl.title} content={listEl.content} />
               <Link key={idx} to={`/magazine/${listEl.title}`}>
                 <StyledInfo>

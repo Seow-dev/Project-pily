@@ -15,7 +15,7 @@ export function generateItems(col: number, items: FeedTypes[]) {
               {items
                 .filter((val_f, i_f) => i_f % col === i % col)
                 .map(item => (
-                  <Items key={item.feedId}>
+                  <Items key={item.id}>
                     <h2 className="item-title">{item.title}</h2>
                     {item.subTitle.length !== 0 && (
                       <h4 className="item-subtitle">{item.subTitle}</h4>
@@ -27,14 +27,13 @@ export function generateItems(col: number, items: FeedTypes[]) {
                         value={item.stars}
                       />
                     )}
-                    {item.location && (
+                    {item.location_name && (
                       <LocationWrap>
                         <a
-                          href={`https://map.kakao.com/link/map/${item.location.location_name},${item.location.location_y},${item.location.location_x}`}
+                          href={`https://map.kakao.com/link/map/${item.location_name},${item.location_y},${item.location_x}`}
                           target="_blank"
                         >
-                          <MdLocationOn /> {item.location.location_name}{" "}
-                          바로가기
+                          <MdLocationOn /> {item.location_name} 바로가기
                         </a>
                       </LocationWrap>
                     )}

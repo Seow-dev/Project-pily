@@ -55,7 +55,9 @@ export const getLikeMagazine = () => {
 };
 
 export const getSubscribeApi = () => {
-  return axios.get(`${baseUrl}/`, { withCredentials: true });
+  return axios.get(`${baseUrl}/user/subscribed/info`, {
+    withCredentials: true,
+  });
 };
 
 export const getMyMagazine = () => {
