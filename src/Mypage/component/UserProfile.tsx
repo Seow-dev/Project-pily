@@ -6,6 +6,7 @@ import * as S from "./CommonStyle";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { DataTypes, UserData } from "../../Common/Interface";
 import { getProfileApi, subscribeApi, unSubscribeApi } from "../../Api/user";
+import MyMagazineList from "./MyMagazineList";
 
 interface matchprops {
   username: string;
@@ -91,7 +92,7 @@ const UserProfile = ({ match, history }: RouteComponentProps<matchprops>) => {
       </S.UserInfo>
       <S.MagazineListWrap>
         <S.MagazineListContainer>
-          <MypageList getFeedData={()=>{}} onActivePreview={()=>[]} listData={curData} own={true} />
+          <MyMagazineList listData={curData} />
         </S.MagazineListContainer>
         <S.SideTabMenu>
           <S.TabMenu cur>발행한 매거진</S.TabMenu>

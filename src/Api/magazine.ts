@@ -28,7 +28,7 @@ export const publishMagazineApi = (data: MagazineDataTypes) =>
   axios.post(`${baseUrl}/magazine/create`, data, { withCredentials: true });
 
 //보류
-export const getMagazineDetailApi = (id: number) =>
+export const getMagazineDetailApi = (id: string) =>
   axios.get(`${baseUrl}/magazine/detail/${id}`, { withCredentials: true });
 
 // 1

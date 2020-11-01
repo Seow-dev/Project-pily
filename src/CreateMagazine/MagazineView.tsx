@@ -66,21 +66,18 @@ export default function MagazineView({
       const form = new FormData();
       form.append("img", files[0]);
 
-      // const result = await thumbnailUploadApi(form);
-      // if (result.status === 200) {
-      //   setThumbnail((prev) => ({
-      //     ...prev,
-      //     url: result.data.location,
-      //     name: files[0].name
-      //   }))
-      // }
-
-      setThumbnail(prev => ({
-        ...prev,
-        url:
-          "https://www.apple.com/v/iphone-12-pro/a/images/meta/iphone-12-pro_overview__d5t6ow03nkmu_og.png",
-        name: files[0].name,
-      }));
+      try {
+        const result = await thumbnailUploadApi(form);
+        if (result.status === 200) {
+          setThumbnail(prev => ({
+            ...prev,
+            url: result.data.location,
+            name: files[0].name,
+          }));
+        }
+      } catch (err) {
+        console.log("error");
+      }
     }
   };
 
@@ -117,6 +114,7 @@ export default function MagazineView({
       titleAlign,
       isVertical: vertical,
     };
+    preview(data);
   };
 
   return (

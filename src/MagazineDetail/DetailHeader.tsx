@@ -86,7 +86,7 @@ export default function DetailHeader({ data }: props) {
                       구독하기
                       <BsBookmarkFill />
                     </D.SubButton>
-                    <D.LikeButton onClick={() => handleLike(data.magazineId)}>
+                    <D.LikeButton onClick={() => handleLike(data.id)}>
                       좋아요
                       {coverOption.isLike ? <FcLike /> : <FcLikePlaceholder />}
                     </D.LikeButton>
@@ -130,7 +130,7 @@ export default function DetailHeader({ data }: props) {
                       구독하기
                       <BsBookmarkFill />
                     </D.SubButton>
-                    <D.LikeButton onClick={() => handleLike(data.magazineId)}>
+                    <D.LikeButton onClick={() => handleLike(data.id)}>
                       좋아요
                       {coverOption.isLike ? <FcLike /> : <FcLikePlaceholder />}
                     </D.LikeButton>
