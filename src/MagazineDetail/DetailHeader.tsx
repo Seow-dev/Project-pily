@@ -58,7 +58,6 @@ export default function DetailHeader({ data }: props) {
           <D.CoverHead>
             <D.CoverText>
               <D.CoverTitle align={data.titleAlign}>
-                <p>{data.categoryName}</p>
                 <h1>{data.magazineTitle}</h1>
                 <h5>{data.magazineSubTitle}</h5>
                 <D.CoverUser>

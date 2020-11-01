@@ -172,35 +172,7 @@ export const ModalSearchWrapper = styled.div`
     width: 35rem;
   }
 `;
-export const ModalSearchDateSelector = styled.div`
-  font-size: 20px;
-  > input {
-    display: none;
-  }
-  > input + label {
-    display: inline-block;
-    margin-left: 0.5rem;
-    width: 20px;
-    height: 20px;
-    border: 3px solid #bcbcbc;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  > input:checked + label {
-    background-color: red;
-  }
-`;
-export const StyeldSelect = styled(Select)`
-  width: 250px;
-  color: black;
-  border: none;
-  border-bottom: 2px solid black;
-  font-size: 20px;
 
-  &: hover{
-    border-bottom: 3px solid black;
-  }
-`
 export const StyledDatePicker = styled(DatePicker)`
   &:hover {
     cursor: pointer;
@@ -208,7 +180,7 @@ export const StyledDatePicker = styled(DatePicker)`
 `;
 
 
-export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
+export const ModalSearchOptions = styled.div`
   
   display: flex;
   align-items: center;
@@ -218,27 +190,27 @@ export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
   margin-top: 1rem;
 
   & ${StyledDatePicker} {
-    width: 300px;
+    width: 75%;
     height: 36px;
     font-size: 20px;
     border: none;
     border-bottom: 2px solid black;
     text-indent: 0.5rem;
-    color: ${props => (props.dis ? "red" : "black")};
+    color: black;
 
     &:hover {
-      border-bottom: ${props => (props.dis ? "2px solid black" : "3px solid black")};
-      cursor: ${props => (props.dis ? "not-allowed" : "pointer")};
+      border-bottom: 3px solid black;
+      cursor: pointer;
+    }
+    & input {
+      font-size: 2rem;
+      padding-bottom: 0.5rem;
     }
   }
 
   ${media.tablet} {
     flex-direction: column;
     & ${StyledDatePicker} {
-      width: 100%;
-      margin-bottom: 1.5rem;
-    }
-    & ${StyeldSelect} {
       width: 100%;
       margin-bottom: 1.5rem;
     }

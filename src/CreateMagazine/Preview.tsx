@@ -45,7 +45,6 @@ export default function Preview({ isPreview, close, previewData }: props) {
                       <D.CoverHead>
                         <D.CoverText>
                           <D.CoverTitle align={previewData.titleAlign}>
-                            <p>{previewData.categoryName}</p>
                             <h1>{previewData.magazineTitle}</h1>
                             <h5>{previewData.magazineSubTitle}</h5>
                           </D.CoverTitle>

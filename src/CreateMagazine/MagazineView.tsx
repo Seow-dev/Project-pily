@@ -8,14 +8,12 @@ import { BiAlignLeft, BiAlignMiddle, BiAlignRight } from "react-icons/bi";
 import { RadioChangeEvent } from "antd/lib/radio";
 import { generateItems } from "./GenerateItems";
 import {
-  categoryTypes,
   FeedTypes,
   MagazineDataTypes,
   previewTypes,
 } from "../Common/Interface";
 import "react-quill/dist/quill.snow.css";
 import { PreviewMagazineModal } from "../Modal/component/Preview";
-import { CATEGORY } from "../Common/Dummy";
 import { SelectValue } from "antd/lib/select";
 import { getCategory, thumbnailUploadApi } from "../Api/magazine";
 
@@ -88,16 +86,6 @@ export default function MagazineView({
     }
   };
 
-  const [category, setCategory] = useState<categoryTypes[]>([]);
-  const [cur, setCur] = useState(1);
-  useEffect(() => {
-    // (async () => {
-    //   const result = await getCategory();
-    //   setCategory(result.data);
-    // })()
-    setCategory(CATEGORY);
-  }, []);
-
   const handlePublish = () => {
     const datas: MagazineDataTypes = {
       isVertical: vertical,
@@ -107,7 +95,6 @@ export default function MagazineView({
       magazineSubTitle: option.magazineSubTitle,
       thumbnail: thumbnail.url,
       feedList: waitList.map(item => item.id),
-      categoryId: cur,
     };
     publish(datas);
   };
@@ -121,7 +108,6 @@ export default function MagazineView({
       grid,
       titleAlign,
       isVertical: vertical,
-      categoryName: category[cur].name,
     };
     preview(data);
   };
@@ -155,21 +141,6 @@ export default function MagazineView({
       </M.ButtonBar>
       <M.PublishOption>
         <M.OptionHalf>
-          <M.OptionItem>
-            <h3>카테고리 설정</h3>
-            <M.StyledSelect
-              onChange={(value: SelectValue) => setCur(Number(value))}
-              defaultValue={cur}
-            >
-              {category.map((list: categoryTypes) => {
-                return (
-                  <Option key={list.id} value={list.id}>
-                    {list.name}
-                  </Option>
-                );
-              })}
-            </M.StyledSelect>
-          </M.OptionItem>
           <M.OptionItem>
             <h3>매거진 그리드 선택</h3>
             {!vertical && (

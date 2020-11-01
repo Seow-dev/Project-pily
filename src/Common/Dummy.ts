@@ -3,7 +3,6 @@ import {
   UserData,
   FeedTypes,
   detailTypes,
-  categoryTypes,
 } from "./Interface";
 import { HTMLEXAMPLE2, HTMLEXAPME1 } from "./htmlExample";
 
@@ -397,29 +396,4 @@ export const detailDummy: detailTypes = {
   grid: 3,
   isVertical: false,
   titleAlign: 2,
-  categoryName: "일상",
 };
-
-export const CATEGORIES = [
-  "All",
-  "그림",
-  "IT",
-  "사진",
-  "리뷰",
-  "음악",
-  "요리",
-  "디자인",
-  "음식",
-  "일상",
-  "문학",
-];
-const generateCategory = () => {
-  const result = [];
-  let index = 0;
-  for (let prop of CATEGORIES) {
-    result.push({ id: index, name: prop });
-    index += 1;
-  }
-  return result;
-};
-export const CATEGORY: categoryTypes[] = generateCategory();
