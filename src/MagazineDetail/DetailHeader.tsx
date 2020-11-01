@@ -58,30 +58,30 @@ export default function DetailHeader({ data }: props) {
           <D.CoverHead>
             <D.CoverText>
               <D.CoverTitle align={data.titleAlign}>
-                <h1>{data.magazineTitle}</h1>
-                <h5>{data.magazineSubTitle}</h5>
+                <h1>{data.title}</h1>
+                <h5>{data.subTitle}</h5>
                 <D.CoverUser>
                   <D.CoverOption>
                     <img
                       src={
-                        data.authorImg
-                          ? data.authorImg
+                        data.User.authorImg
+                          ? data.User.authorImg
                           : "/image/default_user.png"
                       }
                     />
                     <p>
                       <Link
                         style={{ color: "inherit" }}
-                        to={`/user/${data.author}`}
+                        to={`/user/${data.User.author}`}
                       >
-                        {data.author}
+                        {data.User.author}
                       </Link>
                     </p>
                   </D.CoverOption>
                   <D.CoverOption style={{ marginLeft: "2rem" }}>
                     <D.SubButton
                       active={coverOption.isSub}
-                      onClick={() => handleSub(data.author)}
+                      onClick={() => handleSub(data.User.author)}
                     >
                       구독하기
                       <BsBookmarkFill />
@@ -102,67 +102,38 @@ export default function DetailHeader({ data }: props) {
           <D.CoverHead>
             <D.CoverText>
               <D.CoverTitle align={data.titleAlign} only={true}>
-                <h1>{data.magazineTitle}</h1>
-                <h5>{data.magazineSubTitle}</h5>
+                <h1>{data.title}</h1>
+                <h5>{data.subTitle}</h5>
                 <D.CoverUser>
                   <D.CoverOption>
                     <img
                       src={
-                        data.authorImg
-                          ? data.authorImg
+                        data.User.authorImg
+                          ? data.User.authorImg
                           : "/image/default_user.png"
                       }
                     />
                     <p>
                       <Link
                         style={{ color: "inherit" }}
-                        to={`/user/${data.author}`}
+                        to={`/user/${data.User.author}`}
                       >
-                        {data.author}
+                        {data.User.author}
                       </Link>
                     </p>
                   </D.CoverOption>
                   <D.CoverOption style={{ marginLeft: "2rem" }}>
-                    {coverOption.isLike ? (
-                      <D.LikeButton
-                        onClick={() =>
-                          setCoverOption(prev => ({ ...prev, isLike: false }))
-                        }
-                      >
-                        좋아요
-                        <FcLike />
-                      </D.LikeButton>
-                    ) : (
-                      <D.LikeButton
-                        onClick={() =>
-                          setCoverOption(prev => ({ ...prev, isLike: true }))
-                        }
-                      >
-                        좋아요
-                        <FcLikePlaceholder />
-                      </D.LikeButton>
-                    )}
-                    {coverOption.isSub ? (
-                      <D.SubButton
-                        active={coverOption.isSub}
-                        onClick={() =>
-                          setCoverOption(prev => ({ ...prev, isSub: false }))
-                        }
-                      >
-                        구독하기
-                        <BsBookmarkFill />
-                      </D.SubButton>
-                    ) : (
-                      <D.SubButton
-                        active={coverOption.isSub}
-                        onClick={() =>
-                          setCoverOption(prev => ({ ...prev, isSub: true }))
-                        }
-                      >
-                        구독하기
-                        <BsBookmarkFill />
-                      </D.SubButton>
-                    )}
+                    <D.SubButton
+                      active={coverOption.isSub}
+                      onClick={() => handleSub(data.User.author)}
+                    >
+                      구독하기
+                      <BsBookmarkFill />
+                    </D.SubButton>
+                    <D.LikeButton onClick={() => handleLike(data.magazineId)}>
+                      좋아요
+                      {coverOption.isLike ? <FcLike /> : <FcLikePlaceholder />}
+                    </D.LikeButton>
                   </D.CoverOption>
                 </D.CoverUser>
               </D.CoverTitle>

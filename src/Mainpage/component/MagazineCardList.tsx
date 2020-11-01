@@ -5,26 +5,24 @@ import { DataTypes } from "../../Common/Interface";
 import { media } from "../../Common/DeviceSize";
 
 interface props {
-  menus: string;
-  headers: string;
   datas: DataTypes[];
 }
 
-export default function MagazineCardList({ datas, headers, menus }: props) {
+export default function MagazineCardList({ datas }: props) {
   return (
     <Wrapper>
-      <HeadCard menu={menus}>
+      <HeadCard>
         <h2>
           지금
           <br />
-          {headers}
+          발행된
           <br />
           매거진
         </h2>
       </HeadCard>
       <CardList>
         {datas.map(data => (
-          <CardWrap className="card" key={data.megazineId}>
+          <CardWrap className="card" key={data.id}>
             <CardImg
               src={
                 data.thumbnail
@@ -33,7 +31,7 @@ export default function MagazineCardList({ datas, headers, menus }: props) {
               }
             />
             <Link
-              to={`/magazine/${data.megazineId}`}
+              to={`/magazine/${data.id}`}
               style={{ textDecoration: "none" }}
             >
               <CardOverlay />
@@ -43,12 +41,12 @@ export default function MagazineCardList({ datas, headers, menus }: props) {
                 <UserInfo>
                   <img
                     src={
-                      data.authorImg
-                        ? data.authorImg
+                      data.User.authorImg
+                        ? data.User.authorImg
                         : "/image/default_user.png"
                     }
                   />
-                  <p>{data.author}</p>
+                  <p>{data.User.author}</p>
                 </UserInfo>
               </CardContent>
             </Link>
@@ -63,21 +61,18 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-const HeadCard = styled.header<{ menu: string }>`
+const HeadCard = styled.header`
   position: relative;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
   flex: 0 0 280px;
   margin: 2rem 1rem 10px;
-  background: ${props =>
-    props.menu === "created_at"
-      ? `linear-gradient(
+  background: linear-gradient(
     0deg,
     rgba(238, 174, 202, 1) 0%,
     rgba(148, 187, 233, 1) 100%
-  );`
-      : `linear-gradient(0deg, rgba(238,174,202,1) 0%, rgba(255,245,164,1) 100%);`};
+  );
 
   border-radius: 10px;
   padding: 2rem;
@@ -121,7 +116,7 @@ const CardWrap = styled.article`
   width: 320px;
   min-width: 250px;
   background-color: none;
-  box-shadow: #343a40 -1px 1px 8px;
+  box-shadow: #adb5bd -1px 1px 8px;
   display: flex;
   flex-direction: column;
   transition: all 0.5s;
@@ -162,8 +157,8 @@ const CardOverlay = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #343a40;
-  opacity: 0.3;
+  background-color: #adb5bd;
+  opacity: 0.7;
   left: 0;
   top: 0;
   z-index: 0;
@@ -171,7 +166,7 @@ const CardOverlay = styled.div`
   border-radius: 10px;
 
   &:hover {
-    opacity: 0;
+    opacity: 0.3;
   }
 `;
 const CardContent = styled.section`
@@ -182,7 +177,7 @@ const CardContent = styled.section`
   flex-direction: column;
   font-family: "Noto Serif KR", serif;
   padding: 1rem;
-  color: #fff;
+  color: #343a40;
 
   h2 {
     color: inherit;

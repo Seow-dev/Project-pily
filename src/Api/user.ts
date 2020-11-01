@@ -48,20 +48,22 @@ export const unSubscribeApi = (username: string) =>
 
 // in mypage
 export const getLikeMagazine = () => {
-  return axios.get(`${baseUrl}/`, {
+  return axios.get(`${baseUrl}/user/like/info`, {
     params: { offset: 24 },
     withCredentials: true,
   });
 };
 
+// 1
 export const getSubscribeApi = () => {
   return axios.get(`${baseUrl}/user/subscribed/info`, {
     withCredentials: true,
   });
 };
 
+// 1
 export const getMyMagazine = () => {
-  return axios.get(`${baseUrl}/`, {
+  return axios.get(`${baseUrl}/magazine/mymagazine`, {
     params: { offset: 24 },
     withCredentials: true,
   });

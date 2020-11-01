@@ -4,7 +4,6 @@ import * as FeedStyles from "./styles/FeedViewStyles";
 import { FeedTypes, OptionProps } from "../Common/Interface";
 import { animated } from "react-spring";
 import { GrFormClose } from "react-icons/gr";
-import { feedResult } from "../Common/Dummy";
 import "react-quill/dist/quill.snow.css";
 import { getMyFeedApi } from "../Api/feed";
 
@@ -50,7 +49,7 @@ function FeedView({
           setFeedData(result.data.results);
         }
       } catch (err) {
-        alert("피드를 검색할 수 없습니다.");
+        alert("피드가 없습니다.");
       }
     }
   };

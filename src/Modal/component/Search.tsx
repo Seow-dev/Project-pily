@@ -31,7 +31,6 @@ export default function Search({
   getSearchData,
   onClose,
 }: SearchData): JSX.Element {
-
   const [formState, setFormState] = useState({
     searchTitle: "",
   });
@@ -48,9 +47,9 @@ export default function Search({
   };
 
   const submitHandler = async () => {
-    const result = await searchApi(formState.searchTitle, date.dateString);
+    const result = await searchApi(20, formState.searchTitle, date.dateString);
     getSearchData(result.data.results as DataTypes[]);
-    // onClose();
+    onClose();
   };
 
   return (

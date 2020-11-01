@@ -13,7 +13,12 @@ interface props {
   onActivePreview: () => void;
 }
 
-export default function MypageList({ listData, own, getFeedData, onActivePreview }: props) {
+export default function MypageList({
+  listData,
+  own,
+  getFeedData,
+  onActivePreview,
+}: props) {
   const [cur, setCur] = useState<number>(1);
 
   return (
@@ -21,19 +26,24 @@ export default function MypageList({ listData, own, getFeedData, onActivePreview
       <StyledListWrap>
         {listData
           .map((listEl, idx: number) => (
-              <StyledMagazine key={idx}>
-                <StyledOverlay />
-                <MyFeedPreview onClick={()=>{
+            <StyledMagazine key={idx}>
+              <StyledOverlay />
+              <MyFeedPreview
+                onClick={() => {
                   onActivePreview();
                   getFeedData(listEl);
-                }} />
-                <Link to={`/magazine/${listEl.title}`}>
+                }}
+              />
+              <Link to={`/magazine/${listEl.title}`}>
                 <StyledInfo>
                   <StyledTitle>{listEl.title}</StyledTitle>
                   {!own && (
                     <StyledAuthorWrap>
-                      <StyledAuthorImg alt="author" src={listEl.authorImg} />
-                      <StyledAuthorName>{listEl.author}</StyledAuthorName>
+                      <StyledAuthorImg
+                        alt="author"
+                        src={listEl.User.authorImg}
+                      />
+                      <StyledAuthorName>{listEl.User.author}</StyledAuthorName>
                     </StyledAuthorWrap>
                   )}
                 </StyledInfo>
@@ -58,12 +68,12 @@ export const StyledListWrap = styled.section`
   grid-gap: 1rem;
   width: 100%;
   height: 90%;
-  grid-template-columns:repeat(4, minmax(100px, 1fr));
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
   grid-template-rows: 1fr 1fr;
 
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(80px, 1fr));
-    grid-template-rows : none;
+    grid-template-rows: none;
   }
 `;
 
@@ -76,7 +86,7 @@ const StyledInfo = styled.div`
   z-index: 1;
   padding: 1rem;
 
-  ${media.tablet}{
+  ${media.tablet} {
     bottom: 0px;
   }
 `;
@@ -94,11 +104,10 @@ const StyledTitle = styled.h2`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 
-  ${media.tablet}{
+  ${media.tablet} {
     font-size: 1.2rem;
     width: 12rem;
   }
-
 `;
 const StyledAuthorWrap = styled.div`
   display: flex;
@@ -111,8 +120,8 @@ const StyledAuthorName = styled.p`
   margin: 0;
   color: #000;
 
-  ${media.tablet}{
-    font-size: 1.0rem;
+  ${media.tablet} {
+    font-size: 1rem;
   }
 `;
 const StyledAuthorImg = styled.img`
@@ -123,7 +132,7 @@ const StyledAuthorImg = styled.img`
   object-fit: cover;
   margin-right: 12px;
 
-  ${media.tablet}{
+  ${media.tablet} {
     width: 25px;
     height: 25px;
   }
@@ -139,7 +148,7 @@ const StyledOverlay = styled.div`
   opacity: 0.3;
   border: none;
   border-radius: 8px;
-`
+`;
 
 const StyledMagazine = styled.div`
   display: flex;
@@ -160,7 +169,7 @@ const StyledMagazine = styled.div`
     -webkit-transform: scale(1.05);
     transform: scale(1.05);
   }
-  &:hover ${StyledOverlay}{
+  &:hover ${StyledOverlay} {
     opacity: 0;
   }
 `;

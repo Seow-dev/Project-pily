@@ -14,8 +14,7 @@ import {
 } from "../Common/Interface";
 import "react-quill/dist/quill.snow.css";
 import { PreviewMagazineModal } from "../Modal/component/Preview";
-import { SelectValue } from "antd/lib/select";
-import { getCategory, thumbnailUploadApi } from "../Api/magazine";
+import { thumbnailUploadApi } from "../Api/magazine";
 
 interface props {
   waitList: FeedTypes[];
@@ -27,7 +26,6 @@ interface props {
   preview: (data: previewTypes) => void;
   publish: (data: MagazineDataTypes) => void;
 }
-const { Option } = M.StyledSelect;
 
 export default function MagazineView({
   open,
@@ -91,37 +89,45 @@ export default function MagazineView({
       isVertical: vertical,
       grid,
       titleAlign,
-      magazineTitle: option.magazineTitle,
-      magazineSubTitle: option.magazineSubTitle,
+      title: option.magazineTitle,
+      subTitle: option.magazineSubTitle,
       thumbnail: thumbnail.url,
       feedList: waitList.map(item => item.id),
     };
-    publish(datas);
+
+    if (
+      datas.title &&
+      datas.feedList.length !== 0 &&
+      datas.grid &&
+      datas.titleAlign
+    ) {
+      publish(datas);
+    } else {
+      alert("매거진 정보를 다 입력해주세요.");
+    }
   };
 
   const handlePreivew = () => {
     const data: previewTypes = {
       thumbnail: thumbnail.url,
-      magazineTitle: option.magazineTitle,
-      magazineSubTitle: option.magazineSubTitle,
+      title: option.magazineTitle,
+      subTitle: option.magazineSubTitle,
       feedList: waitList,
       grid,
       titleAlign,
       isVertical: vertical,
     };
-    preview(data);
   };
 
   return (
     <M.MagazineViewWrap>
-    {isPreviewOpen ? (
-      <PreviewMagazineModal
-        title={gotFeedTitle}
-        content={gotFeedBody}
-        onClose={onClosePreview}
-      />
-    ) : null
-    }
+      {isPreviewOpen ? (
+        <PreviewMagazineModal
+          title={gotFeedTitle}
+          content={gotFeedBody}
+          onClose={onClosePreview}
+        />
+      ) : null}
       <M.ButtonBar>
         <M.PublishButton onClick={handleView}>
           <IoIosRefresh style={{ fontSize: "0.8rem" }} />

@@ -47,14 +47,16 @@ const CreateMagazineMain = withRouter(({ history }: RouteComponentProps) => {
     [publishList],
   );
   const handlePublish = async (data: MagazineDataTypes) => {
-    // const result = await api.publishMagazineApi(data);
-    // if (result.status === 200) {
-    //   alert('매거진이 잘 발행되었습니다.');
-    //   history.push(`/magazine/${result.data.magazineId}`)
-    // } else {
-    //   alert('권한이 없습니다.')
-    //   history.push('/');
-    // }
+    try {
+      const result = await api.publishMagazineApi(data);
+      if (result.status === 201) {
+        alert("매거진이 잘 발행되었습니다.");
+        history.push(`/magazine/${result.data}`);
+      }
+    } catch (err) {
+      alert("권한이 없습니다.");
+      history.push("/");
+    }
   };
 
   const [isPreviewModalOpen, setPreviewModalState] = useState(false);

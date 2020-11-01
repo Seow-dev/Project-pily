@@ -1,12 +1,11 @@
 // 매거진 데이터 타입
 export interface DataTypes {
-  megazineId: number;
+  id: number;
   title: string;
   content: string;
   subTitle?: string;
-  author: string;
   category?: string;
-  authorImg?: string;
+  User: { author: string; authorImg?: string };
   createdAt?: string;
   thumbnail?: string;
 }
@@ -15,6 +14,11 @@ export interface DataTypes {
 export interface UserData {
   profileImage?: string; // url,
   username: string; // username
+}
+
+export interface subData {
+  IMG?: string;
+  username: string;
 }
 
 // 유저 피드 타입
@@ -71,8 +75,8 @@ export interface MagazineDataTypes {
   isVertical: boolean;
   grid: number;
   titleAlign: number;
-  magazineTitle: string;
-  magazineSubTitle?: string;
+  title: string;
+  subTitle?: string;
   thumbnail?: string;
   feedList: number[];
 }
@@ -80,10 +84,9 @@ export interface MagazineDataTypes {
 // magazine detail types
 export interface detailTypes {
   magazineId: number;
-  magazineTitle: string;
-  magazineSubTitle?: string;
-  author: string;
-  authorImg?: string;
+  title: string;
+  subTitle?: string;
+  User: { author: string; authorImg?: string };
   createdAt: string;
   thumbnail?: string;
   isLiked: boolean;
@@ -96,8 +99,8 @@ export interface detailTypes {
 
 // preview types
 export interface previewTypes {
-  magazineTitle: string;
-  magazineSubTitle?: string;
+  title: string;
+  subTitle?: string;
   thumbnail?: string;
   feedList: FeedTypes[];
   grid: number;
@@ -116,4 +119,3 @@ export interface location {
   x: string;
   y: string;
 }
-

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { detailDummy } from "../Common/Dummy";
 import { detailTypes } from "../Common/Interface";
 import DetailHeader from "./DetailHeader";
 import * as D from "./styles/DetailHeadStyles";
@@ -12,18 +11,25 @@ interface matchProps {
   id: string;
 }
 
-function MagazineDetailMain({ match }: RouteComponentProps<matchProps>) {
+function MagazineDetailMain({
+  match,
+  history,
+}: RouteComponentProps<matchProps>) {
   const id = match.params.id;
 
   const [data, setData] = useState<detailTypes | null>(null);
   useEffect(() => {
-    // (async () => {
-    //   const result = await getMagazineDetailApi(Number(id));
-    //   if (result.status === 200) {
-    //     setData(result.data)
-    //   }
-    // })()
-    setData(detailDummy);
+    (async () => {
+      try {
+        const result = await getMagazineDetailApi(Number(id));
+        if (result.status === 200) {
+          setData(result.data);
+        }
+      } catch (err) {
+        alert("작성되지 않은 매거진입니다.");
+        history.push("/");
+      }
+    })();
   }, []);
 
   return (
