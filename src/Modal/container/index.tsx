@@ -15,6 +15,7 @@ import { signOut } from "../../Modules/auth";
 import { signOutApi } from "../../Api/auth";
 import { PreviewModal } from "../component/Preview";
 import { DataTypes } from "../../Common/Interface";
+import { baseUrl } from "../../Common/base";
 
 interface PreaviewState {
   title: string;
@@ -32,22 +33,23 @@ export const Modalpage = ({ getSearchData }: SearchDataState) => {
   const searchToggleModal = () => setSearchModalState(!isSearchModalOpen);
   const loginToggleModal = () => setLoginModalState(!isLoginModalOpen);
   const signUpToggleModal = () => setSignUpModalState(!isSignUpModalOpen);
-  
+
   const dispatch = useDispatch();
   const loginState = useSelector(
     (state: RootState) => state.authReducer.success,
-    );
+  );
   const handleSignout = (e: React.MouseEvent) => {
     e.preventDefault();
     dispatch(signOut());
+    window.open(`${baseUrl}/signout`);
     signOutApi();
   };
 
   const handleSignIn = () => {
     setLoginModalState(false);
     setSignUpModalState(true);
-  }
-    
+  };
+
   return (
     <div>
       {loginState ? (

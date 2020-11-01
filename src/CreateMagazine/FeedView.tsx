@@ -40,24 +40,18 @@ function FeedView({
     if (option.date.dateString.length === 0 && option.query.length === 0) {
       alert("피드를 검색하거나 생성일을 조회해주세요.");
     } else {
-      // try {
-      //   const result = await getMyFeedApi(
-      //     15,
-      //     option.query,
-      //     option.date.dateString,
-      //   );
-      //   if (result.status === 200) {
-      //     setFeedData(result.data.results);
-      //   }
-      // } catch (err) {
-      //   alert("피드를 검색할 수 없습니다.");
-      // }
-      const data = feedResult.filter(
-        el =>
-          el.createdAt === option.date.dateString ||
-          el.title.includes(option.query),
-      );
-      setFeedData(data);
+      try {
+        const result = await getMyFeedApi(
+          15,
+          option.query,
+          option.date.dateString,
+        );
+        if (result.status === 200) {
+          setFeedData(result.data.results);
+        }
+      } catch (err) {
+        alert("피드를 검색할 수 없습니다.");
+      }
     }
   };
 
@@ -114,10 +108,10 @@ function FeedView({
         </FeedStyles.Label>
         <FeedStyles.FeedContainer>
           {feedData.map(result => {
-            const check = waitList.filter(el => el.feedId === result.feedId);
+            const check = waitList.filter(el => el.id === result.id);
             if (check.length !== 0) {
               return (
-                <div key={result.feedId}>
+                <div key={result.id}>
                   <FeedStyles.StyledSearchOutlined
                     onClick={() => {
                       onActivePreview();
@@ -125,8 +119,8 @@ function FeedView({
                     }}
                   />
                   <FeedStyles.Feed
-                    // key={result.feedId}
-                    id={result.feedId.toString()}
+                    // key={result.id}
+                    id={result.id.toString()}
                     onClick={() => setWaitList(result)}
                     active={1}
                   >
@@ -137,7 +131,7 @@ function FeedView({
               );
             } else {
               return (
-                <div key={result.feedId}>
+                <div key={result.id}>
                   <FeedStyles.StyledSearchOutlined
                     onClick={() => {
                       onActivePreview();
@@ -145,8 +139,7 @@ function FeedView({
                     }}
                   />
                   <FeedStyles.Feed
-                    // key={result.feedId}
-                    id={result.feedId.toString()}
+                    id={result.id.toString()}
                     onClick={() => setWaitList(result)}
                     active={0}
                   >

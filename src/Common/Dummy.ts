@@ -355,21 +355,20 @@ function createFeedData(): FeedTypes[] {
   for (let i = 1; i <= 15; i += 1) {
     if (i % 2) {
       arr.push({
-        feedId: i,
+        id: i,
         title: `Test Title ${i}`,
         subTitle: `Test Subtitle ${i}`,
         content: HTMLEXAPME1,
         createdAt: `2020-08`,
         stars: 4,
-        location: {
-          location_name: "낙성대 버거킹",
-          location_x: "126.96379092885",
-          location_y: "37.4766500263963",
-        },
+
+        location_name: "낙성대 버거킹",
+        location_x: "126.96379092885",
+        location_y: "37.4766500263963",
       });
     } else {
       arr.push({
-        feedId: i,
+        id: i,
         title: `Test Title ${i}`,
         subTitle: `Test Subtitle ${i}`,
         content: HTMLEXAMPLE2,
@@ -394,7 +393,7 @@ export const detailDummy: detailTypes = {
     "https://www.apple.com/v/iphone-12-pro/a/images/meta/iphone-12-pro_overview__d5t6ow03nkmu_og.png",
   isLiked: false,
   isSubscribed: true,
-  feedList: feedResult.filter(el => el.feedId % 3 === 2),
+  feedList: feedResult.filter(el => el.id % 3 === 2),
   grid: 3,
   isVertical: false,
   titleAlign: 2,

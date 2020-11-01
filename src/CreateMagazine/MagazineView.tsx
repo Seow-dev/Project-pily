@@ -106,7 +106,7 @@ export default function MagazineView({
       magazineTitle: option.magazineTitle,
       magazineSubTitle: option.magazineSubTitle,
       thumbnail: thumbnail.url,
-      feedList: waitList.map(item => item.feedId),
+      feedList: waitList.map(item => item.id),
       categoryId: cur,
     };
     publish(datas);

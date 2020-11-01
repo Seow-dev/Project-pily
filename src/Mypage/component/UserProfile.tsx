@@ -19,6 +19,7 @@ const UserProfile = ({ match, history }: RouteComponentProps<matchprops>) => {
   });
 
   const paramUsername: string = match.params.username;
+  const [isSub, setSub] = useState<boolean>(false);
   useEffect(() => {
     (async () => {
       try {
@@ -30,7 +31,12 @@ const UserProfile = ({ match, history }: RouteComponentProps<matchprops>) => {
               ? result.data.IMG
               : "/image/default_user.png",
           });
-          setSub(true); // 일단!
+
+          if (result.data.isSubscribed) {
+            setSub(true); // 일단!
+          } else {
+            setSub(false);
+          }
           setCurData(result.data.results);
         }
       } catch (err) {
@@ -40,7 +46,6 @@ const UserProfile = ({ match, history }: RouteComponentProps<matchprops>) => {
     })();
   }, []);
 
-  const [isSub, setSub] = useState<boolean>(false);
   const confirm = window.confirm;
   const handleSub = useCallback(async () => {
     if (isSub) {
