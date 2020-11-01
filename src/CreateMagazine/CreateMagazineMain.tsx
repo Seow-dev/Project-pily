@@ -63,7 +63,7 @@ const CreateMagazineMain = withRouter(({ history }: RouteComponentProps) => {
     title: "",
     feedBody: "",
   });
-  const getFeedData = (data: any) => {
+  const getFeedData = (data: FeedTypes) => {
     const feedTitle = data.title;
     const feedContent = data.content;
     setFeedData({

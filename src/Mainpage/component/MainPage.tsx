@@ -99,6 +99,7 @@ export const MainWrapper = styled.div`
   ${media.tablet} {
     margin: 60px auto;
     width: 100%;
+    min-width: 750px;
   }
 `;
 const MainPhrase = styled.h2`

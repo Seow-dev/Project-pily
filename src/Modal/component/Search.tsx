@@ -15,6 +15,7 @@ import {
   SearchB2,
   SearchParagraph,
   StyledDatePicker,
+  StyeldSelect,
 } from "./ModalStyles";
 import { Select } from "antd";
 import {
@@ -98,7 +99,6 @@ export default function Search({
           </ModalSearchDateSelector>
           <ModalSearchOptions dis={disablePicker}>
             <StyledDatePicker
-              className="picker"
               value={date.Moment}
               onChange={(date, string) => {
                 setDate({
@@ -114,11 +114,9 @@ export default function Search({
               format="YYYY-MM"
               disabled={disablePicker}
             />
-            <Select
-              className="calendar"
+            <StyeldSelect
               placeholder="카테고리를 선택하세요"
               onChange={(value: SelectValue) => setCur(Number(value))}
-              style={SelectStyle}
               bordered={false}
               allowClear
               defaultValue="All"
@@ -130,7 +128,7 @@ export default function Search({
                   </Option>
                 );
               })}
-            </Select>
+            </StyeldSelect>
             <SearchBtn type="submit" onClick={submitHandler}>
               검색
             </SearchBtn>
@@ -140,11 +138,3 @@ export default function Search({
     </ModalPage>
   );
 }
-
-const SelectStyle = {
-  width: "250px",
-  color: "black",
-  border: "none",
-  borderBottom: "2px solid black",
-  fontSize: "20px",
-};

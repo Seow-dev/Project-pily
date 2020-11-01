@@ -105,9 +105,7 @@ export const ChangeButton = styled.button<{ save?: boolean }>`
   width: fit-content;
   margin-top: 1rem;
   cursor: pointer;
-
   margin-right: 12px;
-
   background-color: ${props => (props.save ? "#339af0" : "#ced4da")};
   color: ${props => (props.save ? "#fff" : "#000")};
 
@@ -130,33 +128,34 @@ export const MagazineListContainer = styled.section`
 export const SideTabMenu = styled.div`
   width: 100%;
   height: 600px;
-  display: flex;
-  flex-direction: column;
-`;
+  display: block;
+  padding-left: 1rem;
+  `;
+  
 export const TabMenu = styled.div<{ cur?: boolean }>`
-  width: 100%;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: flex-end;
+  width: ${props => (props.cur ? "111%" : "100%")};
   padding: 16px 8px;
   margin-bottom: 5px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
   border: none;
   cursor: pointer;
-  text-align: center;
   border-radius: 3px;
-  color: ${props => (props.cur ? "#fff" : "inherit")};
-  background-color: ${props => (props.cur ? "#339af0" : "none")};
-
-  &:hover {
-    box-shadow: #ced4da 0 1px 2px;
-    transform: scale(1.05);
-    transition: all 0.3s ease-in-out;
-  }
+  color: #fff;
+  background-color: ${props => (props.cur ? "#339af0" : "green")};
+  transform: ${props => (props.cur ? "translateX(-10%)" : "none")};
 
   ${media.desktop} {
     padding: 12px 8px;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   ${media.tablet} {
     padding: 10px 6px;
     font-size: 0.8rem;
   }
 `;
+

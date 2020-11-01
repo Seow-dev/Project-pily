@@ -1,26 +1,16 @@
 import React, { useState } from "react";
 import Search from "../component/Search";
-
-import {
-  LoginModal,
-  StyledSearchOutlined,
-  MyFeedPreview,
-} from "../component/ModalStyles";
 import Login from "../component/Login";
 import Action from "../component/Action";
 import SignUp from "../component/SignUp";
+import { LoginModal, StyledSearchOutlined } from "../component/ModalStyles";
 import { RootState } from "../../Modules";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../Modules/auth";
 import { signOutApi } from "../../Api/auth";
-import { PreviewModal } from "../component/Preview";
 import { DataTypes } from "../../Common/Interface";
 import { baseUrl } from "../../Common/base";
 
-interface PreaviewState {
-  title: string;
-  content: string;
-}
 interface SearchDataState {
   getSearchData: (data: DataTypes[]) => void;
 }
@@ -82,22 +72,5 @@ export const Modalpage = ({ getSearchData }: SearchDataState) => {
         <SignUp title={"회원가입"} onClose={signUpToggleModal} />
       ) : null}
     </div>
-  );
-};
-
-export const PreviewMyPage = ({ title, content }: PreaviewState) => {
-  const [isPreviewModalOpen, setPreviewModalState] = useState(false);
-  const previewToggleModal = () => setPreviewModalState(!isPreviewModalOpen);
-
-  return (
-    <>
-      <MyFeedPreview onClick={previewToggleModal} />
-      <PreviewModal
-        title={title}
-        content={content}
-        isOpen={isPreviewModalOpen}
-        onClose={previewToggleModal}
-      />
-    </>
   );
 };

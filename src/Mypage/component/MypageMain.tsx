@@ -27,6 +27,7 @@ import * as userApi from "../../Api/user";
 import { AxiosResponse } from "axios";
 import { getMyFeedApi } from "../../Api/feed";
 import { vaildateUsernameApi } from "../../Api/auth";
+import { PreviewModal } from "../../Modal/component/Preview";
 
 const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   const [userData, setUserData] = useState<UserData>({
@@ -119,12 +120,35 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
       }
     }
   };
+  
+  const [isPreviewModalOpen, setPreviewModalState] = useState(false);
+  const previewToggleModal = () => setPreviewModalState(!isPreviewModalOpen);
+  const [feedData, setFeedData] = useState({
+    title: "",
+    feedBody: "",
+  });
+  const getFeedData = (data: DataTypes) => {
+    const feedTitle = data.title;
+    const feedContent = data.content;
+    setFeedData({
+      title: feedTitle,
+      feedBody: feedContent,
+    });
+  };
+
 
   return (
     <>
       {success ? (
         <MainWrapper>
-          <Modalpage getSearchData={() => {}} />
+          {isPreviewModalOpen ? (
+            <PreviewModal
+            title={feedData.title}
+            content={feedData.feedBody}
+            onClose={previewToggleModal} />
+          ) : null
+        }
+          <Modalpage getSearchData={()=>{}}/>
           <UserInfo>
             <input
               ref={imageUploader}
@@ -198,22 +222,37 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
           <MagazineListWrap>
             <MagazineListContainer>
               {curMenu === "like" && (
-                <MypageList listData={curData} own={false} />
+                <MypageList 
+                listData={curData} 
+                own={false} 
+                getFeedData={getFeedData}
+                onActivePreview={previewToggleModal}
+                />
               )}
               {curMenu === "subscribe" && <SubscribeList listData={subData} />}
               {curMenu === "myFeed" && (
-                <MypageList listData={curData} own={true} />
+                <MypageList 
+                listData={curData} 
+                own={true} 
+                getFeedData={getFeedData}
+                onActivePreview={previewToggleModal}
+                />
               )}
               {curMenu === "myMagazine" && (
-                <MypageList listData={curData} own={true} />
+                <MypageList 
+                listData={curData} 
+                own={true} 
+                getFeedData={getFeedData}
+                onActivePreview={previewToggleModal}
+                />
               )}
             </MagazineListContainer>
-            <SideTabMenu>
+            <SideTabMenu >
               {curMenu === "like" ? (
-                <TabMenu cur>좋아요 한 매거진</TabMenu>
+                <TabMenu cur>좋아요 매거진 </TabMenu>
               ) : (
                 <TabMenu onClick={() => setCurMenu("like")}>
-                  좋아요 한 매거진
+                  좋아요 매거진
                 </TabMenu>
               )}
               {curMenu === "subscribe" ? (
