@@ -79,6 +79,7 @@ export const CoverTitle = styled.header<{ align: number; only?: boolean }>`
   }};
 
   h1 {
+    text-shadow: 1px 1px 0 #000;
     color: inherit;
     font-size: 3rem;
     font-weight: 700;
@@ -89,6 +90,7 @@ export const CoverTitle = styled.header<{ align: number; only?: boolean }>`
   }
 
   h5 {
+    text-shadow: 1px 1px 0 #000;
     color: inherit;
     font-size: 1.5rem;
     font-weight: 500;
@@ -97,6 +99,7 @@ export const CoverTitle = styled.header<{ align: number; only?: boolean }>`
   }
 
   p {
+    text-shadow: 1px 1px 0 #000;
     color: inherit;
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -148,6 +151,7 @@ export const LikeButton = styled.button`
   text-align: center;
   background-color: none;
   margin-left: 10px;
+  text-shadow: 1px 1px 0 #000;
 
   svg {
     margin-left: 5px;
@@ -168,6 +172,7 @@ export const SubButton = styled.button<{ active: boolean }>`
   padding: 4px;
   text-align: center;
   background-color: none;
+  text-shadow: 1px 1px 0 #000;
 
   svg {
     margin-left: 5px;
