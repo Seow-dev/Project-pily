@@ -3,7 +3,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { media } from "../../Common/DeviceSize";
 import { FcCancel, FcCheckmark } from "react-icons/fc";
 import "../../Common/GlobalStyles";
-import { DatePicker } from "antd";
+import { DatePicker, Select } from "antd";
 /*
   0a. General Modal
   1a. Search Modal Page
@@ -61,11 +61,9 @@ export const ModalBox = styled.div`
 export const ModalTitle = styled.div`
   display: flex;
   justify-content: center;
-  color: #9e25fc;
+  color: black;
   font-size: 30px;
   word-break: break-all;
-  // overflow:hidden;
-  // text-overflow:ellipsis;
 `;
 export const ModalCloseImg = styled.img`
   position: absolute;
@@ -192,11 +190,34 @@ export const ModalSearchDateSelector = styled.div`
     background-color: red;
   }
 `;
+export const StyeldSelect = styled(Select)`
+  width: 250px;
+  color: black;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 20px;
+
+  &: hover{
+    border-bottom: 3px solid black;
+  }
+`
+export const StyledDatePicker = styled(DatePicker)`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+
 export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   transition: all 0.3s;
   width: 100%;
   margin-top: 1rem;
-  & .picker {
+
+  & ${StyledDatePicker} {
     width: 300px;
     height: 36px;
     font-size: 20px;
@@ -206,35 +227,21 @@ export const ModalSearchOptions = styled.div<{ dis?: boolean }>`
     color: ${props => (props.dis ? "red" : "black")};
 
     &:hover {
-      border-bottom: 3px solid black;
+      border-bottom: ${props => (props.dis ? "2px solid black" : "3px solid black")};
       cursor: ${props => (props.dis ? "not-allowed" : "pointer")};
     }
   }
-  & .calendar {
-    &:hover {
-      border-bottom: 3px solid black !important;
-    }
-  }
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   ${media.tablet} {
     flex-direction: column;
-    & .picker {
-      width: 35rem !important;
+    & ${StyledDatePicker} {
+      width: 100%;
       margin-bottom: 1.5rem;
     }
-    & .calendar {
-      width: 100% !important;
+    & ${StyeldSelect} {
+      width: 100%;
       margin-bottom: 1.5rem;
     }
-  }
-`;
-export const StyledDatePicker = styled(DatePicker)`
-  &:hover {
-    cursor: pointer;
   }
 `;
 
@@ -255,7 +262,6 @@ export const SearchBtn = styled.button`
 `;
 
 // 2a. Social Login Button
-// KAKAO refer : 컨테이너 #FEE500 / 심볼 #000000 / 레이블 #000000 85% / border radius 12px /
 export const ModalLoginBox = styled.div`
   position: absolute;
   display: flex;

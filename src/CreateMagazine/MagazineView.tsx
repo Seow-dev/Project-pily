@@ -128,12 +128,14 @@ export default function MagazineView({
 
   return (
     <M.MagazineViewWrap>
+    {isPreviewOpen ? (
       <PreviewMagazineModal
         title={gotFeedTitle}
         content={gotFeedBody}
-        isOpen={isPreviewOpen}
         onClose={onClosePreview}
       />
+    ) : null
+    }
       <M.ButtonBar>
         <M.PublishButton onClick={handleView}>
           <IoIosRefresh style={{ fontSize: "0.8rem" }} />

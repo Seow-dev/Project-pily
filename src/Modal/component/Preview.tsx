@@ -13,12 +13,11 @@ import {
 interface ModalState {
   title: string;
   content: string;
-  isOpen: boolean;
   onClose: () => void;
 }
 
 
-export const PreviewModal = ({title, content, isOpen, onClose}:ModalState) => {
+export const PreviewModal = ({title, content, onClose}:ModalState) => {
 
   const overlayRef = React.useRef(null);
   const handleOverlayClick = (e:React.MouseEvent<HTMLElement, MouseEvent>) =>{
@@ -26,7 +25,7 @@ export const PreviewModal = ({title, content, isOpen, onClose}:ModalState) => {
       onClose();
     }
   }
-  return isOpen?(
+  return (
     <ModalPage>
       <ModalOverlay ref={overlayRef} onClick={handleOverlayClick}/>
       <ModalBox>
@@ -41,10 +40,10 @@ export const PreviewModal = ({title, content, isOpen, onClose}:ModalState) => {
         </ModalContent>
       </ModalBox>
     </ModalPage>
-  ): null;
+  )
 }
 
-export const PreviewMagazineModal = ({title, content, isOpen, onClose}:ModalState) => {
+export const PreviewMagazineModal = ({title, content, onClose}:ModalState) => {
 
   const overlayRef = React.useRef(null);
   const handleOverlayClick = (e:React.MouseEvent<HTMLElement, MouseEvent>) =>{
@@ -52,7 +51,7 @@ export const PreviewMagazineModal = ({title, content, isOpen, onClose}:ModalStat
       onClose();
     }
   }
-  return isOpen?(
+  return (
     <ModalPage>
       <ModalOverlay ref={overlayRef} onClick={handleOverlayClick}/>
       <ModalFededBox>
@@ -67,5 +66,5 @@ export const PreviewMagazineModal = ({title, content, isOpen, onClose}:ModalStat
         </ModalContent>
       </ModalFededBox>
     </ModalPage>
-  ): null;
+  )
 }

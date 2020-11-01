@@ -86,7 +86,7 @@ const UserProfile = ({ match, history }: RouteComponentProps<matchprops>) => {
       </S.UserInfo>
       <S.MagazineListWrap>
         <S.MagazineListContainer>
-          <MypageList listData={curData} own={true} />
+          <MypageList getFeedData={()=>{}} onActivePreview={()=>[]} listData={curData} own={true} />
         </S.MagazineListContainer>
         <S.SideTabMenu>
           <S.TabMenu cur>발행한 매거진</S.TabMenu>
