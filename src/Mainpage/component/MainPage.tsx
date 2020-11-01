@@ -5,26 +5,28 @@ import { Pagination } from "antd";
 import "antd/dist/antd.css";
 import { Modalpage } from "../../Modal/container";
 import { DataTypes } from "../../Common/Interface";
-import { results } from "../../Common/Dummy";
 import MagazineCardList from "./MagazineCardList";
 import MagazineList from "./MagazineList";
+import { getMagazine } from "../../Api/magazine";
 
 export default function Mainpage() {
   const [cur, setCur] = useState<number>(1);
-  const [menu, setMenu] = useState("created_at");
   const [selected, setSelected] = useState<DataTypes[]>([]);
   const [magazine, setMagazine] = useState<DataTypes[]>([]);
 
   useEffect(() => {
     // 처음에 호출하고, cur, menu값에 따라서 다른 데이터 불러오는 api 반영
-    if (menu === "created_at") {
-      setSelected(results.filter(result => result.megazineId % 4 === 0));
-      setMagazine(results);
-    } else if (menu === "like") {
-      setSelected(results.filter(result => result.megazineId % 4 === 1));
-      setMagazine(results);
-    }
-  }, [menu, cur]);
+    (async () => {
+      try {
+        const result = await getMagazine(24, cur);
+        const datas = result.data.results;
+        setMagazine(datas);
+        setSelected(datas.slice(datas.length - 5, datas.length).reverse());
+      } catch (err) {
+        alert("매거진을 가지고 올 수 없습니다.");
+      }
+    })();
+  }, []);
 
   const changePage = (page: number) => {
     setCur(page);
@@ -41,45 +43,17 @@ export default function Mainpage() {
         일상을 발행하다.{" "}
         <span style={{ color: "#A3320B", fontWeight: 900 }}>PILY</span>
       </MainPhrase>
-      <MenuWrap>
-        {menu === "created_at" ? (
-          <Menus cur value="created_at">
-            최신
-          </Menus>
-        ) : (
-          <Menus value="created_at" onClick={() => setMenu("created_at")}>
-            최신
-          </Menus>
-        )}
-        {menu === "like" ? (
-          <Menus cur value="like">
-            인기
-          </Menus>
-        ) : (
-          <Menus value="like" onClick={() => setMenu("like")}>
-            인기
-          </Menus>
-        )}
-      </MenuWrap>
       <SlideWrap>
-        <MagazineCardList
-          menus={menu}
-          headers={menu === "created_at" ? "발행된" : "인기있는"}
-          datas={selected}
-        />
+        <MagazineCardList datas={selected} />
       </SlideWrap>
       <div style={{ padding: "1rem" }}>
-        <MainLabel>
-          {menu === "created_at"
-            ? "지금 인기있는 매거진"
-            : "지금 발행된 매거진"}
-        </MainLabel>
-        <MagazineList datas={magazine.slice(15 * (cur - 1), 15 * cur)} />
+        <MainLabel>매거진 모아보기</MainLabel>
+        <MagazineList datas={magazine.slice(20 * (cur - 1), 20 * cur)} />
         <StyledPagination
           current={cur}
           onChange={changePage}
           defaultCurrent={1}
-          defaultPageSize={15}
+          defaultPageSize={20}
           total={magazine.length}
         />
       </div>

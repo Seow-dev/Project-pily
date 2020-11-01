@@ -12,20 +12,17 @@ export default function MagazineList({ datas }: props) {
   return (
     <ListSection>
       {datas.map(data => (
-        <ListItemBox key={data.megazineId}>
+        <ListItemBox key={data.id}>
           <ItemImg
             src={
               data.thumbnail ? data.thumbnail : "/image/no_image_indicator.png"
             }
           />
-          <Link
-            to={`/magazine/${data.megazineId}`}
-            style={{ textDecoration: "none" }}
-          >
+          <Link to={`/magazine/${data.id}`} style={{ textDecoration: "none" }}>
             <ItemOverlay />
             <ItemContent>
               <h3>{data.title}</h3>
-              <p>{data.author}</p>
+              <p>{data.User.author}</p>
             </ItemContent>
           </Link>
         </ListItemBox>
@@ -99,7 +96,7 @@ const ItemContent = styled.article`
   padding: 10px;
 
   h3 {
-    color: inherit;
+    color: #343a40;
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0 0 10px;
@@ -112,7 +109,7 @@ const ItemContent = styled.article`
   }
 
   p {
-    color: inherit;
+    color: #343a40;
     font-size: 1rem;
     font-weight: 400;
     margin: 0 0 10px;

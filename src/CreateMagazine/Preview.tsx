@@ -45,8 +45,8 @@ export default function Preview({ isPreview, close, previewData }: props) {
                       <D.CoverHead>
                         <D.CoverText>
                           <D.CoverTitle align={previewData.titleAlign}>
-                            <h1>{previewData.magazineTitle}</h1>
-                            <h5>{previewData.magazineSubTitle}</h5>
+                            <h1>{previewData.title}</h1>
+                            <h5>{previewData.subTitle}</h5>
                           </D.CoverTitle>
                         </D.CoverText>
                       </D.CoverHead>
@@ -60,8 +60,8 @@ export default function Preview({ isPreview, close, previewData }: props) {
                             align={previewData.titleAlign}
                             only={true}
                           >
-                            <h1>{previewData.magazineTitle}</h1>
-                            <h5>{previewData.magazineSubTitle}</h5>
+                            <h1>{previewData.title}</h1>
+                            <h5>{previewData.subTitle}</h5>
                           </D.CoverTitle>
                         </D.CoverText>
                       </D.CoverHead>

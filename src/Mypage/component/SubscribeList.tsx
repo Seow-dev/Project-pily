@@ -1,19 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { StyledListWrap } from "./MypageList";
-import { UserData } from "../../Common/Interface";
+import { subData, UserData } from "../../Common/Interface";
 import { Link } from "react-router-dom";
 import { media } from "../../Common/DeviceSize";
+import { unSubscribeApi } from "../../Api/user";
 
 interface props {
-  listData: UserData[];
+  listData: subData[];
 }
 const confirm = window.confirm;
 export default function SubscribeList({ listData }: props) {
   const unSubscribe = (username: string) => {
     if (confirm(`정말 ${username}님의 구독을 취소하시겠습니까?`)) {
-      console.log("취소");
-      // unSubscirbeApi(username)
+      unSubscribeApi(username);
+      window.location.reload();
     } else {
       return;
     }
@@ -23,7 +24,11 @@ export default function SubscribeList({ listData }: props) {
     <StyledListWrap>
       {listData.map((listEl, idx: number) => (
         <SbUserCard key={idx}>
-          <SbUserImage src={listEl.profileImage} />
+          {listEl.IMG ? (
+            <SbUserImage src={listEl.IMG} />
+          ) : (
+            <SbUserImage src="/image/default_user.png" />
+          )}
           <SbUserName>{listEl.username}</SbUserName>
           <SbDetailButton>
             <Link to={`/user/${listEl.username}`}>자세히 알아보기</Link>
@@ -46,7 +51,7 @@ const SbUserCard = styled.div`
   justify-content: center;
   margin-right: 1rem;
   width: 100%;
-  height: 50%;
+  height: 100%;
   padding: 15px;
   border-radius: 5px;
   border: 1px solid #495057;

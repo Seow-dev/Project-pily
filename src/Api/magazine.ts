@@ -19,16 +19,19 @@ export const unlikeApi = (id: number) =>
   );
 
 export const thumbnailUploadApi = (formData: FormData) =>
-  axios.post(`${baseUrl}/`, formData, {
+  axios.post(`${baseUrl}/magazine/img-upload`, formData, {
     withCredentials: true,
   });
 
+//1
 export const publishMagazineApi = (data: MagazineDataTypes) =>
-  axios.post(`${baseUrl}/`, data, { withCredentials: true });
+  axios.post(`${baseUrl}/magazine/create`, data, { withCredentials: true });
 
+//보류
 export const getMagazineDetailApi = (id: number) =>
-  axios.get(`${baseUrl}/`, { withCredentials: true });
+  axios.get(`${baseUrl}/magazine/detail/${id}`, { withCredentials: true });
 
+// 1
 export const getMagazine = (
   offset: number = 15,
   page: number,
@@ -37,8 +40,8 @@ export const getMagazine = (
   date?: string,
 ) => {
   const params = { offset, query, sort, date, page };
-  return axios.get(`${baseUrl}/`, { params, withCredentials: true });
+  return axios.get(`${baseUrl}/magazine/get-magazine`, {
+    params,
+    withCredentials: true,
+  });
 };
-
-export const getCategory = () =>
-  axios.get(`${baseUrl}/`, { withCredentials: true });
