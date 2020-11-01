@@ -27,6 +27,8 @@ import { AxiosResponse } from "axios";
 import { getMyFeedApi } from "../../Api/feed";
 import { vaildateUsernameApi } from "../../Api/auth";
 import { PreviewModal } from "../../Modal/component/Preview";
+import MypageLikeList from "./MypageLikeList";
+import MyMagazineList from "./MyMagazineList";
 
 const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
   const [userData, setUserData] = useState<UserData>({
@@ -57,23 +59,27 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
     // 메뉴에 따른 데이터 목록 가지고 오는 훅
     (async () => {
       if (curMenu === "like") {
-        // try {
-        //   const result = await userApi.getLikeMagazine();
-        //   setCurData(result.data.results);
-        // } catch (err) {
-        //   console.log("error");
-        // }
-      } else if (curMenu === "subscribe") {
+        try {
+          const result = await userApi.getLikeMagazine();
+          console.log(result.data.results);
+          setCurData(result.data.results);
+        } catch (err) {
+          console.log("error");
+        }
+      }
+      if (curMenu === "subscribe") {
         try {
           const result = await userApi.getSubscribeApi();
           setSubData(result.data.results);
         } catch (err) {
           alert("구독자 정보를 가지고 올 수 없습니다.");
         }
-      } else if (curMenu === "myFeed") {
+      }
+      if (curMenu === "myFeed") {
         const data = await getMyFeedApi(24);
         setCurData(data.data.results);
-      } else if (curMenu === "myMagazine") {
+      }
+      if (curMenu === "myMagazine") {
         try {
           const result = await userApi.getMyMagazine();
           setCurData(result.data.results);
@@ -226,30 +232,17 @@ const MypageMain: React.FC<RouteComponentProps> = ({ history }) => {
           </UserInfo>
           <MagazineListWrap>
             <MagazineListContainer>
-              {curMenu === "like" && (
-                <MypageList
-                  listData={curData}
-                  own={false}
-                  getFeedData={getFeedData}
-                  onActivePreview={previewToggleModal}
-                />
-              )}
+              {curMenu === "like" && <MypageLikeList listData={curData} />}
               {curMenu === "subscribe" && <SubscribeList listData={subData} />}
               {curMenu === "myFeed" && (
                 <MypageList
                   listData={curData}
-                  own={true}
                   getFeedData={getFeedData}
                   onActivePreview={previewToggleModal}
                 />
               )}
               {curMenu === "myMagazine" && (
-                <MypageList
-                  listData={curData}
-                  own={true}
-                  getFeedData={getFeedData}
-                  onActivePreview={previewToggleModal}
-                />
+                <MyMagazineList listData={curData} />
               )}
             </MagazineListContainer>
             <SideTabMenu>

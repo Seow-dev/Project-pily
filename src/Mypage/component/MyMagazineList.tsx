@@ -1,22 +1,16 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { DataTypes } from "../../Common/Interface";
+import { DataTypes, FeedTypes } from "../../Common/Interface";
+import { Link } from "react-router-dom";
 import { media } from "../../Common/DeviceSize";
 import { StyledPagination } from "../../Mainpage/component/MainPage";
+import { MyFeedPreview } from "../../Modal/component/ModalStyles";
 
 interface props {
   listData: DataTypes[];
-
-  getFeedData: (data: DataTypes) => void;
-  onActivePreview: () => void;
 }
 
-export default function MypageList({
-  listData,
-
-  getFeedData,
-  onActivePreview,
-}: props) {
+export default function MyMagazineList({ listData }: props) {
   const [cur, setCur] = useState<number>(1);
 
   return (
@@ -24,17 +18,14 @@ export default function MypageList({
       <StyledListWrap>
         {listData
           .map((listEl, idx: number) => (
-            <StyledMagazine
-              key={idx}
-              onClick={() => {
-                onActivePreview();
-                getFeedData(listEl);
-              }}
-            >
+            <StyledMagazine key={idx}>
               <StyledOverlay />
-              <StyledInfo>
-                <StyledTitle>{listEl.title}</StyledTitle>
-              </StyledInfo>
+
+              <Link to={`/magazine/${listEl.id}`}>
+                <StyledInfo>
+                  <StyledTitle>{listEl.title}</StyledTitle>
+                </StyledInfo>
+              </Link>
             </StyledMagazine>
           ))
           .slice(8 * (cur - 1), 8 * cur)}

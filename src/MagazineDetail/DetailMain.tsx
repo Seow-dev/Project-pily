@@ -21,9 +21,10 @@ function MagazineDetailMain({
   useEffect(() => {
     (async () => {
       try {
-        const result = await getMagazineDetailApi(Number(id));
+        const result = await getMagazineDetailApi(id);
         if (result.status === 200) {
           setData(result.data);
+          console.log(result.data);
         }
       } catch (err) {
         alert("작성되지 않은 매거진입니다.");

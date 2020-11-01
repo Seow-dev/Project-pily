@@ -83,7 +83,7 @@ export interface MagazineDataTypes {
 
 // magazine detail types
 export interface detailTypes {
-  magazineId: number;
+  id: number;
   title: string;
   subTitle?: string;
   User: { author: string; authorImg?: string };
