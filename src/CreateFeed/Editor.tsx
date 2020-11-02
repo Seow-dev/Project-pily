@@ -73,12 +73,6 @@ class Editor extends Component<appProps, appState> {
     "align",
   ];
 
-  componentDidUpdate(prevProps: any, prevState: Readonly<appState>) {
-    if (this.state.text !== prevState.text) {
-      this.props.changeFeedContent(this.state.text);
-    }
-  }
-
   render() {
     return (
       <ReactQuill
@@ -88,6 +82,7 @@ class Editor extends Component<appProps, appState> {
         value={this.state.text}
         onChange={content => {
           this.setState({ text: content });
+          this.props.changeFeedContent(content);
         }}
         placeholder="일상을 적어보아요."
       />
