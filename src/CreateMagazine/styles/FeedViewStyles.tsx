@@ -6,6 +6,7 @@ import { SearchOutlined } from "@ant-design/icons";
 export const FeedViewWrap = styled.section`
   width: 100%;
   min-width: 400px;
+  max-width: 400px;
   height: 1000px;
   padding: 1rem;
   border-radius: 8px;
@@ -147,8 +148,9 @@ export const Feed = styled.div<{ active: number }>`
     line-height: 1.3;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    word-break: break-all;
   }
 
   .createAtOff {
@@ -191,10 +193,10 @@ export const CloseButton = styled.p`
 
 export const StyledSearchOutlined = styled(SearchOutlined)`
   position: relative;
-  top:32px;
+  top: 32px;
   left: calc(100% - 29px);
   font-size: 20px;
-  border:1px solid black;
-  border-radius:5px;
+  border: 1px solid black;
+  border-radius: 5px;
   background-color: white;
-`
+`;
