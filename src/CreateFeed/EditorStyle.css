@@ -1,0 +1,9 @@
+.ql-toolbar.ql-snow{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+}
+p img {
+  vertical-align: bottom;
+}
